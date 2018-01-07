@@ -11,7 +11,7 @@ class enum_generator(object):
 	field_max_number = 5
 
 	def generate(self, name, fields, type):
-		enum = derived_type(name, fields, type)
+		enum = derived_type(name, fields, type, type)
 		return enum
 
 	def generate_random(self):

@@ -13,31 +13,32 @@ class base_type_generator(object):
 	base_types = ['void', 'error', 'match', 'bool', 'bit', 'sint', 'varbit', 'int']
 
 	def generate_base_type(self, name, size, type):
-		return base_type(name, size, type)
+		_type = type
+		if(_type) not in self.base_types:
+			_type = 'UNKNOWN'
+		return base_type(name, size, _type)
 
-	def generate_random_base_type(self, types):
+	def generate_random_base_type(self):
 		size = random.randint(self.base_type_min_size, self.base_type_max_size)
 		name = self.common.get_random_string(self.base_type_name_length, True)
-		if types:
-			type = random.choice(types)
-		else:
-			type = random.choice(self.base_types)
+		type = random.choice(self.base_types)
 
-		if type == 'void':
-			return self.generate_base_type(name, None, 'void')
-		elif type == 'error':
-			return self.generate_base_type(name, None, 'error')
-		elif type == 'match_kind':
-			return self.generate_base_type(name, None, 'match_kind')
-		elif type == 'bool':
-			return self.generate_base_type(name, None, 'bool')
-		elif type == 'bit':
-			return self.generate_base_type(name, size, 'bit')
-		elif type == 'sint':
-			return self.generate_base_type(name, size, 'int')
-		elif type == 'varbit':
-			return self.generate_base_type(name, size, 'varbit')
-		elif type == 'int':
-			return self.generate_base_type(name, size, 'int')
+		if type in ['bit', 'int', 'varbit']:
+			return self.generate_base_type(name, size, type)
 		else:
-			return self.generate_base_type(name, None, 'UNKNOWN')
+			return self.generate_base_type(name, None, type)
+
+	def generate_specific_base_type(self, type):
+		name = self.common.get_random_string(self.base_type_name_length, True)
+
+		if type in ['bit', 'int', 'varbit']:
+			size = random.randint(self.base_type_min_size, self.base_type_max_size)
+			return self.generate_base_type(name, size, type)
+		else:
+			return self.generate_base_type(name, None, type)
+
+	def generate_code(self, base_type):
+		if base_type.get_type() in ['bit', 'int', 'varbit']:
+			return base_type.get_type() + '<' + str(base_type.get_size()) + '>' + ' ' + base_type.get_name()
+		else:
+			return base_type.get_type() + ' ' + base_type.get_name()

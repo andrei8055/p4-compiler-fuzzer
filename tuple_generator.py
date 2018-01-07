@@ -9,7 +9,7 @@ from header_generator import header_generator
 from header_union_generator import header_union_generator
 from header_stack_generator import header_stack_generator
 
-class struct_generator(object):
+class tuple_generator(object):
 	common = common()
 	enum_generator = enum_generator()
 	header_generator = header_generator()
@@ -22,17 +22,17 @@ class struct_generator(object):
 	field_max_number = 5
 
 	def generate(self, name, fields, type):
-		struct = derived_type(name, fields, type, type)
-		return struct
+		tuple = derived_type(name, fields, type, type)
+		return tuple
 
 	def generate_random(self, field_types):
 		name = self.generate_name()
 		fields = self.generate_fields(field_types)
-		type = 'struct'
+		type = 'tuple'
 		return self.generate(name, fields, type)
 
 	def generate_name(self):
-		return self.common.get_random_string(self.name_length, True) + '_struct'
+		return self.common.get_random_string(self.name_length, True) + '_tuple'
 
 	def generate_fields(self, field_types):
 		field_list = []
@@ -52,15 +52,13 @@ class struct_generator(object):
 				field_list.append(field)
 		return field_list
 
-	def generate_code(self, struct):
-		code = 'struct' + ' ' + struct.get_name() + '{ '
-		for field in struct.get_fields():
-			if type(field).__name__ is 'base_type':
-				code = code + '\n\t' + self.base_type_generator.generate_code(field)
-			elif type(field).__name__ is 'derived_type':
-				code = code + '\n\t' + field.get_type() + ' ' + field.get_name()
-			else:
-				code = code + '\n\t' + 'UNKNOWN_TYPE UNKNOWN_NAME'
-		code = code + '\n}'
+	def generate_code(self, tuple):
+		field_types = []
+		for field in tuple.get_fields():
+			field_types.append(field.get_type())
+
+		code = 'tuple' + ' ' + tuple.get_name() + '<'
+		code = code + ', '.join(field_types)
+		code = code + '>'
 		return code
 

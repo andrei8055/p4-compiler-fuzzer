@@ -9,3 +9,6 @@ class common(object):
 			return ''.join(random.choice(string.ascii_lowercase) for _ in range(name_length)).capitalize()
 		else:
 			return ''.join(random.choice(string.ascii_lowercase) for _ in range(name_length))
+
+	def get_random_number(self, min, max):
+		return random.randint(min, max)

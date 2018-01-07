@@ -10,7 +10,7 @@ class header_union_generator(object):
 	field_max_number = 5
 
 	def generate(self, name, fields, type):
-		header_union = derived_type(name, fields, type)
+		header_union = derived_type(name, fields, type, type)
 		return header_union
 
 	def generate_random(self, headers):

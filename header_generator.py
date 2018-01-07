@@ -13,7 +13,7 @@ class header_generator(object):
 	field_max_number = 5
 
 	def generate(self, name, fields, type):
-		header = derived_type(name, fields, type)
+		header = derived_type(name, fields, type, type)
 		return header
 
 	def generate_random(self):
@@ -30,7 +30,7 @@ class header_generator(object):
 		return field_list
 
 	def generate_field(self):
-		field = self.base_type_generator.generate_random_base_type(['bit', 'sint' 'varbit'])
+		field = self.base_type_generator.generate_random_base_type()
 		return field
 
 	def generate_name(self):
@@ -38,19 +38,9 @@ class header_generator(object):
 
 	def generate_code(self, header):
 		code = 'header' + ' ' + header.get_name() + '{ '
-		code = code + self.generate_fields_code(header.get_fields())
+		for field in header.get_fields():
+			code = code + '\n\t' + self.base_type_generator.generate_code(field)
 		code = code + '\n}'
 		return code
 
-	def generate_fields_code(self, fields):
-		code = ''
-		for field in fields:
-			code = code + '\n\t'
-			code = code + field.get_type()
-			code = code + ' '
-			if field.get_size() is not None:
-				code = code + '<' + str(field.get_size()) + '>'
-			code = code + ' '
-			code = code + field.get_name()
-		return code
 
