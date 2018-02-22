@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import random
+import sys
 from base_type_generator import base_type_generator
 from enum_generator import enum_generator
 from header_generator import header_generator
@@ -7,7 +7,20 @@ from header_union_generator import header_union_generator
 from header_stack_generator import header_stack_generator
 from struct_generator import struct_generator
 from tuple_generator import tuple_generator
+from common import common
 
+filename = ""
+console = True
+
+if len(sys.argv) > 1:
+	filename = sys.argv[1]
+else:
+	sys.exit("Error! Missing argument 1 - output filename")
+
+# print the program to file
+file = open(filename, "w")
+
+common = common()
 
 # generate base types
 # ['void', 'error', 'match', 'bool', 'bit', 'sint', 'varbit', 'int']
@@ -25,50 +38,61 @@ int = base_type_generator.generate_specific_base_type('int')
 # generate enum
 enum_generator = enum_generator()
 enum = enum_generator.generate_random()
-print enum_generator.generate_code(enum)
+
+code = enum_generator.generate_code(enum)
+common.output(code, console, file)
 
 # generate headers
 header_generator = header_generator()
 header_1 = header_generator.generate_random()
-print header_generator.generate_code(header_1)
+code = header_generator.generate_code(header_1)
+common.output(code, console, file)
 
 header_2 = header_generator.generate_random()
-print header_generator.generate_code(header_2)
+code = header_generator.generate_code(header_2)
+common.output(code, console, file)
 
 # generate headers union
 header_union_generator = header_union_generator()
 header_union = header_union_generator.generate_random([header_1, header_2])
-print header_union_generator.generate_code(header_union)
+code = header_union_generator.generate_code(header_union)
+common.output(code, console, file)
 
 # generate header stack
 header_stack_generator = header_stack_generator()
 header_stack = header_stack_generator.generate_random(header_1, 5)
-print header_stack_generator.generate_code(header_stack)
+code = header_stack_generator.generate_code(header_stack)
+common.output(code, console, file)
 
 header_stack = header_stack_generator.generate_random(header_2, 5)
-print header_stack_generator.generate_code(header_stack)
+code = header_stack_generator.generate_code(header_stack)
+common.output(code, console, file)
 
 # generate struct
 struct_generator = struct_generator()
 struct_1 = struct_generator.generate_random(['error', 'bool', 'bit', 'sint', 'varbit', enum, header_1, header_2,
 										   header_union])
-print struct_generator.generate_code(struct_1)
+code = struct_generator.generate_code(struct_1)
+common.output(code, console, file)
 
 # generate struct containing a struct
 struct_2 = struct_generator.generate_random(['error', 'bool', 'bit', 'sint', 'varbit', enum, header_1, header_2,
 										   header_union, struct_1])
-print struct_generator.generate_code(struct_2)
+code = struct_generator.generate_code(struct_2)
+common.output(code, console, file)
 
 # generate tuple
 tuple_generator = tuple_generator()
 tuple_1 = tuple_generator.generate_random(['error', 'bool', 'bit', 'sint', 'varbit', enum, header_1, header_2,
 										   header_union])
-print tuple_generator.generate_code(tuple_1)
+code = tuple_generator.generate_code(tuple_1)
+common.output(code, console, file)
 
 # generate tuple containing a struct
 tuple_2 = tuple_generator.generate_random(['error', 'bool', 'bit', 'sint', 'varbit', enum, header_1, header_2,
 										   header_union, struct_1])
-print tuple_generator.generate_code(tuple_2)
+code = tuple_generator.generate_code(tuple_2)
+common.output(code, console, file)
 
 
 # for field in struct_2.get_fields():

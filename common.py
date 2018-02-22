@@ -12,3 +12,10 @@ class common(object):
 
 	def get_random_number(self, min, max):
 		return random.randint(min, max)
+
+	def output(self, code, console, file):
+		if console:
+			print code
+		if file is not None:
+			file.write(code)
+			file.write('\n')
