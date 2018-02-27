@@ -9,8 +9,6 @@ from struct_generator import struct_generator
 from tuple_generator import tuple_generator
 from common import common
 
-#test
-
 filename = ""
 console = True
 
