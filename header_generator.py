@@ -12,15 +12,15 @@ class header_generator(object):
 	field_min_number = 1
 	field_max_number = 5
 
-	def generate(self, name, fields, type):
+	def generate(self, name, fields):
+		type = 'header'
 		header = derived_type(name, fields, type, type)
 		return header
 
 	def generate_random(self):
 		name = self.generate_name()
 		fields = self.generate_fields()
-		type = 'header'
-		return self.generate(name, fields, type)
+		return self.generate(name, fields)
 
 	def generate_fields(self):
 		number_of_fields = random.randint(self.field_min_number, self.field_max_number)
