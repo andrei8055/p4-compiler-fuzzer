@@ -6,9 +6,9 @@ from base_type import base_type
 
 class base_type_generator(object):
 	common = common()
-	base_type_min_size = 2
-	base_type_max_size = 4
-	base_type_name_length = 5
+	base_type_min_size = 1
+	base_type_max_size = 1024
+	base_type_name_length = 8
 
 	base_types = ['void', 'error', 'match', 'bool', 'bit', 'varbit', 'int']
 

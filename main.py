@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import sys
+import random
 from base_type_generator import base_type_generator
 from derived_type import derived_type
 from enum_generator import enum_generator
@@ -30,23 +31,59 @@ else:
 # print the program to file
 file = open(filename, "w")
 
+#generators objects
 common = common()
+enum_generator = enum_generator()
+struct_generator = struct_generator()
+include_generator = include_generator()
+header_generator = header_generator()
+header_stack_generator = header_stack_generator()
+header_union_generator = header_union_generator()
+annotation_generator = annotation_generator()
+base_type_generator = base_type_generator()
 
 #generate includes
-include_generator = include_generator()
-
-
 include_corep4 = include_generator.generate("core.p4")
 include_v1modelp4 = include_generator.generate("v1model.p4")
 
 common.output(include_generator.generate_code(include_corep4), console, file)
 common.output(include_generator.generate_code(include_v1modelp4), console, file)
 
-#generate headers
-header_generator = header_generator()
-annotation_generator = annotation_generator()
-base_type_generator = base_type_generator()
+#---fuzzing section---
 
+random_headers = []
+random_enums = []
+random_structs = []
+random_header_stacks = []
+random_header_unions = []
+valid_struct_base_types = ['bit', 'int', 'varbit', 'bool']
+
+for x in range(2, random.randint(2, 20)):
+	rh = header_generator.generate_random()
+	random_headers.append(rh)
+	common.output(header_generator.generate_code(rh), console, file)
+
+for x in range(1, random.randint(1, 20)):
+	re = enum_generator.generate_random()
+	random_enums.append(re)
+	common.output(enum_generator.generate_code(re), console, file)
+
+for y in range (2, len(random_headers)):
+	random_types = random_headers[0:y]
+	rhu = header_union_generator.generate_random(random_types)
+	common.output(header_union_generator.generate_code(rhu), console, file)
+	random_header_unions.append(rhu)
+
+for x in range(1, random.randint(1, 20)):
+	all_types = valid_struct_base_types + random_structs + random_enums + random_headers + random_header_unions
+	random_types = []
+	for y in range(0, random.randint(1, 20)):
+		random_types.append(random.choice(all_types))
+	rs = struct_generator.generate_random(random_types)
+	random_structs.append(rs)
+	common.output(struct_generator.generate_code(rs), console, file)
+
+#generate headers
 #---ethernet header---
 dst_addr_field = base_type_generator.generate_base_type("dst_addr", 48, "bit")
 src_addr_field = base_type_generator.generate_base_type("src_addr", 48, "bit")
@@ -88,7 +125,7 @@ common.output(annotation_generator.generate_code(packet_out_annotation), console
 common.output(header_generator.generate_code(packet_out_header_t_header), console, file)
 
 #generate structs
-struct_generator = struct_generator()
+
 
 #---headers struct---
 ethernet_field = derived_type("ethernet", ethernet_t_header, ethernet_t_header.get_name(),
