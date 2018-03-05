@@ -38,5 +38,5 @@ class header_union_generator(object):
 			code = code + '\n\t'
 			code = code + field.get_name()
 			code = code + ' '
-			code = code + field.get_name()[0].lower() + field.get_name()[1:-2]
+			code = code + field.get_name()[0].lower() + field.get_name()[1:-2] + ';'
 		return code

@@ -26,13 +26,11 @@ class tuple_generator(object):
 		return tuple
 
 	def generate_random(self, field_types):
-		name = self.generate_name()
+		#tuples have no name
+		name = ""
 		fields = self.generate_fields(field_types)
 		type = 'tuple'
 		return self.generate(name, fields, type)
-
-	def generate_name(self):
-		return self.common.get_random_string(self.name_length, True) + '_tuple'
 
 	def generate_fields(self, field_types):
 		field_list = []
@@ -53,12 +51,28 @@ class tuple_generator(object):
 		return field_list
 
 	def generate_code(self, tuple):
-		field_types = []
-		for field in tuple.get_fields():
-			field_types.append(field.get_type())
-
-		code = 'tuple' + ' ' + tuple.get_name() + '<'
-		code = code + ', '.join(field_types)
-		code = code + '>'
+		code = 'tuple ' + '<'
+		fields = tuple.get_fields()
+		for x in range(0, len(fields)):
+			if type(fields[x]).__name__ is 'base_type':
+				code = code + self.base_type_generator.generate_code_unnamed(fields[x])
+			elif type(fields[x]).__name__ is 'derived_type':
+				code = code + fields[x].get_type()
+			else:
+				code = code + 'UNKNOWN_TYPE UNKNOWN_NAME'
+			if x < len(fields) - 1:
+				code = code + ', '
+		code = code + '> '
+		code = code + self.common.get_random_string(self.name_length, True) + '= {'
+		for x in range(0, len(fields)):
+			if type(fields[x]).__name__ is 'base_type':
+				code = code + '1'
+			elif type(fields[x]).__name__ is 'derived_type':
+				code = code + '2'
+			else:
+				code = code + 'UNKNOWN_TYPE UNKNOWN_NAME'
+			if x < len(fields) - 1:
+				code = code + ', '
+		code = code + '}; '
 		return code
 

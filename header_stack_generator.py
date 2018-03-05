@@ -17,7 +17,7 @@ class header_stack_generator(object):
 	def generate_random(self, header, size):
 		name = self.generate_name(header)
 		fields = self.generate_fields(size)
-		type = 'header_stack'
+		type = header.get_name()
 		return self.generate(name, fields, type)
 
 	def generate_fields(self, size):

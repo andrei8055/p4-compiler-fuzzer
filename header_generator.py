@@ -30,7 +30,8 @@ class header_generator(object):
 		return field_list
 
 	def generate_field(self):
-		field = self.base_type_generator.generate_random_base_type()
+		#todo add only 1 varbit
+		field = self.base_type_generator.generate_random_base_type(['bit', 'int'])
 		return field
 
 	def generate_name(self):
@@ -39,7 +40,7 @@ class header_generator(object):
 	def generate_code(self, header):
 		code = 'header' + ' ' + header.get_name() + '{ '
 		for field in header.get_fields():
-			code = code + '\n\t' + self.base_type_generator.generate_code(field)
+			code = code + '\n\t' + self.base_type_generator.generate_code(field) + ';'
 		code = code + '\n}'
 		return code
 

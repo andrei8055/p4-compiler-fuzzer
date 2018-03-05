@@ -56,9 +56,9 @@ class struct_generator(object):
 		code = 'struct' + ' ' + struct.get_name() + '{ '
 		for field in struct.get_fields():
 			if type(field).__name__ is 'base_type':
-				code = code + '\n\t' + self.base_type_generator.generate_code(field)
+				code = code + '\n\t' + self.base_type_generator.generate_code(field) + ';'
 			elif type(field).__name__ is 'derived_type':
-				code = code + '\n\t' + field.get_type() + ' ' + field.get_name()
+				code = code + '\n\t' + field.get_type() + ' ' + field.get_name() + ';'
 			else:
 				code = code + '\n\t' + 'UNKNOWN_TYPE UNKNOWN_NAME'
 		code = code + '\n}'
