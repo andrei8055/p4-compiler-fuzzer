@@ -14,5 +14,5 @@ Vagrant.configure(2) do |config|
   config.vm.hostname = "p4-compiler-fuzzer-dev"
   config.vm.provision "shell", path: "root-bootstrap.sh"
   config.vm.provision "shell", privileged: false, path: "user-bootstrap.sh"
-  config.vm.synced_folder "p4-compiler-fuzzer/", "/home/p4-compiler-fuzzer/p4-compiler-fuzzer"
+  config.vm.synced_folder "../src/", "/home/p4-compiler-fuzzer/p4-compiler-fuzzer/src"
 end
