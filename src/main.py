@@ -1,20 +1,20 @@
 #!/usr/bin/python
-import sys
 import random
+import sys
+
+from annotation_generator import annotation_generator
 from base_type_generator import base_type_generator
+from common import common
+from control_generator import control_generator
 from derived_type import derived_type
 from enum_generator import enum_generator
 from header_generator import header_generator
-from header_union_generator import header_union_generator
 from header_stack_generator import header_stack_generator
-from struct_generator import struct_generator
-from tuple_generator import tuple_generator
-from include_generator import include_generator
-from annotation_generator import annotation_generator
+from header_union_generator import header_union_generator
 from parser_generator import parser_generator
+from src.include_generator import include_generator
 from state_generator import state_generator
-from control_generator import control_generator
-from common import common
+from struct_generator import struct_generator
 
 filename = ""
 console = True
