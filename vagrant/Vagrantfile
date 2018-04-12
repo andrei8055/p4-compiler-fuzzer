@@ -1,0 +1,18 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+  config.vm.box = "ubuntu/xenial64"
+  config.vm.network "forwarded_port", guest: 22, host: 2202, id: 'ssh'
+  config.vm.network "forwarded_port", guest: 3306, host: 33062
+  config.ssh.forward_agent = true
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = "p4-compiler-fuzzer-dev"
+    vb.memory = "8192"
+    vb.cpus = 4
+  end
+  config.vm.hostname = "p4-compiler-fuzzer-dev"
+  config.vm.provision "shell", path: "root-bootstrap.sh"
+  config.vm.provision "shell", privileged: false, path: "user-bootstrap.sh"
+  config.vm.synced_folder "p4-compiler-fuzzer/", "/home/p4-compiler-fuzzer/p4-compiler-fuzzer"
+end
