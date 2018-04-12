@@ -6,11 +6,11 @@ from base_type import base_type
 
 class base_type_generator(object):
 	common = common()
-	base_type_min_size = 2
-	base_type_max_size = 4
-	base_type_name_length = 5
+	base_type_min_size = 1
+	base_type_max_size = 1024
+	base_type_name_length = 8
 
-	base_types = ['void', 'error', 'match', 'bool', 'bit', 'sint', 'varbit', 'int']
+	base_types = ['void', 'error', 'match', 'bool', 'bit', 'varbit', 'int']
 
 	def generate_base_type(self, name, size, type):
 		_type = type
@@ -18,10 +18,12 @@ class base_type_generator(object):
 			_type = 'UNKNOWN'
 		return base_type(name, size, _type)
 
-	def generate_random_base_type(self):
+	def generate_random_base_type(self, types):
 		size = random.randint(self.base_type_min_size, self.base_type_max_size)
 		name = self.common.get_random_string(self.base_type_name_length, True)
 		type = random.choice(self.base_types)
+		if(len(types) > 0):
+			type = random.choice(types)
 
 		if type in ['bit', 'int', 'varbit']:
 			return self.generate_base_type(name, size, type)
@@ -42,3 +44,9 @@ class base_type_generator(object):
 			return base_type.get_type() + '<' + str(base_type.get_size()) + '>' + ' ' + base_type.get_name()
 		else:
 			return base_type.get_type() + ' ' + base_type.get_name()
+
+	def generate_code_unnamed(self, base_type):
+		if base_type.get_type() in ['bit', 'int', 'varbit']:
+			return base_type.get_type() + '<' + str(base_type.get_size()) + '>'
+		else:
+			return base_type.get_type()

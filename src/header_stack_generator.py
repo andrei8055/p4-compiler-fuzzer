@@ -14,10 +14,10 @@ class header_stack_generator(object):
 		header_stack = derived_type(name, fields, type, type)
 		return header_stack
 
-	def generate_random(self, header, size):
+	def generate_random(self, header):
 		name = self.generate_name(header)
-		fields = self.generate_fields(size)
-		type = 'header_stack'
+		fields = self.generate_fields(random.randint(self.stack_min_size, self.stack_max_size))
+		type = header.get_name()
 		return self.generate(name, fields, type)
 
 	def generate_fields(self, size):

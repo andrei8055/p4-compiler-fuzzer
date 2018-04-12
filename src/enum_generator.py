@@ -8,7 +8,7 @@ class enum_generator(object):
 	name_length = 5
 	field_name_length = 5
 	field_min_number = 1
-	field_max_number = 5
+	field_max_number = 10
 
 	def generate(self, name, fields, type):
 		enum = derived_type(name, fields, type, type)

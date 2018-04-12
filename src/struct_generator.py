@@ -21,15 +21,15 @@ class struct_generator(object):
 	field_min_number = 1
 	field_max_number = 5
 
-	def generate(self, name, fields, type):
+	def generate(self, name, fields):
+		type = 'struct'
 		struct = derived_type(name, fields, type, type)
 		return struct
 
 	def generate_random(self, field_types):
 		name = self.generate_name()
 		fields = self.generate_fields(field_types)
-		type = 'struct'
-		return self.generate(name, fields, type)
+		return self.generate(name, fields)
 
 	def generate_name(self):
 		return self.common.get_random_string(self.name_length, True) + '_struct'
@@ -56,9 +56,9 @@ class struct_generator(object):
 		code = 'struct' + ' ' + struct.get_name() + '{ '
 		for field in struct.get_fields():
 			if type(field).__name__ is 'base_type':
-				code = code + '\n\t' + self.base_type_generator.generate_code(field)
+				code = code + '\n\t' + self.base_type_generator.generate_code(field) + ';'
 			elif type(field).__name__ is 'derived_type':
-				code = code + '\n\t' + field.get_type() + ' ' + field.get_name()
+				code = code + '\n\t' + field.get_type() + ' ' + field.get_name() + ';'
 			else:
 				code = code + '\n\t' + 'UNKNOWN_TYPE UNKNOWN_NAME'
 		code = code + '\n}'

@@ -1,8 +1,10 @@
 #!/usr/bin/python
 from base_type_generator import base_type_generator
 from derived_type import derived_type
+from common import common
 
 class header_union_generator(object):
+	common = common()
 	base_type_generator = base_type_generator()
 	name_length = 5
 	field_name_length = 5
@@ -22,7 +24,7 @@ class header_union_generator(object):
 	def generate_name(self, headers):
 		name = ''
 		for header in headers:
-			name = name + header.get_name() + '_'
+			name = name + header.get_name() + '_' + '_' + self.common.get_random_string(self.name_length, True)
 		name = name + 'union'
 		return name
 
@@ -38,5 +40,5 @@ class header_union_generator(object):
 			code = code + '\n\t'
 			code = code + field.get_name()
 			code = code + ' '
-			code = code + field.get_name()[0].lower() + field.get_name()[1:-2]
+			code = code + field.get_name()[0].lower() + field.get_name()[1:-2] + ';'
 		return code
