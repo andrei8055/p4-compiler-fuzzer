@@ -31,3 +31,10 @@ cd build
 cmake ..
 make -j4
 sudo make install
+
+sudo su p4-compiler-fuzzer
+cd ~/p4-compiler-fuzzer
+mkdir input
+mkdir output
+cd output
+mkdir errors

@@ -43,3 +43,12 @@ chmod 440 /etc/sudoers.d/99_p4-compiler-fuzzer
 
 sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
 service ssh restart
+
+mysql -u root -pp4-compiler-fuzzer -e "CREATE DATABASE fuzzer;"
+mysql -u root -pp4-compiler-fuzzer -e "GRANT ALL PRIVILEGES ON fuzzer.* TO 'p4-compiler-fuzzer'@'%' IDENTIFIED BY 'p4-compiler-fuzzer';"
+mysql -u root -pp4-compiler-fuzzer -e "FLUSH PRIVILEGES;"
+
+mysql -uroot -pp4compilerfuzzer fuzzer < /home/p4-compiler-fuzzer/p4-compiler-fuzzer/sql/init.sql
+
+sed -i 's/.*bind-address.*/bind-address = 0.0.0.0/g' /etc/mysql/mysql.conf.d/mysqld.cnf
+service mysql restart
