@@ -16,7 +16,8 @@ class control_generator(object):
 				code = code + ', '
 		code += ') \n'
 		code += '{ \n'
-		#TODO create declaration class and declaration_generator from list of objects
-		code += control.get_declarations()
+		declarations = control.get_declarations()
+		for x in range(0, len(declarations)):
+			code = code + str(declarations[x])
 		code += '} \n'
 		return code

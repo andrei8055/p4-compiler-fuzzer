@@ -4,8 +4,7 @@ class control(object):
 	name = ''
 	type = ''
 	parameters = []
-	#declarations = [] todo make it list of declarations instead of hardcoded body
-	declarations = ''
+	declarations = []
 
 	def __init__(self, name, parameters, declarations):
 		self.name = name

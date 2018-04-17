@@ -4,13 +4,16 @@ class parser(object):
 	name = ''
 	type = ''
 	parameters = []
-	#local_elements = '' TODO add
+	constants = []
+	variables = []
 	states = []
 
-	def __init__(self, name, parameters, states):
+	def __init__(self, name, parameters, constants, variables, states):
 		self.name = name
 		self.type = 'parser'
 		self.parameters = parameters
+		self.constants = constants
+		self.variables = variables
 		self.states = states
 
 	def get_name(self):
@@ -18,6 +21,12 @@ class parser(object):
 
 	def get_parameters(self):
 		return self.parameters
+
+	def get_constants(self):
+		return self.constants
+
+	def get_variables(self):
+		return self.variables
 
 	def get_states(self):
 		return self.states

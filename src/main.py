@@ -1,27 +1,31 @@
 #!/usr/bin/python
-import random
 import sys
-
-from annotation_generator import annotation_generator
+import os
+import random
 from base_type_generator import base_type_generator
-from common import common
-from control_generator import control_generator
 from derived_type import derived_type
 from enum_generator import enum_generator
 from header_generator import header_generator
 from header_stack_generator import header_stack_generator
 from header_union_generator import header_union_generator
 from parser_generator import parser_generator
-from src.include_generator import include_generator
+from include_generator import include_generator
 from state_generator import state_generator
+from control_generator import control_generator
+from expression_generator import expression_generator
+from declaration_generator import declaration_generator
+from parameter_generator import parameter_generator
+from constant_generator import constant_generator
 from struct_generator import struct_generator
+from annotation_generator import annotation_generator
+from common import common
 
 filename = ""
 console = True
 
 if len(sys.argv) > 1:
 	filename = sys.argv[1]
-	if(sys.argv[2] == ""):
+	if(sys.argv[2] == "false"):
 		console = False
 	else:
 		console = True
@@ -29,7 +33,9 @@ else:
 	sys.exit("Error! Missing argument 1 - output filename")
 
 # print the program to file
-file = open(filename, "w")
+curdir = os.path.dirname(__file__)
+file_path = os.path.join(curdir, filename)
+file = open(file_path, "w")
 
 #generators objects
 common = common()
@@ -41,6 +47,10 @@ header_stack_generator = header_stack_generator()
 header_union_generator = header_union_generator()
 annotation_generator = annotation_generator()
 base_type_generator = base_type_generator()
+control_generator = control_generator()
+expression_generator = expression_generator()
+declaration_generator = declaration_generator()
+parameter_generator = parameter_generator()
 
 #generate includes
 include_corep4 = include_generator.generate("core.p4")
@@ -48,8 +58,8 @@ include_v1modelp4 = include_generator.generate("v1model.p4")
 
 common.output(include_generator.generate_code(include_corep4), console, file)
 common.output(include_generator.generate_code(include_v1modelp4), console, file)
-
 #---fuzzing section---
+
 
 random_headers = []
 random_enums = []
@@ -146,14 +156,29 @@ common.output(struct_generator.generate_code(metadata_t_struct), console, file)
 # GENERATE PARSERS
 parser_generator = parser_generator()
 state_generator = state_generator()
+constant_generator = constant_generator()
+
+constant = constant_generator.generate_random()
+constant_generator.generate_code(constant)
+
 start_state = state_generator.generate("start", "transition select(standard_metadata.ingress_port) { \n default: accept;} \n")
-test_parser = parser_generator.generate("ParserImpl", ["packet_in packet", "out headers_t hdr", "inout metadata_t meta",
-													   "inout standard_metadata_t standard_metadata"], [start_state])
+
+param_1 = parameter_generator.generate("", "packet_in", "packet")
+param_2 = parameter_generator.generate("out", "headers_t", "hdr")
+param_3 = parameter_generator.generate("inout", "metadata_t", "meta")
+param_4 = parameter_generator.generate("inout", "standard_metadata_t", "standard_metadata")
+
+test_parser = parser_generator.generate("ParserImpl", [param_1, param_2, param_3, param_4], [constant], [], [start_state])
 common.output(parser_generator.generate_code(test_parser), console, file)
 
 
 #GENERATE CONTROLS
-control_generator = control_generator()
+action_declaration = declaration_generator.generate_action("a", ["inout bit<32> b", "bit<32> d"], "b = d;")
+table_declaration = declaration_generator.generate_table("t", "actions = { a(x); } \n default_action = a(x, 0);")
+apply_declaration = declaration_generator.generate_apply("t.apply();")
+
+test_control = control_generator.generate("c", ["inout bit<32> x"], [action_declaration, table_declaration, apply_declaration])
+common.output(control_generator.generate_code(test_control), console, file)
 
 #--- verify checksum control---
 verify_checksum_impl_control = control_generator.generate("VerifyChecksumImpl", ["inout headers_t hdr",
@@ -184,8 +209,6 @@ common.output(control_generator.generate_code(deparser_impl_control), console, f
 
 
 # GENERATE SWITCH INSTANTIONATION
-code = ''
-
 code = 'V1Switch(ParserImpl(), \n'
 code = code + 'VerifyChecksumImpl(), \n'
 code = code + 'IngressImpl(), \n'
