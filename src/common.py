@@ -15,7 +15,7 @@ class common(object):
 
 	def output(self, code, console, file):
 		if console:
-			print code
+			print(code)
 		if file is not None:
 			file.write(code)
 			file.write('\n')

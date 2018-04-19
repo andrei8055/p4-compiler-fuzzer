@@ -3,7 +3,7 @@ class parameter(object):
 	type = ''
 	name = ''
 
-	def __init__(self, direction, type, name):
+	def __init__(self, direction='', type='', name=''):
 		self.name = name
 		self.type = type
 		self.direction = direction
@@ -16,3 +16,9 @@ class parameter(object):
 
 	def get_type(self):
 		return self.type
+
+	def randomize(self):
+		pass  #todo make random parameters
+
+	def generate_code(self):
+		return self.direction + ' ' + self.type + ' ' + self.name

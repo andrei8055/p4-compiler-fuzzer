@@ -9,7 +9,7 @@ class declaration_generator(object):
 	action_name_length = 15
 
 	def generate_random_constant(self):
-		type = self.base_type_generator.generate_random_base_type([])
+		type = self.base_type_generator.generate_random([])
 
 		return 1
 

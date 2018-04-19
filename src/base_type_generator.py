@@ -1,52 +1,40 @@
 #!/usr/bin/python
 import random
-import string
 from common import common
-from base_type import base_type
+from bool import bool
+from varbit import varbit
+from void_generator import void
+from error import error
+from bit import bit
+from int import int
 
 class base_type_generator(object):
 	common = common()
+
 	base_type_min_size = 1
 	base_type_max_size = 1024
 	base_type_name_length = 8
 
 	base_types = ['void', 'error', 'match', 'bool', 'bit', 'varbit', 'int']
 
-	def generate_base_type(self, name, size, type):
-		_type = type
-		if(_type) not in self.base_types:
-			_type = 'UNKNOWN'
-		return base_type(name, size, _type)
-
-	def generate_random_base_type(self, types):
+	def generate_random(self, types):
 		size = random.randint(self.base_type_min_size, self.base_type_max_size)
-		name = self.common.get_random_string(self.base_type_name_length, True)
+		identifier_list = [] #todo randomize identifier_list
 		type = random.choice(self.base_types)
-		if(len(types) > 0):
+
+		if len(types) > 0:
 			type = random.choice(types)
 
-		if type in ['bit', 'int', 'varbit']:
-			return self.generate_base_type(name, size, type)
-		else:
-			return self.generate_base_type(name, None, type)
-
-	def generate_specific_base_type(self, type):
-		name = self.common.get_random_string(self.base_type_name_length, True)
-
-		if type in ['bit', 'int', 'varbit']:
-			size = random.randint(self.base_type_min_size, self.base_type_max_size)
-			return self.generate_base_type(name, size, type)
-		else:
-			return self.generate_base_type(name, None, type)
-
-	def generate_code(self, base_type):
-		if base_type.get_type() in ['bit', 'int', 'varbit']:
-			return base_type.get_type() + '<' + str(base_type.get_size()) + '>' + ' ' + base_type.get_name()
-		else:
-			return base_type.get_type() + ' ' + base_type.get_name()
-
-	def generate_code_unnamed(self, base_type):
-		if base_type.get_type() in ['bit', 'int', 'varbit']:
-			return base_type.get_type() + '<' + str(base_type.get_size()) + '>'
-		else:
-			return base_type.get_type()
+		if type == 'void':
+			return void()
+		if type == 'error':
+			return error(identifier_list)
+		if type == 'bool':
+			return bool()
+		if type == 'bit':
+			return bit(size)
+		if type == 'varbit':
+			return varbit(size)
+		if type == 'int':
+			return int(size)
+		return None

@@ -13,7 +13,6 @@ class expression_generator:
 	# TODO finsh project
 	def generate_random(self, type):
 		_type = type
-		print '--------- type = ' + type
 		if type in ['bit', 'int']:
 			_type = 'arithmetic'
 		if type in ['bool']:
@@ -22,7 +21,6 @@ class expression_generator:
 			_type = 'string'
 		expression = self.generate_composed_expression(_type)
 		expression = self.replace(expression, _type)
-		print(expression)
 		return expression
 
 	def replace(self, expression, type):

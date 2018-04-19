@@ -1,5 +1,5 @@
 #!/usr/bin/python
-class parser(object):
+class myparser(object):
 	#https://p4.org/p4-spec/docs/P4-16-v1.0.0-spec.html#sec-parser-decl
 	name = ''
 	type = ''

@@ -1,18 +1,15 @@
 #!/usr/bin/python
 import random
 from base_type_generator import base_type_generator
-from base_type import base_type
 from derived_type import derived_type
 from common import common
 from enum_generator import enum_generator
-from header_generator import header_generator
 from header_union_generator import header_union_generator
 from header_stack_generator import header_stack_generator
 
 class tuple_generator(object):
 	common = common()
 	enum_generator = enum_generator()
-	header_generator = header_generator()
 	header_union_generator = header_union_generator()
 	header_stack_generator = header_stack_generator()
 	base_type_generator = base_type_generator()
