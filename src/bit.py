@@ -26,3 +26,9 @@ class bit(object):
 			return self.name
 		else:
 			return self.name + '<' + str(self.size) + '>'
+
+	def generate_code_ref(self):
+		if self.size is not None:
+			return self.name
+		else:
+			return self.name + '<' + str(self.size) + '>'

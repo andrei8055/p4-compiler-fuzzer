@@ -22,3 +22,6 @@ class error(object):
 			if x < len(identifier_list) - 1:
 				code = code + ', '
 		return code
+
+	def generate_code_ref(self):
+		return 'error'

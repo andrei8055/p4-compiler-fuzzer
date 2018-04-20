@@ -1,5 +1,3 @@
-#!/usr/bin/python
-import random
 from common import common
 from bool import bool
 from varbit import varbit
@@ -7,6 +5,8 @@ from void_generator import void
 from error import error
 from bit import bit
 from int import int
+import random
+
 
 class base_type_generator(object):
 	common = common()

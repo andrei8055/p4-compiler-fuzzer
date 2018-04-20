@@ -1,8 +1,8 @@
 from common import common
 from base_type_generator import base_type_generator
-from literal import literal
 
-class constant(object):
+
+class variable(object):
 	common = common()
 	base_type_generator = base_type_generator()
 
@@ -28,9 +28,8 @@ class constant(object):
 
 	def randomize(self):
 		self.name = self.common.get_random_string(self.max_name_length, False)
-		#self.type = self.base_type_generator.generate_random(['bit', 'varbit', 'int'])
-		self.type = self.base_type_generator.generate_random(['int']) #  todo change to ['bit', 'varbit', 'int'] when literals are correctly generated
-		self.value = literal.get(self.type)
+		self.type = self.base_type_generator.generate_random(['bit', 'varbit', 'int'])
+		self.value = 1  # todo generate random value based on type
 
 	def generate_code(self):
-		return 'const' + ' ' + self.type.generate_code() + ' ' + self.name + ' = ' + str(self.value) + ';'
+		return self.type.generate_code() + ' ' + self.name + ' = ' + str(self.value) + ';'

@@ -23,3 +23,6 @@ class int(object):
 
 	def generate_code(self):
 		return self.name + '<' + str(self.size) + '>'
+
+	def generate_code_ref(self):
+		return self.name + '<' + str(self.size) + '>'

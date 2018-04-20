@@ -2,6 +2,7 @@ import random
 from common import common
 from annotation import annotation
 from base_type_generator import base_type_generator
+import sys
 
 class struct_field(object):
     name = ''
@@ -32,7 +33,8 @@ class struct_field(object):
         code = ''
         if self.annotation is not None:
             code += self.annotation.generate_code()
-        code += ' ' + self.type.generate_code() + ' ' + self.name + ';'
+        code += ' ' + self.type.generate_code_ref()
+        code += ' ' + self.name + ';'
         return code
 
     def randomize(self):

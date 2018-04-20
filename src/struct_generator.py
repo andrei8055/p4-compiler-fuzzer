@@ -3,16 +3,10 @@ import random
 from base_type_generator import base_type_generator
 from derived_type import derived_type
 from common import common
-from enum_generator import enum_generator
-from header_union_generator import header_union_generator
-from header_stack_generator import header_stack_generator
 from struct import struct
 
 class struct_generator(object):
 	common = common()
-	enum_generator = enum_generator()
-	header_union_generator = header_union_generator()
-	header_stack_generator = header_stack_generator()
 	base_type_generator = base_type_generator()
 	name_length = 5
 	field_name_length = 5

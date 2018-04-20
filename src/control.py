@@ -53,7 +53,7 @@ class control(object):
 		code += '{ \n'
 		declarations = self.local_declarations
 		for x in range(0, len(declarations)):
-			code = code + str(declarations[x])
+			code = code + str(declarations[x].generate_code())
 		code += self.apply
 		code += '} \n'
 		return code

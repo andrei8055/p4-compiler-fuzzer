@@ -75,11 +75,18 @@ class header(object):
     def generate_code(self):
         code = ''
         if self.annotation is not None:
-            code = self.annotation.generate_code()
-        code += ' ' + 'header' + ' '
+            code = self.annotation.generate_code() + ' '
+        code += 'header' + ' '
         code += self.name
-        code += '{'
+        code += '{\n'
         for field in self.fields:
-            code += field.generate_code() + ' \n'
-        code += '}'
+            code += '\t' + field.generate_code() + ' \n'
+        code += '}\n'
+        return code
+
+    def generate_code_ref(self):
+        code = ''
+        if self.annotation is not None:
+            code = self.annotation.generate_code() + ' '
+        code += self.name
         return code

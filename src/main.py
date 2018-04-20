@@ -1,12 +1,6 @@
 #!/usr/bin/python
-import sys
-import os
-import random
 from base_type_generator import base_type_generator
 from derived_type import derived_type
-from enum_generator import enum_generator
-from header_stack_generator import header_stack_generator
-from header_union_generator import header_union_generator
 from parser_generator import parser_generator
 from include import include
 from state_generator import state_generator
@@ -17,7 +11,6 @@ from annotation import annotation
 from varbit_generator import varbit_generator
 from bool import bool
 from varbit import varbit
-from void_generator import void
 from error import error
 from bit import bit
 from int import int
@@ -26,12 +19,21 @@ from parameter import parameter
 from control import control
 from header import header
 from struct_field import struct_field
-
-
+from action import action
+from table import table
+from table_actions import table_actions
+from variable import variable
+from table_default_action import table_default_action
+from header_union import header_union
+from struct import struct
+from enumeration import enumeration
+import sys
+import os
+import random
 from common import common
 
 filename = ""
-console = True
+console = False
 
 if len(sys.argv) > 1:
 	filename = sys.argv[1]
@@ -49,10 +51,7 @@ file = open(file_path, "w")
 
 #generators objects
 common = common()
-enum_generator = enum_generator()
 struct_generator = struct_generator()
-header_stack_generator = header_stack_generator()
-header_union_generator = header_union_generator()
 base_type_generator = base_type_generator()
 expression_generator = expression_generator()
 declaration_generator = declaration_generator()
@@ -67,12 +66,16 @@ common.output(include_v1modelp4.generate_code(), console, file)
 #---fuzzing section---
 
 
+random_base_types = []
 random_headers = []
 random_enums = []
 random_structs = []
 random_header_stacks = []
 random_header_unions = []
-valid_struct_base_types = ['bit', 'int', 'varbit', 'bool']
+
+for x in range(0, random.randint(1, 20)):
+	rbt = base_type_generator.generate_random(['bit', 'bool', 'varbit', 'int'])
+	random_base_types.append(rbt)
 
 for x in range(2, random.randint(2, 20)):
 	rh = header()
@@ -81,24 +84,23 @@ for x in range(2, random.randint(2, 20)):
 	common.output(rh.generate_code(), console, file)
 
 for x in range(1, random.randint(1, 20)):
-	re = enum_generator.generate_random()
+	re = enumeration()
+	re.randomize()
 	random_enums.append(re)
-	common.output(enum_generator.generate_code(re), console, file)
+	common.output(re.generate_code(), console, file)
 
-for y in range (2, len(random_headers)):
-	random_types = random_headers[0:y]
-	rhu = header_union_generator.generate_random(random_types)
-	common.output(header_union_generator.generate_code(rhu), console, file)
+for y in range(0, random.randint(1, 10)):
+	rhu = header_union()
+	rhu.randomize(random_headers)
+	common.output(rhu.generate_code(), console, file)
 	random_header_unions.append(rhu)
 
-# for x in range(1, random.randint(1, 20)):
-# 	all_types = valid_struct_base_types + random_structs + random_enums + random_headers + random_header_unions
-# 	random_types = []
-# 	for y in range(0, random.randint(1, 20)):
-# 		random_types.append(random.choice(all_types))
-# 	rs = struct_generator.generate_random(random_types)
-# 	random_structs.append(rs)
-# 	common.output(struct_generator.generate_code(rs), console, file)
+for x in range(1, random.randint(1, 20)):
+	all_types = random_base_types + random_structs + random_enums + random_headers + random_header_unions
+	rs = struct()
+	rs.randomize(all_types)
+	random_structs.append(rs)
+	common.output(rs.generate_code(), console, file)
 
 #generate headers
 #---ethernet header---
@@ -182,11 +184,17 @@ common.output(parser_generator.generate_code(test_parser), console, file)
 
 #GENERATE CONTROLS
 x_parameter = parameter("inout", "bit<32>", "x")
-action_declaration = declaration_generator.generate_action("a", ["inout bit<32> b", "bit<32> d"], "b = d;")
-table_declaration = declaration_generator.generate_table("t", "actions = { a(x); } \n default_action = a(x, 0);")
+#action_declaration = declaration_generator.generate_action("a", ["inout bit<32> b", "bit<32> d"], "b = d;")
+action_declaration = action(annotation(), "a", [parameter("inout", "bit<32>", "b"), parameter("", "bit<32>", "d")])
+
+_table_actions = table_actions({action_declaration: ["x"]})
+_default_action = table_default_action(action_declaration.generate_code_ref(["x", "0"]))
+
+property_list = [_table_actions, _default_action]
+table_declaration = table(annotation(), "t", property_list)
 apply_declaration = declaration_generator.generate_apply("t.apply();")
 
-test_control = control(annotation(), "c", [], [x_parameter], [action_declaration, table_declaration], "t.apply();")
+test_control = control(annotation(), "c", [], [x_parameter], [action_declaration, table_declaration], "apply { t.apply(); }")
 common.output(test_control.generate_code(), console, file)
 
 #--- verify checksum control---
