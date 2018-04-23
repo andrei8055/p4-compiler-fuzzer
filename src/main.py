@@ -16,7 +16,7 @@ from table import table
 from table_actions import table_actions
 from table_default_action import table_default_action
 from header_union import header_union
-from struct import struct
+from struct_ import struct_
 from enumeration import enumeration
 from tuple import tuple
 from bool import bool
@@ -89,7 +89,7 @@ for y in range(0, random.randint(1, 10)):
 
 for x in range(1, random.randint(1, 20)):
 	all_types = random_base_types + random_structs + random_enums + random_headers + random_header_unions
-	rs = struct()
+	rs = struct_()
 	rs.randomize(all_types)
 	random_structs.append(rs)
 	common.output(rs.generate_code(), console, file)
@@ -141,11 +141,11 @@ common.output(packet_out_header_t_header.generate_code(), console, file)
 
 
 #---headers struct---
-headers_t_struct = struct(annotation(), "headers_t", [ethernet_t_header, ipv4_t_header, packet_in_header_t_header, packet_out_header_t_header])
+headers_t_struct = struct_(annotation(), "headers_t", [ethernet_t_header, ipv4_t_header, packet_in_header_t_header, packet_out_header_t_header])
 common.output(headers_t_struct.generate_code(), console, file)
 
 #---metadata struct---
-metadata_t_struct = struct(annotation(), "metadata_t", [])
+metadata_t_struct = struct_(annotation(), "metadata_t", [])
 common.output(metadata_t_struct.generate_code(), console, file)
 
 # GENERATE PARSERS

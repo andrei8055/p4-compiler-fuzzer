@@ -3,7 +3,7 @@ from annotation import annotation
 import random
 
 
-class struct(object):
+class struct_(object):
     common = common()
 
     annotation = None
