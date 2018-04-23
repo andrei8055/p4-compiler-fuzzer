@@ -31,6 +31,13 @@ cd build
 cmake ..
 make -j4
 sudo make install
+cd ..
+cd ..
+
+mkdir mysql_connector
+cd mysql_connector/
+wget https://dev.mysql.com/get/Downloads/Connector-Python/mysql-connector-python_8.0.11-1ubuntu16.04_all.deb
+sudo dpkg -i mysql-connector-python_8.0.11-1ubuntu16.04_all.deb
 
 sudo su p4-compiler-fuzzer
 cd ~/p4-compiler-fuzzer
