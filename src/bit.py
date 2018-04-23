@@ -22,13 +22,13 @@ class bit(object):
 		self.size = random.randint(self.min_size, self.max_size)
 
 	def generate_code(self):
-		if self.size is not None:
+		if self.size is None:
 			return self.name
 		else:
 			return self.name + '<' + str(self.size) + '>'
 
 	def generate_code_ref(self):
-		if self.size is not None:
+		if self.size is None:
 			return self.name
 		else:
 			return self.name + '<' + str(self.size) + '>'

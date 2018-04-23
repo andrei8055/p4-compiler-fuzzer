@@ -1,7 +1,6 @@
 from common import common
 from bool import bool
 from varbit import varbit
-from void_generator import void
 from error import error
 from bit import bit
 from int import int

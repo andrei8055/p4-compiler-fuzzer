@@ -1,4 +1,4 @@
-class state(object):
+class statement(object):
 	#https://p4.org/p4-spec/docs/P4-16-v1.0.0-spec.html#sec-parser-state-stmt
 
 	annotation = None

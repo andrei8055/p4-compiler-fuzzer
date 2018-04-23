@@ -5,7 +5,6 @@ from state_generator import state_generator
 from expression_generator import expression_generator
 from declaration_generator import declaration_generator
 from annotation import annotation
-from varbit_generator import varbit_generator
 from bit import bit
 from constant import constant
 from parameter import parameter
@@ -19,6 +18,9 @@ from table_default_action import table_default_action
 from header_union import header_union
 from struct import struct
 from enumeration import enumeration
+from tuple import tuple
+from bool import bool
+
 import sys
 import os
 import random
@@ -46,7 +48,6 @@ common = common()
 base_type_generator = base_type_generator()
 expression_generator = expression_generator()
 declaration_generator = declaration_generator()
-varbit_generator = varbit_generator()
 
 #generate includes
 include_corep4 = include("core.p4")
