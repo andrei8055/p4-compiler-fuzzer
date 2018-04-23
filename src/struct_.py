@@ -4,7 +4,6 @@ import random
 
 
 class struct_(object):
-    common = common()
 
     annotation = None
     name = ''
@@ -45,10 +44,10 @@ class struct_(object):
         self.fields = random.sample(fields, random.randint(0, len(fields)))
 
     def generate_name(self):
-        return self.common.get_random_string(self.max_field_name_length, True) + '_struct'
+        return common.get_random_string(self.max_field_name_length, True) + '_struct'
 
     def generate_field_name(self, name):
-        return self.common.get_random_string(self.max_field_name_length, False) + '_' + name
+        return common.get_random_string(self.max_field_name_length, False) + '_' + name
 
     def generate_code(self):
         code = ''

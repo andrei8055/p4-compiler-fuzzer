@@ -1,4 +1,3 @@
-from common import common
 from bool import bool
 from varbit import varbit
 from error import error
@@ -8,7 +7,6 @@ import random
 
 
 class base_type_generator(object):
-	common = common()
 
 	base_type_min_size = 1
 	base_type_max_size = 1024

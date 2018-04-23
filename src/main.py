@@ -44,7 +44,6 @@ file_path = os.path.join(curdir, filename)
 file = open(file_path, "w")
 
 #generators objects
-common = common()
 base_type_generator = base_type_generator()
 expression_generator = expression_generator()
 declaration_generator = declaration_generator()

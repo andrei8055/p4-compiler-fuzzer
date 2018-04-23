@@ -9,8 +9,6 @@ class enumeration(object):
 	type = 'enum'
 	identifiers = []
 
-	common = common()
-
 	name_length = 5
 	field_name_length = 5
 	field_min_number = 1
@@ -50,11 +48,11 @@ class enumeration(object):
 	def generate_identifiers(self, number):
 		identifiers = []
 		for x in range(0, number):
-			identifiers.append(self.common.get_random_string(self.field_name_length, True))
+			identifiers.append(common.get_random_string(self.field_name_length, True))
 		return identifiers
 
 	def generate_name(self):
-		code = self.common.get_random_string(self.name_length, True) + '_enum'
+		code = common.get_random_string(self.name_length, True) + '_enum'
 		return code
 
 	def generate_fields_code(self, fields):

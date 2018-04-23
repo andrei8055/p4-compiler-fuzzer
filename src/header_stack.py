@@ -7,8 +7,6 @@ class header_stack(object):
 	header = None
 	size = 0
 
-	common = common()
-
 	name_max_length = 5
 	stack_min_size = 1
 	stack_max_size = 5
@@ -24,7 +22,7 @@ class header_stack(object):
 		self.header = header
 
 	def generate_name(self):
-		return self.common.get_random_string(self.name_max_length, False) + '_union'
+		return common.get_random_string(self.name_max_length, False) + '_union'
 
 	def generate_code(self):
 		return self.header.get_name() + '[' + str(self.size) + '] ' + self.name + ';'

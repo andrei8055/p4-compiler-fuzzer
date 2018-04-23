@@ -3,7 +3,6 @@ from base_type_generator import base_type_generator
 
 
 class variable(object):
-	common = common()
 	base_type_generator = base_type_generator()
 
 	value = None
@@ -27,7 +26,7 @@ class variable(object):
 		return self.name
 
 	def randomize(self):
-		self.name = self.common.get_random_string(self.max_name_length, False)
+		self.name = common.get_random_string(self.max_name_length, False)
 		self.type = self.base_type_generator.generate_random(['bit', 'varbit', 'int'])
 		self.value = 1  # todo generate random value based on type
 

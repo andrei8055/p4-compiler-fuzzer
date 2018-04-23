@@ -11,8 +11,6 @@ class header(object):
     type = 'header'
     base_type = 'header'
 
-    common = common()
-
     name_length = 15
     field_name_length = 15
     field_min_number = 1
@@ -70,7 +68,7 @@ class header(object):
         return field_list
 
     def generate_name(self):
-        return self.common.get_random_string(self.name_length, True) + '_h'
+        return common.get_random_string(self.name_length, True) + '_h'
 
     def generate_code(self):
         code = ''

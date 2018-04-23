@@ -1,6 +1,3 @@
-from common import common
-
-
 class key_element(object):
 	annotation = None
 	expression = None
@@ -9,7 +6,6 @@ class key_element(object):
 
 	name_min_length = 1
 	name_max_length = 50
-	common = common()
 
 	def __init__(self, annotation, name='', expression=None):
 		self.annotation = annotation

@@ -3,7 +3,6 @@ from base_type_generator import base_type_generator
 from literal import literal
 
 class constant(object):
-	common = common()
 	base_type_generator = base_type_generator()
 
 	value = None
@@ -27,7 +26,7 @@ class constant(object):
 		return self.name
 
 	def randomize(self):
-		self.name = self.common.get_random_string(self.max_name_length, False)
+		self.name = common.get_random_string(self.max_name_length, False)
 		#self.type = self.base_type_generator.generate_random(['bit', 'varbit', 'int'])
 		self.type = self.base_type_generator.generate_random(['int']) #  todo change to ['bit', 'varbit', 'int'] when literals are correctly generated
 		self.value = literal.get(self.type)

@@ -1,6 +1,3 @@
-from common import common
-
-
 class table(object):
 	annotation = None
 	type = 'table'
@@ -9,7 +6,6 @@ class table(object):
 
 	name_min_length = 1
 	name_max_length = 50
-	common = common()
 
 	def __init__(self, annotation, name='', property_list=[]):
 		self.annotation = annotation

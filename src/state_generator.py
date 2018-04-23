@@ -1,8 +1,6 @@
-from common import common
 from state import state
 
 class state_generator(object):
-	common = common()
 	
 	def generate(self, name, transitions):
 		return state(name, transitions, 'state')

@@ -1,10 +1,8 @@
-from common import common
 from myparser import myparser
 from state_generator import state_generator
 
 
 class parser_generator(object):
-	common = common()
 	state_generator = state_generator()
 
 	def generate(self, name, parameters, constants, variables, states):

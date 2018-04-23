@@ -3,7 +3,6 @@ from common import common
 
 
 class expression_generator:
-	common = common()
 	string_min_length = 1
 	string_max_length = 100
 	numeric_min_size = 1
@@ -58,7 +57,7 @@ class expression_generator:
 			values = ['true', 'false']
 			return random.choice(values)
 		if type == 'string':
-			return '"' + self.common.get_random_string(random.randint(self.string_min_length, self.string_max_length), False) + '"'
+			return '"' + common.get_random_string(random.randint(self.string_min_length, self.string_max_length), False) + '"'
 		if type == 'arithmetic':
 			return self.common.get_random_number(self.numeric_min_size, self.numeric_max_size)
 

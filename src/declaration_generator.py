@@ -1,9 +1,7 @@
-from common import common
 from expression_generator import expression_generator
 from base_type_generator import base_type_generator
 
 class declaration_generator(object):
-	common = common()
 	expression_generator = expression_generator()
 	base_type_generator = base_type_generator()
 	action_name_length = 15

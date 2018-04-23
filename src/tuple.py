@@ -5,7 +5,6 @@ from derived_type import derived_type
 from common import common
 
 class tuple(object):
-	common = common()
 	max_field_name_length = 10
 
 	annotation = None
@@ -47,7 +46,7 @@ class tuple(object):
 
 
 	def generate_field_name(self, name):
-		return self.common.get_random_string(self.max_field_name_length, False) + '_' + name
+		return common.get_random_string(self.max_field_name_length, False) + '_' + name
 
 	def generate_code(self):
 		code = ''

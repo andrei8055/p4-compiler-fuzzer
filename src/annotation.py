@@ -7,7 +7,6 @@ class annotation(object):
 	expression_list = []
 	name_min_length = 1
 	name_max_length = 50
-	common = common()
 
 	def __init__(self, name='', expression_list=[]):
 		self.name = name
@@ -20,7 +19,7 @@ class annotation(object):
 		return self.expression_list
 
 	def randomize(self):
-		self.name = self.common.get_random_string(random.randint(self.name_min_length, self.name_max_length), False)
+		self.name = common.get_random_string(random.randint(self.name_min_length, self.name_max_length), False)
 		self.expression_list = [] #todo generate random expression list
 
 	def generate_code(self):

@@ -9,8 +9,6 @@ class header_union(object):
     headers = []
     type = 'header_union'
 
-    common = common()
-
     name_length = 15
     field_name_length = 15
     field_min_number = 1
@@ -44,7 +42,7 @@ class header_union(object):
         self.headers = random.sample(headers, random.randint(0, len(headers)))
 
     def generate_name(self):
-        return self.common.get_random_string(self.name_length, True) + '_union'
+        return common.get_random_string(self.name_length, True) + '_union'
 
     def generate_code(self):
         code = ''
@@ -54,7 +52,7 @@ class header_union(object):
         code += self.name + ' '
         code += '{\n'
         for header in self.headers:
-            name = header.get_name() + '_' + self.common.get_random_string(self.name_length, False)
+            name = header.get_name() + '_' + common.get_random_string(self.name_length, False)
             code += '\t' + header.generate_code_ref() + ' ' + name + '; \n'
         code += '}\n'
         return code

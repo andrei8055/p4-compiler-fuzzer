@@ -8,8 +8,7 @@ class struct_field(object):
     name = ''
     annotation = None
     type = None
-
-    common = common()
+    
     base_type_generator = base_type_generator()
 
     min_field_name = 1
@@ -42,4 +41,4 @@ class struct_field(object):
         _annotation.randomize()
         self.annotation = _annotation
         self.type = self.base_type_generator.generate_random(['int', 'bit', 'varbit'])
-        self.name = self.common.get_random_string(random.randint(self.min_field_name, self.max_field_name), False)
+        self.name = common.get_random_string(random.randint(self.min_field_name, self.max_field_name), False)

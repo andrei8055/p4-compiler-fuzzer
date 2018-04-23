@@ -12,7 +12,6 @@ class action(object):
 
 	name_min_length = 1
 	name_max_length = 50
-	common = common()
 
 	def __init__(self, annotation, name='', parameter_list=[], expression_list=[]):
 		self.annotation = annotation
@@ -39,7 +38,7 @@ class action(object):
 		_annotation = annotation()
 		_annotation.randomize()
 		self.annotation = _annotation
-		self.name = self.common.get_random_string(random.randint(self.name_min_length, self.name_max_length), False)
+		self.name = common.get_random_string(random.randint(self.name_min_length, self.name_max_length), False)
 		self.parameter_list = []  #todo randomize parameter list
 		self.expression_list = []  #todo randomize expression list
 
