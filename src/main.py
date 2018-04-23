@@ -6,7 +6,6 @@ from include import include
 from state_generator import state_generator
 from expression_generator import expression_generator
 from declaration_generator import declaration_generator
-from struct_generator import struct_generator
 from annotation import annotation
 from varbit_generator import varbit_generator
 from bool import bool
@@ -51,7 +50,6 @@ file = open(file_path, "w")
 
 #generators objects
 common = common()
-struct_generator = struct_generator()
 base_type_generator = base_type_generator()
 expression_generator = expression_generator()
 declaration_generator = declaration_generator()
@@ -149,20 +147,12 @@ common.output(packet_out_header_t_header.generate_code(), console, file)
 
 
 #---headers struct---
-ethernet_field = derived_type("ethernet", ethernet_t_header, ethernet_t_header.get_name(),
-							  ethernet_t_header.get_base_type())
-ipv4_field = derived_type("ipv4", ipv4_t_header, ipv4_t_header.get_name(), ipv4_t_header.get_base_type())
-packet_in_field = derived_type("packet_in", packet_in_header_t_header, packet_in_header_t_header.get_name(),
-							   packet_in_header_t_header.get_base_type())
-packet_out_field = derived_type("packet_out", packet_out_header_t_header, packet_out_header_t_header.get_name(),
-								packet_out_header_t_header.get_base_type())
-headers_t_struct = struct_generator.generate(None, "headers_t", [ethernet_field, ipv4_field,
-														  packet_in_field, packet_out_field])
-common.output(struct_generator.generate_code(headers_t_struct), console, file)
+headers_t_struct = struct(annotation(), "headers_t", [ethernet_t_header, ipv4_t_header, packet_in_header_t_header, packet_out_header_t_header])
+common.output(headers_t_struct.generate_code(), console, file)
 
 #---metadata struct---
-metadata_t_struct = struct_generator.generate(None, "metadata_t", [])
-common.output(struct_generator.generate_code(metadata_t_struct), console, file)
+metadata_t_struct = struct(annotation(), "metadata_t", [])
+common.output(metadata_t_struct.generate_code(), console, file)
 
 # GENERATE PARSERS
 parser_generator = parser_generator()
