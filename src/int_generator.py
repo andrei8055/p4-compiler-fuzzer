@@ -1,6 +1,6 @@
-#!/usr/bin/python
 from common import common
 from int import int
+
 
 class int_generator(object):
 	common = common()

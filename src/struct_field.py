@@ -2,7 +2,7 @@ import random
 from common import common
 from annotation import annotation
 from base_type_generator import base_type_generator
-import sys
+
 
 class struct_field(object):
     name = ''

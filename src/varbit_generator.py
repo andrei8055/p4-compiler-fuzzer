@@ -1,4 +1,3 @@
-#!/usr/bin/python
 from common import common
 from varbit import varbit
 

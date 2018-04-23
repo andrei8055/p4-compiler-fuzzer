@@ -1,5 +1,6 @@
 from common import common
 
+
 class include(object):
 	name = ''
 

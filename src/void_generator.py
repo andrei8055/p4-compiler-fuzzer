@@ -1,4 +1,3 @@
-#!/usr/bin/python
 from common import common
 from void import void
 

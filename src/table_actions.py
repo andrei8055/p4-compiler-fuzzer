@@ -1,7 +1,4 @@
 from common import common
-from annotation import annotation
-import random
-import sys
 
 
 class table_actions(object):

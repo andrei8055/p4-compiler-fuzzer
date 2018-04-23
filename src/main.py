@@ -1,6 +1,4 @@
-#!/usr/bin/python
 from base_type_generator import base_type_generator
-from derived_type import derived_type
 from parser_generator import parser_generator
 from include import include
 from state_generator import state_generator
@@ -8,11 +6,7 @@ from expression_generator import expression_generator
 from declaration_generator import declaration_generator
 from annotation import annotation
 from varbit_generator import varbit_generator
-from bool import bool
-from varbit import varbit
-from error import error
 from bit import bit
-from int import int
 from constant import constant
 from parameter import parameter
 from control import control
@@ -21,7 +15,6 @@ from struct_field import struct_field
 from action import action
 from table import table
 from table_actions import table_actions
-from variable import variable
 from table_default_action import table_default_action
 from header_union import header_union
 from struct import struct

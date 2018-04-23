@@ -1,7 +1,8 @@
 from common import common
 from myparser import myparser
 from state_generator import state_generator
-import sys
+
+
 class parser_generator(object):
 	common = common()
 	state_generator = state_generator()

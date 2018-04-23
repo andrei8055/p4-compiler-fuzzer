@@ -1,6 +1,7 @@
 import random
 from common import common
-from expression import expression
+
+
 class expression_generator:
 	common = common()
 	string_min_length = 1

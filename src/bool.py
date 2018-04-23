@@ -1,5 +1,3 @@
-import random
-
 class bool(object):
 	name = 'bool'
 

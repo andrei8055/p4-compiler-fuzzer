@@ -1,6 +1,4 @@
 from common import common
-from annotation import annotation
-import random
 
 
 class table(object):
