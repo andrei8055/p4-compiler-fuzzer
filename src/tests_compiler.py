@@ -3,11 +3,17 @@ import subprocess
 import os
 import re
 import shutil
+import mysql.connector
 
 curDir = os.path.dirname(__file__)
 inputPath = os.path.join(curDir, "../input")
 outputPath = os.path.join(curDir, "../output")
 errorsPath = os.path.join(outputPath, "errors")
+
+cnx = mysql.connector.connect(user="p4-compiler-fuzzer", password="p4-compiler-fuzzer", host="localhost", database="fuzzer")
+cursor = cnx.cursor()
+
+add_bug = ("INSERT INTO bugs (`test`, `error`, `file`, `known`) VALUES (%s, %s, %s, %s)")
 
 files = [os.path.splitext(f)[0] for f in os.listdir(inputPath) if re.match(r'[0-9]{10}\.p4', f)]
 currentTest = None if not files else sorted(files)[0]
@@ -29,7 +35,11 @@ while currentTest:
         f = open(errorLogFile, "w")
         f.write(e.output)
         f.close()
-        # TODO: insert in database
+
+        data_bug = (currentTest, e.output, errorFile, 0)
+        cursor.execute(add_bug, data_bug)
+        cnx.commit()
+
         print "Test " + currentTest + " failed"
 
     os.remove(tmpFile)
