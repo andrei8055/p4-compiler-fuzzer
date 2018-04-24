@@ -1,14 +1,21 @@
 from common import common
+from name import name
+from expression_list import expression_list
 import random
 
 
 class annotation(object):
-	name = ''
-	expression_list = []
+	name = None
+	expression_list = None
 	name_min_length = 1
 	name_max_length = 50
 
-	def __init__(self, name='', expression_list=[]):
+	# annotation
+	# : '@' name
+	# | '@' name '(' expressionList ')'
+	# ;
+
+	def __init__(self, name=None, expression_list=None):
 		self.name = name
 		self.expression_list = expression_list
 
@@ -19,19 +26,19 @@ class annotation(object):
 		return self.expression_list
 
 	def randomize(self):
-		self.name = common.get_random_string(random.randint(self.name_min_length, self.name_max_length), False)
-		self.expression_list = [] #todo generate random expression list
+		self.name = name()
+		self.name.randomize()
+
+		rnd = random.randint(0,1)
+		if rnd == 0:
+			self.expression_list = expression_list()
+			self.expression_list.randomize()
+		else:
+			self.expression_list = None
+
 
 	def generate_code(self):
-		code = ''
-		if len(self.get_expression_list()) > 0:
-			code += '@'
-			code += self.get_name()
-			code += '('
-			expression_list = self.get_expression_list()
-			for x in range(0, len(expression_list)):
-				code = code + '"' + str(expression_list[x]) + '"'
-				if x < len(expression_list) - 1:
-					code = code + ', '
-			code += ')'
+		code = '@' + ' ' + self.name.generate_code()
+		if self.expression_list is not None:
+			code += ' ' + self.expression_list.generate_code()
 		return code

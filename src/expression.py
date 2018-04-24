@@ -1,13 +1,10 @@
 class expression(object):
-	value = ''
-	type = ''
 
-	def __init__(self, type, value):
-		self.value = value
-		self.type = type
+	def __init__(self):
+		pass
 
-	def get_value(self):
-		return self.value
+	def randomize(self):
+		pass
 
-	def get_type(self):
-		return self.type
+	def generate_code(self):
+		return ''

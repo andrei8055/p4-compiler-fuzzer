@@ -1,29 +1,51 @@
+from empty_statement import empty_statement
+from conditional_statement import conditional_statement
+from direct_application import direct_application
+from assignment_or_method_call_statement import assignment_or_method_call_statement
+from block_statement import block_statement
+from exit_statement import exit_statement
+from return_statement import return_statement
+from switch_statement import switch_statement
+import random
+
 class statement(object):
-	#https://p4.org/p4-spec/docs/P4-16-v1.0.0-spec.html#sec-parser-state-stmt
+	type = 'statement'
+	value = None
 
-	annotation = None
-	name = ''
-	parser_statements = []
-	transition_statement = []
-	type = 'state'
+	# statement
+	# : assignmentOrMethodCallStatement
+	# | directApplication
+	# | conditionalStatement
+	# | emptyStatement
+	# | blockStatement
+	# | exitStatement
+	# | returnStatement
+	# | switchStatement
+	# ;
 
-	def __init__(self, annotation=None, name='', parser_statements=[], transition_statement=[]):
-		self.annotation = annotation
-		self.name = name
-		self.parser_statements = parser_statements
-		self.transition_statement = transition_statement
+	def __init__(self, value=None):
+		self.value = value
 
-	def get_name(self):
-		return self.name
+	def randomize(self):
+		rnd = random.randint(0, 7)
+		if rnd == 0:
+			self.value = assignment_or_method_call_statement()
+		elif rnd == 1:
+			self.value = direct_application()
+		elif rnd == 2:
+			self.value = conditional_statement()
+		elif rnd == 3:
+			self.value = empty_statement()
+		elif rnd == 4:
+			self.value = block_statement()
+		elif rnd == 5:
+			self.value = exit_statement()
+		elif rnd == 6:
+			self.value = return_statement()
+		elif rnd == 7:
+			self.value = switch_statement()
+		self.value.randomize()
 
-	def get_annotation(self):
-		return self.annotation
+	def generate_code(self):
+		return self.value.generate_code()
 
-	def get_parser_statements(self):
-		return self.parser_statements
-
-	def get_transition_statement(self):
-		return self.transition_statement
-
-	def get_type(self):
-		return self.type

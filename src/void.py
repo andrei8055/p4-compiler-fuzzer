@@ -4,6 +4,9 @@ class void(object):
 	def get_name(self):
 		return self.name
 
+	def randomize(self):
+		pass
+
 	def generate_code(self):
 		return 'void'
 

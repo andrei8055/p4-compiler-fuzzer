@@ -1,16 +1,22 @@
+from expression import expression
+from name import name
+from opt_annotations import opt_annotations
+
+
 class key_element(object):
-	annotation = None
-	expression = None
 	type = 'table_key'
-	name = ''
+	expression = None
+	name = None
+	opt_annotations = None
 
-	name_min_length = 1
-	name_max_length = 50
+	# keyElement
+	# : expression ':' name optAnnotations';'
+	# ;
 
-	def __init__(self, annotation, name='', expression=None):
-		self.annotation = annotation
-		self.name = name
+	def __init__(self, expression=None, name=None, opt_annotations=None):
 		self.expression = expression
+		self.name = name
+		self.opt_annotations = opt_annotations
 
 	def get_name(self):
 		return self.name
@@ -18,22 +24,16 @@ class key_element(object):
 	def get_expression(self):
 		return self.expression
 
-	def get_annotation(self):
-		return self.annotation
-
 	def get_type(self):
 		return self.type
 
 	def randomize(self):
-		pass
+		self.expression = expression()
+		self.expression.randomize()
+		self.name = name()
+		self.name.randomize()
+		self.opt_annotations = opt_annotations()
+		self.opt_annotations.randomize()
 
-	#  expression ':' name optAnnotations ';'
 	def generate_code(self):
-		code = ''
-		code += self.expression.generate_code() + ' '
-		code += ':' + ' '
-		code += self.name + ' '
-		if self.annotation is not None:
-			code += self.annotation.generate_code() + ' '
-		code += ';' + ' '
-		return code
+		return self.expression.generate_code() + ':' + self.name.generate_code() + ' ' + self.opt_annotations.generate_code()

@@ -1,44 +1,32 @@
-import random
-from common import common
-from annotation import annotation
-from base_type_generator import base_type_generator
+from opt_annotations import opt_annotations
+from type_ref import type_ref
+from name import name
 
 
-class struct_field(object):
-    name = ''
-    annotation = None
-    type = None
-    
-    base_type_generator = base_type_generator()
+class header_type_declaration(object):
+	type = 'header_type_declaration'
 
-    min_field_name = 1
-    max_field_name = 50
+	opt_annotations = None
+	type_ref = None
+	name = None
 
-    def __init__(self, annotation=None, type=None, name=''):
-        self.annotation = annotation
-        self.type = type
-        self.name = name
+	# structField
+	# : optAnnotations typeRef name';'
+	# ;
 
-    def get_annotation(self):
-        return self.annotation
+	def __init__(self, opt_annotations=None, type_ref=None, name=None):
+		self.opt_annotations = opt_annotations
+		self.type_ref = type_ref
+		self.name = name
 
-    def get_name(self):
-        return self.name
+	def randomize(self):
+		self.opt_annotations = opt_annotations()
+		self.opt_annotations.randomize()
+		self.type_ref = type_ref()
+		self.type_ref.randomize()
+		self.name = name()
+		self.name.randomize()
 
-    def get_type(self):
-        return self.type
+	def generate_code(self):
+		return self.opt_annotations.generate_code() + ' ' + self.type_ref.generate_code() + ' ' + self.name.generate_code() + ';'
 
-    def generate_code(self):
-        code = ''
-        if self.annotation is not None:
-            code += self.annotation.generate_code()
-        code += ' ' + self.type.generate_code_ref()
-        code += ' ' + self.name + ';'
-        return code
-
-    def randomize(self):
-        _annotation = annotation()
-        _annotation.randomize()
-        self.annotation = _annotation
-        self.type = self.base_type_generator.generate_random(['int', 'bit', 'varbit'])
-        self.name = common.get_random_string(random.randint(self.min_field_name, self.max_field_name), False)

@@ -7,5 +7,8 @@ class bool(object):
 	def generate_code(self):
 		return 'bool'
 
+	def randomize(self):
+		pass
+
 	def generate_code_ref(self):
 		return 'bool'
