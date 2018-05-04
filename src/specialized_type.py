@@ -1,5 +1,6 @@
 from type_argument_list import type_argument_list
 from prefixed_type import prefixed_type
+from common import common
 
 
 class specialized_type(object):
@@ -16,6 +17,7 @@ class specialized_type(object):
 		self.type_argument_list = type_argument_list
 
 	def randomize(self):
+		common.usedRandomize()
 		self.prefixed_type = prefixed_type()
 		self.prefixed_type.randomize()
 		self.type_argument_list = type_argument_list()

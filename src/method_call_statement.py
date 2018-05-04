@@ -1,6 +1,7 @@
-from lvalue import lvalue
+from l_value import l_value
 from type_argument_list import type_argument_list
 from argument_list import argument_list
+from common import common
 
 
 class method_call_statement(object):
@@ -18,7 +19,8 @@ class method_call_statement(object):
 		self.argument_list = argument_list
 
 	def randomize(self):
-		self.lvalue = lvalue()
+		common.usedRandomize()
+		self.lvalue = l_value()
 		self.lvalue.randomize()
 		self.type_argument_list = type_argument_list()
 		self.type_argument_list.randomize()

@@ -1,5 +1,7 @@
 import random
 from parameter_list import parameter_list
+from common import common
+
 
 class opt_constructor_parameters(object):
 	type = 'opt_constructor_parameters'
@@ -14,6 +16,7 @@ class opt_constructor_parameters(object):
 		self.parameter_list = parameter_list
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 1)
 		if rnd == 0:
 			self.parameter_list = None

@@ -1,7 +1,7 @@
 from opt_annotations import opt_annotations
 from name import name
 from struct_field_list import struct_field_list
-
+from common import common
 
 
 class header_union_declaration(object):
@@ -21,6 +21,7 @@ class header_union_declaration(object):
 		self.struct_field_list = struct_field_list
 
 	def randomize(self):
+		common.usedRandomize()
 		self.opt_annotations = opt_annotations()
 		self.opt_annotations.randomize()
 		self.name = name()

@@ -1,5 +1,6 @@
 from expression import expression
 from statement import statement
+from common import common
 
 
 class conditional_statement(object):
@@ -19,6 +20,7 @@ class conditional_statement(object):
 		self.else_statement = else_statement
 
 	def randomize(self):
+		common.usedRandomize()
 		self.expression = expression()
 		self.expression.randomize()
 		self.if_statement = statement()

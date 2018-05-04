@@ -1,12 +1,13 @@
 from key_element import key_element
 import random
+from common import common
 
 
 class key_element_list(object):
 	type = 'key_element_list'
 	element_list = []
 	min_list_size = 1
-	max_list_size = 50
+	max_list_size = 5
 
 	# keyElementList
 	# : / *empty * /
@@ -17,6 +18,7 @@ class key_element_list(object):
 		self.element_list = element_list
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 1)
 		if rnd == 0:
 			self.element_list = []

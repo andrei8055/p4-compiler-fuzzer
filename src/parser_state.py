@@ -2,6 +2,7 @@ from opt_annotations import opt_annotations
 from parser_statements import parser_statements
 from transition_statement import transition_statement
 from name import name
+from common import common
 
 
 class parser_state(object):
@@ -25,6 +26,7 @@ class parser_state(object):
 		return self.name
 
 	def randomize(self):
+		common.usedRandomize()
 		self.opt_annotations = opt_annotations()
 		self.opt_annotations.randomize()
 		self.name = name()

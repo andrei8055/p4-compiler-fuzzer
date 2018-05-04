@@ -1,12 +1,13 @@
 from parser_local_element import parser_local_element
 import random
+from common import common
 
 
 class parser_local_elements(object):
 	type = 'parser_local_elements'
 	parser_local_elements_list = []
 	min_list_size = 1
-	max_list_size = 50
+	max_list_size = 5
 
 	# parserLocalElements
 	# : / *empty * /
@@ -17,6 +18,7 @@ class parser_local_elements(object):
 		self.parser_local_elements_list = parser_local_elements_list
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 1)
 		if rnd == 0:
 			self.non_empty_parameter_list = []

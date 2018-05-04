@@ -1,4 +1,5 @@
 from common import common
+import random
 
 
 class include(object):
@@ -11,6 +12,7 @@ class include(object):
 		self.name = name
 
 	def randomize(self):
+		common.usedRandomize()
 		common.get_random_string(random.randint(self.name_min_length, self.name_max_length), False)
 
 	def generate_code(self):

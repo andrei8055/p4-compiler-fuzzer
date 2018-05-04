@@ -1,12 +1,13 @@
 from name import name
 import random
+from common import common
 
 
 class identifier_list(object):
 	type = 'identifier_list'
 	identifier_list = []
 	min_list_size = 1
-	max_list_size = 50
+	max_list_size = 5
 
 	# identifierList
 	# : name
@@ -17,6 +18,7 @@ class identifier_list(object):
 		self.identifier_list = identifier_list
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(self.min_list_size, self.max_list_size)
 		for x in range(0, rnd):
 			_name = name()

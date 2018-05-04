@@ -1,6 +1,7 @@
 from expression import expression
 from name import name
 from opt_annotations import opt_annotations
+from common import common
 
 
 class key_element(object):
@@ -28,6 +29,7 @@ class key_element(object):
 		return self.type
 
 	def randomize(self):
+		common.usedRandomize()
 		self.expression = expression()
 		self.expression.randomize()
 		self.name = name()

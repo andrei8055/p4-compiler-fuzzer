@@ -26,15 +26,13 @@ class annotation(object):
 		return self.expression_list
 
 	def randomize(self):
+		common.usedRandomize()
 		self.name = name()
 		self.name.randomize()
-
 		rnd = random.randint(0,1)
 		if rnd == 0:
 			self.expression_list = expression_list()
 			self.expression_list.randomize()
-		else:
-			self.expression_list = None
 
 
 	def generate_code(self):

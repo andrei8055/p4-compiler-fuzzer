@@ -29,6 +29,7 @@ class enumeration(object):
 		return self.identifiers
 
 	def randomize(self):
+		common.usedRandomize()
 		_annotation = annotation()
 		_annotation.randomize()
 		self.annotation = _annotation

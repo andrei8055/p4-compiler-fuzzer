@@ -1,12 +1,13 @@
 from control_local_declaration import control_local_declaration
 import random
+from common import common
 
 
 class control_local_declarations(object):
 	type = 'control_local_declarations'
 	local_declarations_list = []
 	min_list_size = 1
-	max_list_size = 50
+	max_list_size = 5
 
 	# controlLocalDeclarations
 	# : / *empty * /
@@ -17,6 +18,7 @@ class control_local_declarations(object):
 		self.local_declarations_list = local_declarations_list
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 1)
 		if rnd == 0:
 			self.local_declarations_list = []

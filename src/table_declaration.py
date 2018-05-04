@@ -1,6 +1,7 @@
 from opt_annotations import opt_annotations
 from name import name
 from table_property_list import table_property_list
+from common import common
 
 
 class table_declaration(object):
@@ -20,6 +21,7 @@ class table_declaration(object):
 		self.table_property_list = table_property_list
 
 	def randomize(self):
+		common.usedRandomize()
 		self.opt_annotations = opt_annotations()
 		self.opt_annotations.randomize()
 		self.name = name()

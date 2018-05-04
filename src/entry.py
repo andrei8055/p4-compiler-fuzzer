@@ -1,6 +1,7 @@
 from opt_annotations import opt_annotations
 from keyset_expression import keyset_expression
 from action_ref import action_ref
+from common import common
 
 
 class entry(object):
@@ -18,6 +19,7 @@ class entry(object):
 		self.action_ref = action_ref
 
 	def randomize(self):
+		common.usedRandomize()
 		self.opt_annotations = opt_annotations()
 		self.opt_annotations.randomize()
 		self.keyset_expression = keyset_expression()

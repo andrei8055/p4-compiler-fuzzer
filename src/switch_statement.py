@@ -1,5 +1,6 @@
 from expression import expression
 from switch_casses import switch_casses
+from common import common
 
 
 class switch_statement(object):
@@ -16,6 +17,7 @@ class switch_statement(object):
 		self.switch_casses = switch_casses
 
 	def randomize(self):
+		common.usedRandomize()
 		self.expression = expression()
 		self.expression.randomize()
 		self.switch_casses = switch_casses()

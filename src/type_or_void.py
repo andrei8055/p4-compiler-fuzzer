@@ -1,7 +1,9 @@
 from type_ref import type_ref
 from void import void
-from non_type import non_type
+from non_type_name import non_type_name
 import random
+from common import common
+
 
 class type_or_void(object):
 	type = 'type_or_void'
@@ -17,13 +19,14 @@ class type_or_void(object):
 		self.value = value
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 5)
 		if rnd == 0:
 			self.value = type_ref()
 		elif rnd == 1:
 			self.value = void()
 		elif rnd == 2:
-			self.value = non_type(None)
+			self.value = non_type_name(None)
 		self.value.randomize()
 
 	def generate_code(self):

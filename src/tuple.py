@@ -1,7 +1,3 @@
-#!/usr/bin/python
-import random
-from base_type_generator import base_type_generator
-from derived_type import derived_type
 from common import common
 
 class tuple(object):
@@ -42,6 +38,7 @@ class tuple(object):
 		return self.base_type
 
 	def randomize(self, field_types):
+		common.usedRandomize()
 		pass
 
 

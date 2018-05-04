@@ -1,5 +1,6 @@
 from opt_annotations import opt_annotations
 from stat_or_decl_list import stat_or_decl_list
+from common import common
 
 
 class block_statement(object):
@@ -16,6 +17,7 @@ class block_statement(object):
 		self.stat_or_decl_list = stat_or_decl_list
 
 	def randomize(self):
+		common.usedRandomize()
 		self.opt_annotations = opt_annotations()
 		self.opt_annotations.randomize()
 		self.stat_or_decl_list = stat_or_decl_list()

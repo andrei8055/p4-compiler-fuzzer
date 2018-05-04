@@ -2,6 +2,8 @@ from control_type_declaration import control_type_declaration
 from opt_constructor_parameters import opt_constructor_parameters
 from control_local_declarations import control_local_declarations
 from control_body import control_body
+from common import common
+
 
 class control_declaration(object):
 	type = 'control_declaration'
@@ -23,6 +25,7 @@ class control_declaration(object):
 		self.control_body = control_body
 
 	def randomize(self):
+		common.usedRandomize()
 		self.control_type_declaration = control_type_declaration()
 		self.control_type_declaration.randomize()
 		self.opt_constructor_parameters = opt_constructor_parameters()

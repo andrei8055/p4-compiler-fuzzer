@@ -1,6 +1,7 @@
 import random
 from tuple_keyset_expression import tuple_keyset_expression
 from simple_keyset_expression import simple_keyset_expression
+from common import common
 
 
 class keyset_expression(object):
@@ -16,6 +17,7 @@ class keyset_expression(object):
 		self.value = value
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 1)
 		if rnd == 0:
 			self.value = tuple_keyset_expression()

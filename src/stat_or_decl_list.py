@@ -1,12 +1,13 @@
 from statement_or_declaration import statement_or_declaration
 import random
+from common import common
 
 
 class stat_or_decl_list(object):
 	type = 'stat_or_decl_list'
 	list = []
 	min_list_size = 1
-	max_list_size = 50
+	max_list_size = 5
 
 	# statOrDeclList
 	# : / *empty * /
@@ -18,6 +19,7 @@ class stat_or_decl_list(object):
 		self.list = list
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 1)
 		if rnd == 0:
 			self.list = []

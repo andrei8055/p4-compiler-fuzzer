@@ -1,11 +1,11 @@
-from annotation import annotation
+from opt_annotations import opt_annotations
 from common import common
 from base_type_generator import base_type_generator
 from struct_field import struct_field
 import random
 
 class header(object):
-    annotation = None
+    opt_annotations = None
     name = ''
     fields = []
     type = 'header'
@@ -18,13 +18,13 @@ class header(object):
 
     base_type_generator = base_type_generator()
 
-    def __init__(self, annotation=None, name='', fields=None):
-        self.annotation = annotation
+    def __init__(self, opt_annotations=None, name='', fields=None):
+        self.opt_annotations = opt_annotations
         self.name = name
         self.fields = fields
 
-    def get_annotation(self):
-        return self.annotation
+    def get_opt_annotations(self):
+        return self.opt_annotations
 
     def get_name(self):
         return self.name
@@ -42,9 +42,9 @@ class header(object):
         return self.base_type
 
     def randomize(self):
-        _annotation = annotation()
-        _annotation.randomize()
-        self.annotation = _annotation
+        common.usedRandomize()
+        self.opt_annotations = opt_annotations()
+        self.opt_annotations.randomize()
         self.name = self.generate_name()
         self.fields = self.generate_fields()
 
@@ -57,7 +57,7 @@ class header(object):
             field = struct_field()
             field.randomize()
             #  only one varbit field allowed per header
-            if field.get_type().get_name() == 'varbit':
+            if field.get_type() == 'varbit':
                 if not varbit_exist:
                     field_list.append(field)
                     varbit_exist = True
@@ -71,9 +71,7 @@ class header(object):
         return common.get_random_string(self.name_length, True) + '_h'
 
     def generate_code(self):
-        code = ''
-        if self.annotation is not None:
-            code = self.annotation.generate_code() + ' '
+        code = self.opt_annotations.generate_code() + ' '
         code += 'header' + ' '
         code += self.name
         code += '{\n'
@@ -84,7 +82,7 @@ class header(object):
 
     def generate_code_ref(self):
         code = ''
-        if self.annotation is not None:
-            code = self.annotation.generate_code() + ' '
+        if self.opt_annotations is not None:
+            code = self.opt_annotations.generate_code() + ' '
         code += self.name
         return code

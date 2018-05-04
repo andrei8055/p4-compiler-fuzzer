@@ -1,5 +1,7 @@
 from keyset_expression import keyset_expression
 from name import name
+from common import common
+
 
 class select_case(object):
 	type = 'select_case'
@@ -15,10 +17,11 @@ class select_case(object):
 		self.name = name
 
 	def randomize(self):
+		common.usedRandomize()
 		self.keyset_expression = keyset_expression()
 		self.keyset_expression.randomize()
 		self.name = name()
 		self.name.randomize()
 
 	def generate_code(self):
-		return self.keysetExpression.generate_code() + ' : ' + self.name.generate_code() + ' ; '
+		return self.keyset_expression.generate_code() + ' : ' + self.name.generate_code() + ' ; '

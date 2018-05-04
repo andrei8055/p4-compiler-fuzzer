@@ -1,7 +1,7 @@
 from opt_annotations import opt_annotations
 from name import name
 from identifier_list import identifier_list
-
+from common import common
 
 
 class enum_declaration(object):
@@ -21,6 +21,7 @@ class enum_declaration(object):
 		self.identifier_list = identifier_list
 
 	def randomize(self):
+		common.usedRandomize()
 		self.opt_annotations = opt_annotations()
 		self.opt_annotations.randomize()
 		self.name = name()

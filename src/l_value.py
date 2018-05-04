@@ -1,4 +1,4 @@
-import random
+from common import common
 
 
 class l_value:
@@ -16,6 +16,7 @@ class l_value:
 		pass
 
 	def randomize(self):
+		common.usedRandomize()
 		pass
 
 	def generate_code(self):

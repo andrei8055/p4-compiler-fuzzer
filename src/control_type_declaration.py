@@ -2,9 +2,11 @@ from opt_annotations import opt_annotations
 from name import name
 from opt_type_parameters import opt_type_parameters
 from parameter_list import parameter_list
+from common import common
 
-class control__type_declaration(object):
-	type = 'control__type_declaration'
+
+class control_type_declaration(object):
+	type = 'control_type_declaration'
 	opt_annotations = None
 	name = None
 	opt_type_parameters = None
@@ -21,6 +23,7 @@ class control__type_declaration(object):
 		self.parameter_list = parameter_list
 
 	def randomize(self):
+		common.usedRandomize()
 		self.opt_annotations = opt_annotations()
 		self.opt_annotations.randomize()
 		self.name = name()

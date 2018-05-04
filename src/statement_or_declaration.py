@@ -3,6 +3,8 @@ from constant_declaration import constant_declaration
 from statement import statement
 from instantiation import instantiation
 import random
+from common import common
+
 
 class statement_or_declaration(object):
 	type = 'statement_or_declaration'
@@ -19,6 +21,7 @@ class statement_or_declaration(object):
 		self.value = value
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 3)
 		if rnd == 0:
 			self.value = variable_declaration()

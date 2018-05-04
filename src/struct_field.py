@@ -1,10 +1,11 @@
 from opt_annotations import opt_annotations
 from type_ref import type_ref
 from name import name
+from common import common
 
 
-class header_type_declaration(object):
-	type = 'header_type_declaration'
+class struct_field(object):
+	type = 'structField'
 
 	opt_annotations = None
 	type_ref = None
@@ -19,7 +20,11 @@ class header_type_declaration(object):
 		self.type_ref = type_ref
 		self.name = name
 
+	def get_type(self):
+		return self.type
+
 	def randomize(self):
+		common.usedRandomize()
 		self.opt_annotations = opt_annotations()
 		self.opt_annotations.randomize()
 		self.type_ref = type_ref()
@@ -28,5 +33,8 @@ class header_type_declaration(object):
 		self.name.randomize()
 
 	def generate_code(self):
-		return self.opt_annotations.generate_code() + ' ' + self.type_ref.generate_code() + ' ' + self.name.generate_code() + ';'
+		code = self.opt_annotations.generate_code() + ' '
+		code += self.type_ref.generate_code() + ' '
+		code += self.name.generate_code() + ';'
+		return code
 

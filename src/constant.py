@@ -26,6 +26,7 @@ class constant(object):
 		return self.name
 
 	def randomize(self):
+		common.usedRandomize()
 		self.name = common.get_random_string(self.max_name_length, False)
 		#self.type = self.base_type_generator.generate_random(['bit', 'varbit', 'int'])
 		self.type = self.base_type_generator.generate_random(['int']) #  todo change to ['bit', 'varbit', 'int'] when literals are correctly generated

@@ -1,6 +1,7 @@
 from opt_annotations import opt_annotations
 from name import name
 from argument_list import argument_list
+from common import common
 
 
 class action_ref(object):
@@ -20,6 +21,7 @@ class action_ref(object):
 		self.argument_list = argument_list
 
 	def randomize(self):
+		common.usedRandomize()
 		self.opt_annotations = opt_annotations()
 		self.opt_annotations.randomize()
 		self.name = name()

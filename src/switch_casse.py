@@ -1,6 +1,8 @@
 from switch_label import switch_label
 from block_statement import block_statement
 import random
+from common import common
+
 
 class switch_casse(object):
 	type = 'switch_casse'
@@ -17,6 +19,7 @@ class switch_casse(object):
 		self.block_statement = block_statement
 
 	def randomize(self):
+		common.usedRandomize()
 		self.switch_label = switch_label()
 		self.switch_label.randomize()
 		rnd = random.randint(0, 1)

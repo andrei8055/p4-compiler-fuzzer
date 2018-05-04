@@ -1,12 +1,13 @@
 from table_property import table_property
 import random
+from common import common
 
 
 class table_property_list(object):
 	type = 'table_property_list'
 	property_list = []
 	min_list_size = 1
-	max_list_size = 50
+	max_list_size = 5
 
 	# tablePropertyList
 	# : tableProperty
@@ -17,6 +18,7 @@ class table_property_list(object):
 		self.property_list = property_list
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(self.min_list_size, self.max_list_size)
 		for x in range(0, rnd):
 			_table_property = table_property()

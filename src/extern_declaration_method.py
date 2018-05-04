@@ -2,6 +2,7 @@ from opt_annotations import opt_annotations
 from non_type_name import non_type_name
 from opt_type_parameters import opt_type_parameters
 from method_prototypes import method_prototypes
+from common import common
 
 
 class extern_declaration_method(object):
@@ -21,6 +22,7 @@ class extern_declaration_method(object):
 		self.method_prototypes = method_prototypes
 
 	def randomize(self):
+		common.usedRandomize()
 		self.opt_annotations = opt_annotations()
 		self.opt_annotations.randomize()
 		self.non_type_name = non_type_name()

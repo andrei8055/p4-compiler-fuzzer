@@ -2,6 +2,7 @@ from opt_annotations import opt_annotations
 from parameter_list import parameter_list
 from opt_type_parameters import opt_type_parameters
 from name import name
+from common import common
 
 
 class package_type_declaration(object):
@@ -25,6 +26,7 @@ class package_type_declaration(object):
 		return self.name
 
 	def randomize(self):
+		common.usedRandomize()
 		self.opt_annotations = opt_annotations()
 		self.opt_annotations.randomize()
 		self.name = name()

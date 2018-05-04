@@ -1,5 +1,6 @@
 import random
 from state_expression import state_expression
+from common import common
 
 
 class transition_statement(object):
@@ -15,6 +16,7 @@ class transition_statement(object):
 		self.state_expression = state_expression
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 1)
 		if rnd == 0:
 			self.state_expression = None

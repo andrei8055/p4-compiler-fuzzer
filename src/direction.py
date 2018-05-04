@@ -3,6 +3,7 @@ from in_literal import in_literal
 from inout_literal import inout_literal
 from out_literal import out_literal
 from empty_literal import empty_literal
+from common import common
 
 class direction(object):
 	type = 'direction'
@@ -19,6 +20,7 @@ class direction(object):
 		self.value = value
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 3)
 		if rnd == 0:
 			self.value = in_literal()

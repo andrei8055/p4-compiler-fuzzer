@@ -1,12 +1,13 @@
-from non_type import non_type
+from non_type_name import non_type_name
 import random
+from common import common
 
 
 class type_parameter_list(object):
 	type = 'type_parameter_list'
 	parameter_list = []
 	min_list_size = 1
-	max_list_size = 50
+	max_list_size = 5
 
 	# typeParameterList
 	# : nonTypeName
@@ -17,11 +18,12 @@ class type_parameter_list(object):
 		self.parameter_list = parameter_list
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(self.min_list_size, self.max_list_size)
 		for x in range(0, rnd):
-			_non_type = non_type()
-			_non_type.randomize()
-			self.parameter_list.append(_non_type)
+			_non_type_name = non_type_name()
+			_non_type_name.randomize()
+			self.parameter_list.append(_non_type_name)
 
 	def generate_code(self):
 		code = ''

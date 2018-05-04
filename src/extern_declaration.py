@@ -1,6 +1,7 @@
 import random
 from extern_declaration_method import extern_declaration_method
 from extern_declaration_function import extern_declaration_function
+from common import common
 
 
 class extern_declaration(object):
@@ -16,6 +17,7 @@ class extern_declaration(object):
 		self.value = value
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 1)
 		if rnd == 0:
 			self.value = extern_declaration_method()

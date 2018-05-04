@@ -1,3 +1,6 @@
+from common import common
+
+
 class table_key(object):
 	key_elements = None
 	type = 'table_key'
@@ -15,6 +18,7 @@ class table_key(object):
 		return self.type
 
 	def randomize(self):
+		common.usedRandomize()
 		pass
 
 	#  KEY '=' '{' keyElementList '}'

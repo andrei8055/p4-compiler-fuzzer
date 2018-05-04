@@ -1,5 +1,6 @@
 import random
 from dot_prefix import dot_prefix
+from common import common
 
 
 class prefixed_type(object):
@@ -17,6 +18,8 @@ class prefixed_type(object):
 		self.value = value
 
 	def randomize(self):
+		# TODO: fix Type literal as it is not a literal (string) but a previously declared type
+		common.usedRandomize()
 		rnd = random.randint(0, 1)
 		if rnd == 0:
 			self.prefix = dot_prefix()

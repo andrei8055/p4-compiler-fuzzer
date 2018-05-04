@@ -1,5 +1,6 @@
 import random
 import string
+import inspect
 
 class common(object):
 
@@ -22,3 +23,7 @@ class common(object):
 		if file is not None:
 			file.write(code)
 			file.write('\n')
+
+	@staticmethod
+	def usedRandomize():
+		pass

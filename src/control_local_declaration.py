@@ -4,6 +4,7 @@ from action_declaration import action_declaration
 from table_declaration import table_declaration
 from instantiation import instantiation
 from variable_declaration import variable_declaration
+from common import common
 
 
 class control_local_declaration(object):
@@ -22,6 +23,7 @@ class control_local_declaration(object):
 		self.value = value
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 4)
 		if rnd == 0:
 			self.value = constant_declaration()

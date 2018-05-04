@@ -1,3 +1,6 @@
+from common import common
+
+
 class table(object):
 	annotation = None
 	type = 'table'
@@ -25,6 +28,7 @@ class table(object):
 		return self.type
 
 	def randomize(self):
+		common.usedRandomize()
 		pass
 
 	def generate_code(self):

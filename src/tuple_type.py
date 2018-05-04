@@ -1,4 +1,5 @@
 from type_argument_list import type_argument_list
+from common import common
 
 
 class tuple_type(object):
@@ -12,6 +13,7 @@ class tuple_type(object):
 		self.type_argument_list = type_argument_list
 
 	def randomize(self):
+		common.usedRandomize()
 		self.type_argument_list = type_argument_list()
 		self.type_argument_list.randomize()
 

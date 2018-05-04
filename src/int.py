@@ -1,5 +1,5 @@
 import random
-
+from common import common
 
 class int(object):
 	name = 'int'
@@ -19,6 +19,7 @@ class int(object):
 		return self.size
 
 	def randomize(self):
+		common.usedRandomize()
 		self.size = random.randint(self.min_size, self.max_size)
 
 	def generate_code(self):

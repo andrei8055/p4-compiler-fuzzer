@@ -3,6 +3,8 @@ from header_union_declaration import header_union_declaration
 from struct_type_declaration import struct_type_declaration
 from enum_declaration import enum_declaration
 import random
+from common import common
+
 
 class derived_type_declaration(object):
 	type = 'derived_type_declaration'
@@ -19,6 +21,7 @@ class derived_type_declaration(object):
 		self.value = value
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 3)
 		if rnd == 0:
 			self.value = header_type_declaration()

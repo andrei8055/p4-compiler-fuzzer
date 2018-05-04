@@ -35,6 +35,7 @@ class header_union(object):
         return self.type
 
     def randomize(self, headers):
+        common.usedRandomize()
         _annotation = annotation()
         _annotation.randomize()
         self.annotation = _annotation

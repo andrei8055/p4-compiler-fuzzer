@@ -1,25 +1,51 @@
 from base_type_generator import base_type_generator
-from parser_generator import parser_generator
 from include import include
-from state_generator import state_generator
 from expression_generator import expression_generator
 from declaration_generator import declaration_generator
 from annotation import annotation
+from opt_annotations import opt_annotations
+from name import name
+from identifier import identifier
 from bit import bit
 from constant import constant
 from parameter import parameter
 from control import control
 from header import header
 from struct_field import struct_field
+from struct_type_declaration import struct_type_declaration
+from struct_field_list import struct_field_list
 from action import action
 from table import table
 from table_actions import table_actions
 from table_default_action import table_default_action
 from header_union import header_union
-from struct_ import struct_
 from enumeration import enumeration
-from tuple import tuple
-from bool import bool
+from expression_list import expression_list
+from expression import expression
+from parser_state import parser_state
+from parser_statements import parser_statements
+from transition_statement import transition_statement
+from state_expression import state_expression
+from select_expression import select_expression
+from select_case_list import select_case_list
+from select_case import select_case
+from keyset_expression import keyset_expression
+from simple_keyset_expression import simple_keyset_expression
+from default_literal import default_literal
+from non_type_name import non_type_name
+from member import member
+from parser_type_declaration import parser_type_declaration
+from parser_declaration import parser_declaration
+from parameter_list import parameter_list
+from non_empty_parameter_list import non_empty_parameter_list
+from parser_local_elements import parser_local_elements
+from parser_states import parser_states
+from empty_literal import empty_literal
+from direction import direction
+from opt_type_parameters import opt_type_parameters
+from inout_literal import inout_literal
+from out_literal import out_literal
+from opt_constructor_parameters import opt_constructor_parameters
 
 import sys
 import os
@@ -31,7 +57,7 @@ console = False
 
 if len(sys.argv) > 1:
 	filename = sys.argv[1]
-	if(sys.argv[2] == "false"):
+	if sys.argv[2] == "false":
 		console = False
 	else:
 		console = True
@@ -88,50 +114,50 @@ for y in range(0, random.randint(1, 10)):
 
 for x in range(1, random.randint(1, 20)):
 	all_types = random_base_types + random_structs + random_enums + random_headers + random_header_unions
-	rs = struct_()
-	rs.randomize(all_types)
+	rs = struct_field()
+	rs.randomize()
 	random_structs.append(rs)
 	common.output(rs.generate_code(), console, file)
 
 #generate headers
 #---ethernet header---
-dst_addr_field = struct_field(annotation(), bit(48), "dst_addr")
-src_addr_field = struct_field(annotation(), bit(48), "src_addr")
-ether_type_field = struct_field(annotation(), bit(16), "ether_type")
+dst_addr_field = struct_field(opt_annotations(), bit(48), name(non_type_name(identifier("dst_addr"))))
+src_addr_field = struct_field(opt_annotations(), bit(48), name(non_type_name(identifier("src_addr"))))
+ether_type_field = struct_field(opt_annotations(), bit(16), name(non_type_name(identifier("ether_type"))))
 
-ethernet_t_header = header(annotation(), "ethernet_t", [dst_addr_field, src_addr_field, ether_type_field])
+ethernet_t_header = header(opt_annotations(), "ethernet_t", [dst_addr_field, src_addr_field, ether_type_field])
 common.output(ethernet_t_header.generate_code(), console, file)
 
 #---ipv4 header---
-version_field = struct_field(annotation(), bit(4), "version")
-ihl_field = struct_field(annotation(), bit(4), "ihl")
-diffserv_field = struct_field(annotation(), bit(8), "diffserv")
-len_field = struct_field(annotation(), bit(16), "len")
-identification_field = struct_field(annotation(), bit(16), "identification")
-flags_field = struct_field(annotation(), bit(3), "flags")
-frag_offset_field = struct_field(annotation(), bit(13), "frag_offset")
-ttl_field = struct_field(annotation(), bit(8), "ttl")
-protocol_field = struct_field(annotation(), bit(8), "protocol")
-hdr_checksum_field = struct_field(annotation(), bit(16), "hdr_checksum")
-src_addr_field = struct_field(annotation(), bit(32), "src_addr")
-dst_addr_field = struct_field(annotation(), bit(32), "dst_addr")
+version_field = struct_field(opt_annotations(), bit(4), name(non_type_name(identifier("version"))))
+ihl_field = struct_field(opt_annotations(), bit(4), name(non_type_name(identifier("ihl"))))
+diffserv_field = struct_field(opt_annotations(), bit(8), name(non_type_name(identifier("diffserv"))))
+len_field = struct_field(opt_annotations(), bit(16), name(non_type_name(identifier("len"))))
+identification_field = struct_field(opt_annotations(), bit(16), name(non_type_name(identifier("identification"))))
+flags_field = struct_field(opt_annotations(), bit(3), name(non_type_name(identifier("flags"))))
+frag_offset_field = struct_field(opt_annotations(), bit(13), name(non_type_name(identifier("frag_offset"))))
+ttl_field = struct_field(opt_annotations(), bit(8), name(non_type_name(identifier("ttl"))))
+protocol_field = struct_field(opt_annotations(), bit(8), name(non_type_name(identifier("protocol"))))
+hdr_checksum_field = struct_field(opt_annotations(), bit(16), name(non_type_name(identifier("hdr_checksum"))))
+src_addr_field = struct_field(opt_annotations(), bit(32), name(non_type_name(identifier("src_addr"))))
+dst_addr_field = struct_field(opt_annotations(), bit(32), name(non_type_name(identifier("dst_addr"))))
 
-ipv4_t_header = header(annotation(), "ipv4_t", [version_field, ihl_field, diffserv_field, len_field,
+ipv4_t_header = header(opt_annotations(), "ipv4_t", [version_field, ihl_field, diffserv_field, len_field,
 													 identification_field, flags_field, frag_offset_field, ttl_field,
 													 protocol_field, hdr_checksum_field, src_addr_field, dst_addr_field])
 common.output(ipv4_t_header.generate_code(), console, file)
 
 
 #---packet in header---
-packet_in_annotation = annotation("controller_header", ["packet_in"])
-ingress_port_field = struct_field(annotation(), bit(9), "ingress_port")
+packet_in_annotation = annotation(name(non_type_name(identifier("controller_header"))), expression_list([expression(non_type_name=non_type_name(identifier("packet_in")))]))
+ingress_port_field = struct_field(opt_annotations(), bit(9), name(non_type_name(identifier("ingress_port"))))
 packet_in_header_t_header = header(packet_in_annotation, "packet_in_header_t", [ingress_port_field])
 
 common.output(packet_in_header_t_header.generate_code(), console, file)
 
 #---packet out header---
-packet_out_annotation = annotation("controller_header", ["packet_out"])
-egress_port_field = struct_field(annotation(), bit(9), "egress_port")
+packet_out_annotation = annotation(name(non_type_name(identifier("controller_header"))), expression_list([expression(non_type_name=non_type_name(identifier("packet_out")))]))
+egress_port_field = struct_field(opt_annotations(), bit(9),name(non_type_name(identifier("egress_port"))))
 packet_out_header_t_header = header(packet_out_annotation, "packet_out_header_t", [ingress_port_field])
 
 common.output(packet_out_header_t_header.generate_code(), console, file)
@@ -140,29 +166,27 @@ common.output(packet_out_header_t_header.generate_code(), console, file)
 
 
 #---headers struct---
-headers_t_struct = struct_(annotation(), "headers_t", [ethernet_t_header, ipv4_t_header, packet_in_header_t_header, packet_out_header_t_header])
+headers_t_struct = struct_type_declaration(opt_annotations(), name(non_type_name(identifier("headers_t"))), struct_field_list([ethernet_t_header, ipv4_t_header, packet_in_header_t_header, packet_out_header_t_header]))
 common.output(headers_t_struct.generate_code(), console, file)
 
 #---metadata struct---
-metadata_t_struct = struct_(annotation(), "metadata_t", [])
+metadata_t_struct = struct_field(opt_annotations(), name(non_type_name(identifier("metadata_t"))), struct_field_list([]))
 common.output(metadata_t_struct.generate_code(), console, file)
 
 # GENERATE PARSERS
-parser_generator = parser_generator()
-state_generator = state_generator()
-
 _constant = constant()
 _constant.randomize()
 
-start_state = state_generator.generate("start", "transition select(standard_metadata.ingress_port) { \n default: accept;} \n")
+start_state = parser_state(opt_annotations(), name(non_type_name(identifier("start"))), parser_statements([]), transition_statement(state_expression(select_expression(expression_list([expression(expression=expression(non_type_name=non_type_name(identifier("standard_metadata")), member=member(name(non_type_name(identifier("ingress_port"))))))]), select_case_list([select_case(keyset_expression(simple_keyset_expression(default_literal())), name(non_type_name(identifier("accept"))))])))))
 
-param_1 = parameter("", "packet_in", "packet")
-param_2 = parameter("out", "headers_t", "hdr")
-param_3 = parameter("inout", "metadata_t", "meta")
-param_4 = parameter("inout", "standard_metadata_t", "standard_metadata")
+# TODO: fix parameters for type_ref actually instead of identifier
+param_1 = parameter(opt_annotations(), direction(empty_literal()), identifier("packet_in"), name(identifier("packet")))
+param_2 = parameter(opt_annotations(), direction(out_literal()), identifier("headers_t"), name(identifier("hdr")))
+param_3 = parameter(opt_annotations(), direction(inout_literal()), identifier("metadata_t"), name(identifier("meta")))
+param_4 = parameter(opt_annotations(), direction(inout_literal()), identifier("standard_metadata_t"), name(identifier("standard_metadata")))
 
-test_parser = parser_generator.generate("ParserImpl", [param_1, param_2, param_3, param_4], [_constant], [], [start_state])
-common.output(parser_generator.generate_code(test_parser), console, file)
+test_parser = parser_declaration(parser_type_declaration(opt_annotations(), name(non_type_name(identifier("ParserImpl"))), opt_type_parameters(), parameter_list(non_empty_parameter_list([param_1, param_2, param_3, param_4]))), opt_constructor_parameters(), parser_local_elements([]), parser_states([start_state]))
+common.output(test_parser.generate_code(), console, file)
 
 
 #GENERATE CONTROLS

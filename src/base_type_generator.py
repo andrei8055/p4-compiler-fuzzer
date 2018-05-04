@@ -4,6 +4,7 @@ from error import error
 from bit import bit
 from int import int
 import random
+from common import common
 
 
 class base_type_generator(object):

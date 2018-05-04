@@ -1,5 +1,7 @@
-from keyset_expression import keyset_expression
-from name import name
+from simple_keyset_expression import simple_keyset_expression
+from simple_expression_list import simple_expression_list
+from common import common
+
 
 class tuple_keyset_expression(object):
 	type = 'tuple_keyset_expression'
@@ -15,6 +17,7 @@ class tuple_keyset_expression(object):
 		self.simple_expression_list = simple_expression_list
 
 	def randomize(self):
+		common.usedRandomize()
 		self.simple_keyset_expression = simple_keyset_expression()
 		self.simple_keyset_expression.randomize()
 		self.simple_expression_list = simple_expression_list()

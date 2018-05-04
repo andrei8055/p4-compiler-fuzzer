@@ -35,6 +35,7 @@ class action(object):
 		return self.type
 
 	def randomize(self):
+		common.usedRandomize()
 		_annotation = annotation()
 		_annotation.randomize()
 		self.annotation = _annotation

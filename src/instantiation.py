@@ -2,6 +2,7 @@ from opt_annotations import opt_annotations
 from type_ref import type_ref
 from argument_list import argument_list
 from name import name
+from common import common
 
 
 class instantiation(object):
@@ -27,6 +28,7 @@ class instantiation(object):
 		return self.name
 
 	def randomize(self):
+		common.usedRandomize()
 		self.opt_annotations = opt_annotations()
 		self.opt_annotations.randomize()
 		self.name = name()

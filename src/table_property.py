@@ -4,6 +4,8 @@ from entries_list import entries_list
 from opt_annotations import opt_annotations
 from initializer import initializer
 import random
+from common import common
+
 
 class table_property(object):
 	type = 'table_property'
@@ -25,6 +27,7 @@ class table_property(object):
 		self.const_initializer = const_initializer
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 4)
 		if rnd == 0:
 			self.value = key_element_list()

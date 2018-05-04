@@ -1,5 +1,6 @@
 from opt_annotations import opt_annotations
-from parser_statements import parser_statements
+from common import common
+
 
 class parser_block_statement(object):
 	type = 'parser_block_statement'
@@ -15,6 +16,7 @@ class parser_block_statement(object):
 		self.parser_statements = parser_statements
 
 	def randomize(self):
+		common.usedRandomize()
 		self.opt_annotations = opt_annotations()
 		self.opt_annotations.randomize()
 		self.parser_statements = parser_statements()

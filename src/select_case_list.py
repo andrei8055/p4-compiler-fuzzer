@@ -1,12 +1,13 @@
 from select_case import select_case
 import random
+from common import common
 
 
 class select_case_list(object):
 	type = 'select_case_list'
 	case_list = []
 	min_list_size = 1
-	max_list_size = 50
+	max_list_size = 5
 
 	# selectCaseList
 	# : / *empty * /
@@ -17,6 +18,7 @@ class select_case_list(object):
 		self.case_list = case_list
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 1)
 		if rnd == 0:
 			self.case_list = []

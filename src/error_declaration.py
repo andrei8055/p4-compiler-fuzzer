@@ -1,4 +1,5 @@
 from identifier_list import identifier_list
+from common import common
 
 
 class error_declaration(object):
@@ -14,6 +15,7 @@ class error_declaration(object):
 		self.identifier_list = identifier_list
 
 	def randomize(self):
+		common.usedRandomize()
 		self.identifier_list = identifier_list()
 		self.identifier_list.randomize()
 

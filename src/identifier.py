@@ -1,6 +1,7 @@
 import random
 from common import common
 
+
 class identifier(object):
 	type = 'identifier'
 	value = ''
@@ -11,6 +12,7 @@ class identifier(object):
 		self.value = value
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 4)
 		if rnd == 0:
 			self.value = common.get_random_string(random.randint(self.min_identifier_length, self.max_identifier_length), False)

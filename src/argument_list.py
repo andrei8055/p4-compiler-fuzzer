@@ -1,5 +1,6 @@
 from non_empty_arg_list import non_empty_arg_list
 import random
+from common import common
 
 
 class argument_list(object):
@@ -15,6 +16,7 @@ class argument_list(object):
 		self.non_empty_arg_list = non_empty_arg_list
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 1)
 		if rnd == 0:
 			self.non_empty_arg_list = None

@@ -2,6 +2,7 @@ from opt_annotations import opt_annotations
 from name import name
 from parameter_list import parameter_list
 from block_statement import block_statement
+from common import common
 
 
 class action_declaration(object):
@@ -23,6 +24,7 @@ class action_declaration(object):
 		self.block_statement = block_statement
 
 	def randomize(self):
+		common.usedRandomize()
 		self.opt_annotations = opt_annotations()
 		self.opt_annotations.randomize()
 		self.name = name()

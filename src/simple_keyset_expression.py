@@ -4,6 +4,7 @@ from default_literal import default_literal
 from dontcare_literal import dontcare_literal
 from mask_expression import mask_expression
 from range_expression import range_expression
+from common import common
 
 
 class simple_keyset_expression(object):
@@ -22,6 +23,7 @@ class simple_keyset_expression(object):
 		self.value = value
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 4)
 		if rnd == 0:
 			self.value = expression()

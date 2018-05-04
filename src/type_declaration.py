@@ -4,6 +4,8 @@ from parser_type_declaration import parser_type_declaration
 from control_type_declaration import control_type_declaration
 from package_type_declaration import package_type_declaration
 import random
+from common import common
+
 
 class type_declaration(object):
 	type = 'type_declaration'
@@ -21,6 +23,7 @@ class type_declaration(object):
 		self.value = value
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 4)
 		if rnd == 0:
 			self.value = derived_type_declaration()

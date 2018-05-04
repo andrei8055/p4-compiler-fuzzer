@@ -1,3 +1,6 @@
+from common import common
+
+
 class error(object):
 	name = 'error'
 	identifier_list = []
@@ -12,6 +15,7 @@ class error(object):
 		return self.identifier_list
 
 	def randomize(self):
+		common.usedRandomize()
 		self.identifier_list = []  # todo randomize
 
 	def generate_code(self):

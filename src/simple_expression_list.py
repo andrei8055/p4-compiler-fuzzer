@@ -1,17 +1,19 @@
 from simple_keyset_expression import simple_keyset_expression
 import random
+from common import common
 
 
 class simple_expression_list(object):
 	type = 'simple_expression_list'
 	expression_list = []
 	min_list_size = 1
-	max_list_size = 50
+	max_list_size = 5
 
 	def __init__(self, expression_list=[]):
 		self.expression_list = expression_list
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(self.min_list_size, self.max_list_size)
 		for x in range(0, rnd):
 			_simple_keyset_expression = simple_keyset_expression()

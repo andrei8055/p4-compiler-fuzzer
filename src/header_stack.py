@@ -17,6 +17,7 @@ class header_stack(object):
 		self.size = size
 
 	def randomize(self, header):
+		common.usedRandomize()
 		self.name = self.generate_name()
 		self.size = random.randint(self.stack_min_size, self.stack_max_size)
 		self.header = header

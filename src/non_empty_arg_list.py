@@ -1,17 +1,19 @@
 from argument import argument
 import random
+from common import common
 
 
 class non_empty_arg_list(object):
 	type = 'non_empty_arg_list'
 	argmument_list = []
 	min_list_size = 1
-	max_list_size = 50
+	max_list_size = 5
 
 	def __init__(self, argmument_list=[]):
 		self.argmument_list = argmument_list
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(self.min_list_size, self.max_list_size)
 		for x in range(0, rnd):
 			_argument = argument()

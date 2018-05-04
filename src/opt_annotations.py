@@ -1,5 +1,7 @@
 import random
 from annotations import annotations
+from common import common
+
 
 class opt_annotations(object):
 	type = 'opt_annotations'
@@ -14,6 +16,7 @@ class opt_annotations(object):
 		self.annotations = annotations
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 1)
 		if rnd == 0:
 			self.annotations = annotations()

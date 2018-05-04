@@ -1,7 +1,9 @@
 import random
-from non_type import non_type
+from non_type_name import non_type_name
 from type_literal import type_literal
 from error_literal import error_literal
+from common import common
+
 
 class name(object):
 	type = 'name'
@@ -17,9 +19,10 @@ class name(object):
 		self.value = value
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 2)
 		if rnd == 0:
-			self.value = non_type()
+			self.value = non_type_name()
 		elif rnd == 1:
 			self.value = type_literal()
 		elif rnd == 2:

@@ -1,12 +1,13 @@
 from method_prototype import method_prototype
 import random
+from common import common
 
 
 class method_prototypes(object):
 	type = 'method_prototypes'
 	prototypes_list = []
 	min_list_size = 1
-	max_list_size = 50
+	max_list_size = 5
 
 	# methodPrototypes
 	# : / *empty * /
@@ -17,6 +18,7 @@ class method_prototypes(object):
 		self.prototypes_list = prototypes_list
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 1)
 		if rnd == 0:
 			self.local_declarations_list = []

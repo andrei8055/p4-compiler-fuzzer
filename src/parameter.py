@@ -1,7 +1,8 @@
 from opt_annotations import opt_annotations
 from direction import direction
-from type_ref import type_ref
 from name import name
+from common import common
+from type_ref import type_ref
 
 
 class parameter(object):
@@ -31,6 +32,7 @@ class parameter(object):
 		return self.type_ref
 
 	def randomize(self):
+		common.usedRandomize()
 		self.opt_annotations = opt_annotations()
 		self.opt_annotations.randomize()
 		self.direction = direction()

@@ -1,4 +1,5 @@
 from name import name
+from common import common
 
 
 class member(object):
@@ -13,6 +14,7 @@ class member(object):
 		self.value = value
 
 	def randomize(self):
+		common.usedRandomize()
 		self.value = name()
 		self.value.randomize()
 

@@ -1,3 +1,6 @@
+from common import common
+
+
 class void(object):
 	name = 'void'
 
@@ -5,6 +8,7 @@ class void(object):
 		return self.name
 
 	def randomize(self):
+		common.usedRandomize()
 		pass
 
 	def generate_code(self):

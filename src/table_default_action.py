@@ -1,3 +1,6 @@
+from common import common
+
+
 class table_default_action(object):
 	value = 'NoAction()'
 	type = 'table_default_action'
@@ -15,6 +18,7 @@ class table_default_action(object):
 		return self.type
 
 	def randomize(self):
+		common.usedRandomize()
 		pass
 
 	#  default_action = value ';'

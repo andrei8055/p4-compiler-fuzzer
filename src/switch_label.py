@@ -1,6 +1,8 @@
 from default_literal import default_literal
 from name import name
 import random
+from common import common
+
 
 class switch_label(object):
 	type = 'switch_label'
@@ -15,6 +17,7 @@ class switch_label(object):
 		self.value = value
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 1)
 		if rnd == 0:
 			self.value = name()

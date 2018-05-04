@@ -1,4 +1,5 @@
 from block_statement import block_statement
+from common import common
 
 
 class control_body(object):
@@ -13,6 +14,7 @@ class control_body(object):
 		self.block_statement = block_statement
 
 	def randomize(self):
+		common.usedRandomize()
 		self.block_statement = block_statement()
 		self.block_statement.randomize()
 

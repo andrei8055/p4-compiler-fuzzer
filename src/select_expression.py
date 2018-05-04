@@ -1,5 +1,7 @@
 from expression_list import expression_list
 from select_case_list import select_case_list
+from common import common
+
 
 class select_expression(object):
 	type = 'select_expression'
@@ -15,6 +17,7 @@ class select_expression(object):
 		self.select_case_list = select_case_list
 
 	def randomize(self):
+		common.usedRandomize()
 		self.expression_list = expression_list()
 		self.expression_list.randomize()
 		self.select_case_list = select_case_list()

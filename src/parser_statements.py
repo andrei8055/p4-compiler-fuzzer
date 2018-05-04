@@ -1,12 +1,13 @@
 from parser_statement import parser_statement
 import random
+from common import common
 
 
 class parser_statements(object):
 	type = 'parser_statements'
 	parser_statements_list = []
 	min_list_size = 1
-	max_list_size = 50
+	max_list_size = 5
 
 	# parserStatements
 	# : / *empty * /
@@ -17,6 +18,7 @@ class parser_statements(object):
 		self.parser_statements_list = parser_statements_list
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 1)
 		if rnd == 0:
 			self.parser_statements_list = []

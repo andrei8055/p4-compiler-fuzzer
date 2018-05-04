@@ -2,6 +2,7 @@ from annotations import annotations
 from name import name
 from type_ref import type_ref
 from opt_initializer import opt_initializer
+from common import common
 
 
 class variable_declaration(object):
@@ -24,6 +25,7 @@ class variable_declaration(object):
 		self.opt_initializer = opt_initializer
 
 	def randomize(self):
+		common.usedRandomize()
 		self.annotations = annotations()
 		self.annotations.randomize()
 		self.type_ref = type_ref()

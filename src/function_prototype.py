@@ -2,6 +2,7 @@ from type_or_void import type_or_void
 from name import name
 from opt_type_parameters import opt_type_parameters
 from parameter_list import parameter_list
+from common import common
 
 
 class function_prototype(object):
@@ -23,6 +24,7 @@ class function_prototype(object):
 		self.parameter_list = parameter_list
 
 	def randomize(self):
+		common.usedRandomize()
 		self.type_or_void = type_or_void()
 		self.type_or_void.randomize()
 		self.name = name()

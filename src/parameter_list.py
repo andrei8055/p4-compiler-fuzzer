@@ -1,5 +1,6 @@
 from non_empty_parameter_list import non_empty_parameter_list
 import random
+from common import common
 
 
 class parameter_list(object):
@@ -15,6 +16,7 @@ class parameter_list(object):
 		self.non_empty_parameter_list = non_empty_parameter_list
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 1)
 		if rnd == 0:
 			self.non_empty_parameter_list = None

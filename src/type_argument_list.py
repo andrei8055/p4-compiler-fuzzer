@@ -1,12 +1,13 @@
 from type_arg import type_arg
 import random
+from common import common
 
 
 class type_argument_list(object):
 	type = 'type_argument_list'
 	argument_list = []
 	min_list_size = 1
-	max_list_size = 50
+	max_list_size = 5
 
 	# typeArgumentList
 	# : typeArg
@@ -17,6 +18,7 @@ class type_argument_list(object):
 		self.argument_list = argument_list
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(self.min_list_size, self.max_list_size)
 		for x in range(0, rnd):
 			_arg_type = type_arg()

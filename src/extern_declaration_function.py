@@ -1,5 +1,6 @@
 from opt_annotations import opt_annotations
 from function_prototype import function_prototype
+from common import common
 
 
 class extern_declaration_function(object):
@@ -15,6 +16,7 @@ class extern_declaration_function(object):
 		self.function_prototype = function_prototype
 
 	def randomize(self):
+		common.usedRandomize()
 		self.opt_annotations = opt_annotations()
 		self.opt_annotations.randomize()
 		self.function_prototype = function_prototype()

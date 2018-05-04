@@ -1,4 +1,5 @@
 from expression import expression
+from common import common
 
 
 class mask_expression(object):
@@ -11,13 +12,14 @@ class mask_expression(object):
         self.right_expression = right_expression
 
     def randomize(self):
+        common.usedRandomize()
         self.left_expression = expression()
         self.left_expression.randomize()
         self.right_expression = expression()
         self.right_expression.randomize()
 
-	def generate_code(self):
-		return self.left_expression.generate_code() + ' &&& ' + self.right_expression.generate_code()
+    def generate_code(self):
+        return self.left_expression.generate_code() + ' &&& ' + self.right_expression.generate_code()
 
 
 

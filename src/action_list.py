@@ -1,12 +1,13 @@
 from action_ref import action_ref
 import random
+from common import common
 
 
 class action_list(object):
 	type = 'action_list'
 	_action_list = []
 	min_list_size = 1
-	max_list_size = 50
+	max_list_size = 5
 
 	# tablePropertyList
 	# : tableProperty
@@ -17,6 +18,7 @@ class action_list(object):
 		self._action_list = _action_list
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(self.min_list_size, self.max_list_size)
 		for x in range(0, rnd):
 			_action = action_ref()

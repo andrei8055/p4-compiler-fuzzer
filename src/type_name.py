@@ -1,4 +1,5 @@
 from prefixed_type import prefixed_type
+from common import common
 
 
 class type_name(object):
@@ -13,6 +14,7 @@ class type_name(object):
 		self.prefixed_type = prefixed_type
 
 	def randomize(self):
+		common.usedRandomize()
 		self.prefixed_type = prefixed_type()
 		self.prefixed_type.randomize()
 

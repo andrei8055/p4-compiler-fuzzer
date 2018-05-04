@@ -1,5 +1,7 @@
 from initializer import initializer
 import random
+from common import common
+
 
 class opt_initializer(object):
 	type = 'opt_initializer'
@@ -14,6 +16,7 @@ class opt_initializer(object):
 		self.initializer = initializer
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 1)
 		if rnd == 0:
 			self.initializer = initializer()

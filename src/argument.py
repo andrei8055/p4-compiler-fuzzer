@@ -1,4 +1,5 @@
 from expression import expression
+from common import common
 
 
 class argument(object):
@@ -13,6 +14,7 @@ class argument(object):
 		self.value = value
 
 	def randomize(self):
+		common.usedRandomize()
 		self.value = expression()
 		self.value.randomize()
 

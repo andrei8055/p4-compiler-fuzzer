@@ -4,9 +4,10 @@ from error import error
 from bit import bit
 from int import int
 from varbit import varbit
+from common import common
 
 
-class type_ref(object):
+class base_type(object):
 	type = 'type_ref'
 	value = None
 
@@ -23,6 +24,7 @@ class type_ref(object):
 		self.value = value
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 5)
 		if rnd == 0:
 			self.value = bool()

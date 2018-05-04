@@ -1,12 +1,13 @@
 from switch_casse import switch_casse
 import random
+from common import common
 
 
 class switch_casses(object):
 	type = 'switch_casses'
 	casses = []
 	min_list_size = 1
-	max_list_size = 50
+	max_list_size = 5
 
 	# switchCases
 	# : / *empty * /
@@ -17,6 +18,7 @@ class switch_casses(object):
 		self.casses = casses
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 1)
 		if rnd == 0:
 			self.casses = []

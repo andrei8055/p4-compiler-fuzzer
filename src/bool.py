@@ -1,3 +1,6 @@
+from common import common
+
+
 class bool(object):
 	name = 'bool'
 
@@ -8,6 +11,7 @@ class bool(object):
 		return 'bool'
 
 	def randomize(self):
+		common.usedRandomize()
 		pass
 
 	def generate_code_ref(self):

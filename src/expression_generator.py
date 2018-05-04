@@ -10,6 +10,9 @@ class expression_generator:
 	aritmetic_operators = ["+", "-", "*", "/", "%"]
 	boolean_operator = ["==", "!=", "&&", "||"]
 
+	def __init__(self):
+		pass
+
 	# TODO finsh project
 	def generate_random(self, type):
 		_type = type
@@ -59,7 +62,7 @@ class expression_generator:
 		if type == 'string':
 			return '"' + common.get_random_string(random.randint(self.string_min_length, self.string_max_length), False) + '"'
 		if type == 'arithmetic':
-			return self.common.get_random_number(self.numeric_min_size, self.numeric_max_size)
+			return common.get_random_number(self.numeric_min_size, self.numeric_max_size)
 
 	def nth_repl(self, s, sub, repl, nth):
 		find = s.find(sub)

@@ -7,6 +7,8 @@ from exit_statement import exit_statement
 from return_statement import return_statement
 from switch_statement import switch_statement
 import random
+from common import common
+
 
 class statement(object):
 	type = 'statement'
@@ -27,6 +29,7 @@ class statement(object):
 		self.value = value
 
 	def randomize(self):
+		common.usedRandomize()
 		rnd = random.randint(0, 7)
 		if rnd == 0:
 			self.value = assignment_or_method_call_statement()

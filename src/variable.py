@@ -26,6 +26,7 @@ class variable(object):
 		return self.name
 
 	def randomize(self):
+		common.usedRandomize()
 		self.name = common.get_random_string(self.max_name_length, False)
 		self.type = self.base_type_generator.generate_random(['bit', 'varbit', 'int'])
 		self.value = 1  # todo generate random value based on type

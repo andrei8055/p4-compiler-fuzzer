@@ -1,5 +1,6 @@
 from type_name import type_name
 from expression import expression
+from common import common
 
 
 class header_stack_type(object):
@@ -16,6 +17,7 @@ class header_stack_type(object):
 		self.expression = expression
 
 	def randomize(self):
+		common.usedRandomize()
 		self.type_name = type_name()
 		self.type_name.randomize()
 		self.expression = expression()
