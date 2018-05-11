@@ -1,5 +1,4 @@
 from switch_label import switch_label
-from block_statement import block_statement
 import random
 from common import common
 
@@ -26,6 +25,7 @@ class switch_casse(object):
 		if rnd == 0:
 			self.block_statement = None
 		elif rnd == 1:
+			from block_statement import block_statement
 			self.block_statement = block_statement()
 			self.block_statement.randomize()
 

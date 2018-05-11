@@ -36,7 +36,7 @@ class annotation(object):
 
 
 	def generate_code(self):
-		code = '@' + ' ' + self.name.generate_code()
+		code = '@' + self.name.generate_code()
 		if self.expression_list is not None:
 			code += ' ' + self.expression_list.generate_code()
 		return code

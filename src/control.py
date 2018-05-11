@@ -9,7 +9,7 @@ class control(object):
 	local_declarations = []
 	apply = None
 
-	def __init__(self, annotation, name, type_parameters, parameters, local_declarations, apply):
+	def __init__(self, annotation, name, opt_type_parameters, parameters, local_declarations, apply):
 		self.annotation = annotation
 		self.type = 'parser'
 		self.name = name

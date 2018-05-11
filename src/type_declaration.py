@@ -3,12 +3,14 @@ from typedef_declaration import typedef_declaration
 from parser_type_declaration import parser_type_declaration
 from control_type_declaration import control_type_declaration
 from package_type_declaration import package_type_declaration
-import random
-from common import common
+from randomizer import randomizer
 
 
 class type_declaration(object):
-	type = 'type_declaration'
+	type = None
+	types = ["derivedTypeDeclaration", "typedefDeclaration", "parserTypeDeclaration", "controlTypeDeclaration",
+			 "packageTypeDeclaration"]
+	probabilities = [2, 2, 2, 2, 2]
 	value = None
 
 	# typeDeclaration
@@ -23,17 +25,16 @@ class type_declaration(object):
 		self.value = value
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(0, 4)
-		if rnd == 0:
+		self.type = randomizer.getRandom(self.probabilities)
+		if self.type == 0:
 			self.value = derived_type_declaration()
-		elif rnd == 1:
+		elif self.type == 1:
 			self.value = typedef_declaration()
-		elif rnd == 2:
+		elif self.type == 2:
 			self.value = parser_type_declaration(None)
-		elif rnd == 3:
+		elif self.type == 3:
 			self.value = control_type_declaration(None)
-		elif rnd == 4:
+		elif self.type == 4:
 			self.value = package_type_declaration(None)
 		self.value.randomize()
 

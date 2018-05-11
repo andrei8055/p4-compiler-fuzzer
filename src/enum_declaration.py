@@ -2,6 +2,7 @@ from opt_annotations import opt_annotations
 from name import name
 from identifier_list import identifier_list
 from common import common
+from scope import scope
 
 
 class enum_declaration(object):
@@ -28,6 +29,7 @@ class enum_declaration(object):
 		self.name.randomize()
 		self.identifier_list = identifier_list()
 		self.identifier_list.randomize()
+		scope.insert_type(name.generate_code(), "struct")
 
 	def generate_code(self):
 		return self.opt_annotations.generate_code() + ' enum ' + self.name.generate_code() + ' ' + '{' + self.identifier_list.generate_code() + '}'

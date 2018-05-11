@@ -1,13 +1,16 @@
 from struct_field import struct_field
+from randomizer import randomizer
 import random
-from common import common
 
 
 class struct_field_list(object):
-	type = 'struct_field_list'
 	field_list = []
 	min_list_size = 1
 	max_list_size = 5
+
+	type = None
+	types = ["empty", "structFieldList"]
+	probabilities = [5,5]
 
 	# structFieldList
 	# : / *empty * /
@@ -17,13 +20,15 @@ class struct_field_list(object):
 	def __init__(self, field_list=[]):
 		self.field_list = field_list
 
+	def getType(self):
+		return self.types[self.type]
+
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(0, 1)
-		if rnd == 0:
+		self.type = randomizer.getRandom(self.probabilities)
+		if self.type == 0:
 			self.field_list = []
 		else:
-			rndl = random.randint(self.min_list_size, self.max_list_size)
+			rndl = randomizer.randint(self.min_list_size, self.max_list_size)
 			for x in range(0, rndl):
 				_struct_field = struct_field()
 				_struct_field.randomize()

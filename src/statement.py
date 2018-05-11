@@ -2,7 +2,6 @@ from empty_statement import empty_statement
 from conditional_statement import conditional_statement
 from direct_application import direct_application
 from assignment_or_method_call_statement import assignment_or_method_call_statement
-from block_statement import block_statement
 from exit_statement import exit_statement
 from return_statement import return_statement
 from switch_statement import switch_statement

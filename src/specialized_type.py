@@ -4,7 +4,6 @@ from common import common
 
 
 class specialized_type(object):
-	type = 'specialized_type'
 	prefixed_type = None
 	type_argument_list = None
 
@@ -17,11 +16,13 @@ class specialized_type(object):
 		self.type_argument_list = type_argument_list
 
 	def randomize(self):
-		common.usedRandomize()
 		self.prefixed_type = prefixed_type()
 		self.prefixed_type.randomize()
-		self.type_argument_list = type_argument_list()
-		self.type_argument_list.randomize()
+		if self.prefixed_type.value is not None:
+			self.type_argument_list = type_argument_list()
+			self.type_argument_list.randomize()
+		else:
+			self.prefixed_type  = None
 
 	def generate_code(self):
 		return self.prefixed_type.generate_code() + '<' + self.type_argument_list.generate_code() + '>'

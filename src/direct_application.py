@@ -19,8 +19,11 @@ class direct_application(object):
 		common.usedRandomize()
 		self.type_name = type_name()
 		self.type_name.randomize()
-		self.argument_list = argument_list()
-		self.argument_list.randomize()
+		if self.type_name.prefixed_type is not None:
+			self.argument_list = argument_list()
+			self.argument_list.randomize()
+		else:
+			self.type_name = None
 
 	def generate_code(self):
 		return self.type_name.generate_code() + '.apply(' + self.argument_list.generate_code() + ');'

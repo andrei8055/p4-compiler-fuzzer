@@ -6,7 +6,10 @@ from common import common
 
 
 class name(object):
-	type = 'name'
+	type = None
+	types = ["type", "dotPrefixType"]
+	# TODO: implement dotPrefixType and set probability higher than 0 for it
+	probabilities = [10, 0]
 	value = None
 
 	# name

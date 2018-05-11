@@ -1,10 +1,15 @@
 import random
 from dot_prefix import dot_prefix
 from common import common
+from randomizer import randomizer
+from scope import scope
 
 
 class prefixed_type(object):
-	type = 'prefixed_type'
+	type = None
+	types = ["type", "dotPrefixType"]
+	# TODO: implement dotPrefixType and set probability higher than 0 for it
+	probabilities = [10,0]
 	prefix = None
 	value = None
 
@@ -18,16 +23,16 @@ class prefixed_type(object):
 		self.value = value
 
 	def randomize(self):
-		# TODO: fix Type literal as it is not a literal (string) but a previously declared type
-		common.usedRandomize()
-		rnd = random.randint(0, 1)
-		if rnd == 0:
+		self.type = randomizer.getRandom(self.probabilities)
+		if self.type == 0:
+			avaiable_types = scope.get_available_types()
+			if len(avaiable_types):
+				rnd = randomizer.randint(0, len(avaiable_types))
+				self.value = avaiable_types[rnd]
+		elif self.type == 1:
 			self.prefix = dot_prefix()
-			self.value = 'type'
-		elif rnd == 1:
-			self.prefix = None
-			self.value = 'type'
-		#  self.value.randomize()
+			# TODO:
+			self.value = None
 
 	def generate_code(self):
 		if self.prefix is not None:

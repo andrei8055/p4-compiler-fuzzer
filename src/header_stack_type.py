@@ -20,8 +20,11 @@ class header_stack_type(object):
 		common.usedRandomize()
 		self.type_name = type_name()
 		self.type_name.randomize()
-		self.expression = expression()
-		self.expression.randomize()
+		if self.type_name.prefixed_type is not None:
+			self.expression = expression()
+			self.expression.randomize()
+		else:
+			self.type_name = None
 
 	def generate_code(self):
-		return  self.type_name.generate_code() + ' [' + self.expression.generate_code() + ']'
+		return self.type_name.generate_code() + ' [' + self.expression.generate_code() + ']'

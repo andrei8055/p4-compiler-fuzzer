@@ -1,19 +1,20 @@
 from common import common
 from annotation import annotation
-import random
+from name import name
+from parameter_list import parameter_list
 
 
 class action(object):
 	annotation = None
 	type = 'action'
 	name = ''
-	parameter_list = []
+	parameter_list = None
 	expression_list = []
 
 	name_min_length = 1
 	name_max_length = 50
 
-	def __init__(self, annotation, name='', parameter_list=[], expression_list=[]):
+	def __init__(self, annotation, name=None, parameter_list=None, expression_list=[]):
 		self.annotation = annotation
 		self.name = name
 		self.parameter_list = parameter_list
@@ -39,8 +40,10 @@ class action(object):
 		_annotation = annotation()
 		_annotation.randomize()
 		self.annotation = _annotation
-		self.name = common.get_random_string(random.randint(self.name_min_length, self.name_max_length), False)
-		self.parameter_list = []  #todo randomize parameter list
+		self.name = name()
+		self.name.randomize()
+		self.parameter_list = parameter_list()
+		self.parameter_list.randomize()
 		self.expression_list = []  #todo randomize expression list
 
 	def generate_code(self):
@@ -48,11 +51,8 @@ class action(object):
 		if self.annotation is not None:
 			code += self.annotation.generate_code()
 		code += 'action' + ' '
-		code += self.name + '('
-		for x in range(0, len(self.parameter_list)):
-			code = code + str(self.parameter_list[x].generate_code())
-			if x < len(self.parameter_list) - 1:
-				code = code + ', '
+		code += self.name.generate_code() + '('
+		code += self.parameter_list.generate_code()
 		code += ') \n'
 		code += '{ \n'
 		for x in range(0, len(self.expression_list)):
@@ -68,7 +68,7 @@ class action(object):
 		code = ''
 		if self.annotation is not None:
 			code += self.annotation.generate_code() + ' '
-		code += self.name
+		code += self.name.generate_code()
 		code += '('
 		for x in range(0, len(parameters)):
 			code = code + parameters[x]

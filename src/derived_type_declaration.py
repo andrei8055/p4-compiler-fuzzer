@@ -2,12 +2,13 @@ from header_type_declaration import header_type_declaration
 from header_union_declaration import header_union_declaration
 from struct_type_declaration import struct_type_declaration
 from enum_declaration import enum_declaration
-import random
-from common import common
+from randomizer import randomizer
 
 
 class derived_type_declaration(object):
-	type = 'derived_type_declaration'
+	type = None
+	types = ["headerTypeDeclaration", "headerUnionDeclaration", "structTypeDeclaration", "enumDeclaration"]
+	probabilities = [3, 3, 3, 1]
 	value = None
 
 	# derivedTypeDeclaration
@@ -21,16 +22,15 @@ class derived_type_declaration(object):
 		self.value = value
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(0, 3)
-		if rnd == 0:
+		self.type = randomizer.getRandom(self.probabilities)
+		if self.type == 0:
 			self.value = header_type_declaration()
-		elif rnd == 1:
+		elif self.type == 1:
 			self.value = header_union_declaration()
-		elif rnd == 2:
-			self.value = struct_type_declaration(None)
-		elif rnd == 3:
-			self.value = enum_declaration(None)
+		elif self.type == 2:
+			self.value = struct_type_declaration()
+		elif self.type == 3:
+			self.value = enum_declaration()
 		self.value.randomize()
 
 	def generate_code(self):
