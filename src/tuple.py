@@ -10,11 +10,11 @@ class tuple(object):
 	type = 'tuple'
 	base_type = 'tuple'
 
-	def __init__(self, annotation=None, name='', fields=[], values=[]):
+	def __init__(self, annotation=None, name='', fields=None, values=None):
 		self.annotation = annotation
 		self.name = name
-		self.fields = fields
-		self.values = values
+		self.fields = fields if fields is not None else []
+		self.values = values if values is not None else []
 
 	def get_annotation(self):
 		return self.annotation

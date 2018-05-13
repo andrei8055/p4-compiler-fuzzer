@@ -14,8 +14,8 @@ class select_case_list(object):
 	# | selectCaseList selectCase
 	# ;
 
-	def __init__(self, case_list=[]):
-		self.case_list = case_list
+	def __init__(self, case_list=None):
+		self.case_list = case_list if case_list is not None else []
 
 	def randomize(self):
 		common.usedRandomize()

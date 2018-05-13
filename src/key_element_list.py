@@ -14,8 +14,8 @@ class key_element_list(object):
 	# | keyElementList keyElement
 	# ;
 
-	def __init__(self, element_list=[]):
-		self.element_list = element_list
+	def __init__(self, element_list=None):
+		self.element_list = element_list if element_list is not None else []
 
 	def randomize(self):
 		common.usedRandomize()

@@ -14,8 +14,8 @@ class type_parameter_list(object):
 	# | typeParameterList ','nonTypeName
 	# ;
 
-	def __init__(self, parameter_list=[]):
-		self.parameter_list = parameter_list
+	def __init__(self, parameter_list=None):
+		self.parameter_list = parameter_list if parameter_list is not None else []
 
 	def randomize(self):
 		common.usedRandomize()

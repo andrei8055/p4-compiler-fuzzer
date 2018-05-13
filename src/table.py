@@ -10,10 +10,10 @@ class table(object):
 	name_min_length = 1
 	name_max_length = 50
 
-	def __init__(self, annotation, name='', property_list=[]):
+	def __init__(self, annotation, name='', property_list=None):
 		self.annotation = annotation
 		self.name = name
-		self.property_list = property_list
+		self.property_list = property_list if property_list is not None else []
 
 	def get_name(self):
 		return self.name

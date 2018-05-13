@@ -14,8 +14,8 @@ class switch_casses(object):
 	# | switchCases switchCase
 	# ;
 
-	def __init__(self, casses=[]):
-		self.casses = casses
+	def __init__(self, casses=None):
+		self.casses = casses if casses is not None else []
 
 	def randomize(self):
 		common.usedRandomize()

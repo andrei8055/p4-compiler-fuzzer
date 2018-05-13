@@ -11,6 +11,9 @@ class int(object):
 	def get_name(self):
 		return self.name
 
+	def get_ref_type(self):
+		return "int"
+
 	def __init__(self, size=0):
 		self.name = 'int'
 		self.size = size

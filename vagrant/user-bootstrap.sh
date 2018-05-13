@@ -38,8 +38,15 @@ mkdir mysql_connector
 cd mysql_connector/
 wget https://dev.mysql.com/get/Downloads/Connector-Python/mysql-connector-python_8.0.11-1ubuntu16.04_all.deb
 sudo dpkg -i mysql-connector-python_8.0.11-1ubuntu16.04_all.deb
+cd ..
 
+git clone https://github.com/p4pktgen/p4pktgen.git
+cd p4pktgen
+./tools/install.sh
 sudo su p4-compiler-fuzzer
+
+echo "source /home/vagrant/p4pktgen/my-venv/bin/activate" | tee -a ~/.bashrc
+sudo ln -s p4pktgen /usr/local/bin/p4pktgen
 cd ~/p4-compiler-fuzzer
 mkdir input
 mkdir output

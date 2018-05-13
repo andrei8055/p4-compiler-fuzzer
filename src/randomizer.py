@@ -22,4 +22,8 @@ class randomizer(object):
 	def randint(min_list_size, max_list_size):
 		return random.randint(min_list_size, max_list_size)
 
+	@staticmethod
+	def choice(seq):
+		return random.choice(seq)
+
 

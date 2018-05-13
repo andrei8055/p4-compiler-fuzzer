@@ -22,13 +22,16 @@ class prefixed_type(object):
 		self.prefix = prefix
 		self.value = value
 
+	def get_ref_type(self):
+		return self.value[self.value.keys()[0]]["type"]
+
 	def randomize(self):
 		self.type = randomizer.getRandom(self.probabilities)
 		if self.type == 0:
-			avaiable_types = scope.get_available_types()
-			if len(avaiable_types):
-				rnd = randomizer.randint(0, len(avaiable_types))
-				self.value = avaiable_types[rnd]
+			available_types = scope.get_available_types()
+			if len(available_types):
+				rnd = randomizer.randint(0, len(available_types)-1)
+				self.value = {available_types.keys()[rnd]: available_types[available_types.keys()[rnd]]}
 		elif self.type == 1:
 			self.prefix = dot_prefix()
 			# TODO:
@@ -36,6 +39,6 @@ class prefixed_type(object):
 
 	def generate_code(self):
 		if self.prefix is not None:
-			return self.prefix.generate_code() + self.value
+			return self.prefix.generate_code() + self.value.keys()[0]
 		else:
-			return self.value
+			return self.value.keys()[0]

@@ -14,8 +14,8 @@ class identifier_list(object):
 	# | identifierList','name
 	# ;
 
-	def __init__(self, identifier_list=[]):
-		self.identifier_list = identifier_list
+	def __init__(self, identifier_list=None):
+		self.identifier_list = identifier_list if identifier_list is not None else []
 
 	def randomize(self):
 		common.usedRandomize()

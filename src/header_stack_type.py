@@ -1,6 +1,5 @@
 from type_name import type_name
 from expression import expression
-from common import common
 
 
 class header_stack_type(object):
@@ -16,8 +15,10 @@ class header_stack_type(object):
 		self.type_name = type_name
 		self.expression = expression
 
+	def get_ref_type(self):
+		return "header_stack"
+
 	def randomize(self):
-		common.usedRandomize()
 		self.type_name = type_name()
 		self.type_name.randomize()
 		if self.type_name.prefixed_type is not None:

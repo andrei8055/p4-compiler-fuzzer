@@ -1,21 +1,20 @@
-from common import common
-
-
 class error(object):
 	name = 'error'
 	identifier_list = []
 
-	def __init__(self, identifier_list=[]):
-		self.identifier_list = identifier_list
+	def __init__(self, identifier_list=None):
+		self.identifier_list = identifier_list if identifier_list is not None else []
 
 	def get_name(self):
 		return self.name
+
+	def get_ref_type(self):
+		return "error"
 
 	def get_identifier_list(self):
 		return self.identifier_list
 
 	def randomize(self):
-		common.usedRandomize()
 		self.identifier_list = []  # todo randomize
 
 	def generate_code(self):

@@ -30,6 +30,9 @@ class type_ref(object):
     def get_type(self):
         return self.types[self.type]
 
+    def get_ref_type(self):
+        return self.value.get_ref_type()
+
     def randomize(self):
         self.__class__.curDepth += 1
         while True:
@@ -42,15 +45,19 @@ class type_ref(object):
                 self.value = specialized_type()
             elif self.type == 3:
                 self.value = header_stack_type()
-            self.value.randomize()
-            if not self.filter():
-                break
+            if self.__class__.curDepth < self.__class__.maxDepth:
+                self.value.randomize()
+                if not self.filter():
+                    break
+            else:
+                self.__class__.curDepth -= 1
         self.__class__.curDepth -= 1
 
     def filter(self):
-        if self.__class__.curDepth > self.__class__.maxDepth:
-            return True
-        elif self.get_type() == "typeName" or self.get_type() == "specializedType":
+        if self.get_type() == "typeName":
+            if self.value.prefixed_type is None:
+                return True
+        if self.get_type() == "specializedType":
             if self.value.prefixed_type is None:
                 return True
         elif self.get_type() == "headerStackType":

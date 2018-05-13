@@ -14,8 +14,8 @@ class method_prototypes(object):
 	# | methodPrototypes methodPrototype
 	# ;
 
-	def __init__(self, prototypes_list=[]):
-		self.prototypes_list = prototypes_list
+	def __init__(self, prototypes_list=None):
+		self.prototypes_list = prototypes_list if prototypes_list is not None else []
 
 	def randomize(self):
 		common.usedRandomize()

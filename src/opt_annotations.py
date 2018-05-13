@@ -1,10 +1,11 @@
-import random
 from annotations import annotations
-from common import common
+from randomizer import randomizer
 
 
 class opt_annotations(object):
-	type = 'opt_annotations'
+	type = None
+	types = ["empty", "annotations"]
+	probabilities = [5,5]
 	annotations = None
 
 	# optAnnotations
@@ -16,9 +17,8 @@ class opt_annotations(object):
 		self.annotations = annotations
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(0, 1)
-		if rnd == 0:
+		self.type = randomizer.getRandom(self.probabilities)
+		if self.type == 0:
 			self.annotations = annotations()
 			self.annotations.randomize()
 		else:

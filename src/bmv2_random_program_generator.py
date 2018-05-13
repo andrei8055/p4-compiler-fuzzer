@@ -1,9 +1,18 @@
 from struct_type_declaration import struct_type_declaration
+from header_type_declaration import header_type_declaration
 from struct_field_list import struct_field_list
 from scope import scope
+from randomizer import randomizer
 
 
 class bmv2_random_program_generator(object):
+
+	min_random_structs = 0
+	max_random_structs = 500
+
+	min_random_headers = 0
+	max_random_headers = 500
+
 	def __init__(self):
 		pass
 
@@ -12,8 +21,8 @@ class bmv2_random_program_generator(object):
 		code = ""
 		code += self.generate_bmv2_includes()
 		code += self.generate_bmv2_structs()
-		self.generate_random_structs()
-		self.generate_random_headers()
+		code += self.generate_random_structs()
+		code += self.generate_random_headers()
 		code += self.generate_bmv2_parser()
 		self.generate_random_parsers()
 		code += self.generate_bmv2_controls()
@@ -27,12 +36,14 @@ class bmv2_random_program_generator(object):
 
 
 	def generate_bmv2_structs(self):
-		_struct_field_list = struct_field_list()
-		_struct_field_list.randomize()
-		headers_t = struct_type_declaration(name="headers_t", struct_field_list=_struct_field_list)
-		_struct_field_list = struct_field_list()
-		_struct_field_list.randomize()
-		metadata_t = struct_type_declaration(name="metadata_t", struct_field_list=_struct_field_list)
+		headers_t = struct_type_declaration(name="headers_t")
+		_struct_field_list = struct_field_list(fromObj=headers_t)
+		headers_t.struct_field_list = _struct_field_list
+		# TODO: if we randomize headers_t fields we need to write to them all in the parser to avoid warning
+		metadata_t = struct_type_declaration(name="metadata_t")
+		_struct_field_list2 = struct_field_list(fromObj=metadata_t)
+		_struct_field_list2.randomize()
+		metadata_t.struct_field_list = _struct_field_list2
 		structs = (headers_t, metadata_t)
 		code = ""
 		for struct in structs:
@@ -40,10 +51,28 @@ class bmv2_random_program_generator(object):
 		return code
 
 	def generate_random_structs(self):
-		pass
+		rnd = randomizer.randint(self.min_random_structs, self.max_random_structs)
+		struct_type_declarations = []
+		for x in range(0, rnd):
+			_struct_type_declaration = struct_type_declaration()
+			_struct_type_declaration.randomize()
+			struct_type_declarations.append(_struct_type_declaration)
+		code = ""
+		for _struct_type_declaration in struct_type_declarations:
+			code += _struct_type_declaration.generate_code()
+		return code
 
 	def generate_random_headers(self):
-		pass
+		rnd = randomizer.randint(self.min_random_headers, self.max_random_headers)
+		header_type_declarations = []
+		for x in range(0, rnd):
+			_header_type_declaration = header_type_declaration()
+			_header_type_declaration.randomize()
+			header_type_declarations.append(_header_type_declaration)
+		code = ""
+		for _header_type_declaration in header_type_declarations:
+			code += _header_type_declaration.generate_code()
+		return code
 
 	def generate_bmv2_parser(self):
 		# TODO: Implement

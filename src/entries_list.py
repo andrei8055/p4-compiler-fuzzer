@@ -13,8 +13,8 @@ class entries_list(object):
 	# : entry
 	# | entryList entry
 
-	def __init__(self, entry_list=[]):
-		self.entry_list = entry_list
+	def __init__(self, entry_list=None):
+		self.entry_list = entry_list if entry_list is not None else []
 
 	def randomize(self):
 		common.usedRandomize()

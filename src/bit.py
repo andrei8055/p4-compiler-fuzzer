@@ -13,6 +13,9 @@ class bit(object):
 		self.name = 'bit'
 		self.size = size
 
+	def get_ref_type(self):
+		return "bit"
+
 	def get_name(self):
 		return self.name
 

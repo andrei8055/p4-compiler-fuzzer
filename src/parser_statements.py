@@ -14,8 +14,8 @@ class parser_statements(object):
 	# | parserStatements parserStatement
 	# ;
 
-	def __init__(self, parser_statements_list=[]):
-		self.parser_statements_list = parser_statements_list
+	def __init__(self, parser_statements_list=None):
+		self.parser_statements_list = parser_statements_list if parser_statements_list is not None else []
 
 	def randomize(self):
 		common.usedRandomize()

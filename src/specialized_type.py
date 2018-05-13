@@ -8,12 +8,15 @@ class specialized_type(object):
 	type_argument_list = None
 
 	# specializedType
-	# : prefixedTYpe '<' typeArgumentList '>'
+	# : prefixedType '<' typeArgumentList '>'
 	# ;
 
 	def __init__(self, prefixed_type=None, type_argument_list=None):
 		self.prefixed_type = prefixed_type
 		self.type_argument_list = type_argument_list
+
+	def get_ref_type(self):
+		return "specializedType"
 
 	def randomize(self):
 		self.prefixed_type = prefixed_type()
@@ -22,7 +25,7 @@ class specialized_type(object):
 			self.type_argument_list = type_argument_list()
 			self.type_argument_list.randomize()
 		else:
-			self.prefixed_type  = None
+			self.prefixed_type = None
 
 	def generate_code(self):
 		return self.prefixed_type.generate_code() + '<' + self.type_argument_list.generate_code() + '>'

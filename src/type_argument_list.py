@@ -1,6 +1,5 @@
 from type_arg import type_arg
 import random
-from common import common
 
 
 class type_argument_list(object):
@@ -14,11 +13,10 @@ class type_argument_list(object):
 	# | typeArgumentList ','typeArg
 	# ;
 
-	def __init__(self, argument_list=[]):
-		self.argument_list = argument_list
+	def __init__(self, argument_list=None):
+		self.argument_list = argument_list if argument_list is not None else []
 
 	def randomize(self):
-		common.usedRandomize()
 		rnd = random.randint(self.min_list_size, self.max_list_size)
 		for x in range(0, rnd):
 			_arg_type = type_arg()

@@ -14,8 +14,8 @@ class control_local_declarations(object):
 	# | controlLocalDeclarations controlLocalDeclaration
 	# ;
 
-	def __init__(self, local_declarations_list=[]):
-		self.local_declarations_list = local_declarations_list
+	def __init__(self, local_declarations_list=None):
+		self.local_declarations_list = local_declarations_list if local_declarations_list is not None else []
 
 	def randomize(self):
 		common.usedRandomize()

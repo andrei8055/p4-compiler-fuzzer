@@ -1,6 +1,5 @@
-import random
 import string
-import inspect
+from randomizer import randomizer
 
 class common(object):
 
@@ -8,13 +7,13 @@ class common(object):
 	def get_random_string(length, first_capital):
 		name_length = length
 		if first_capital:
-			return ''.join(random.choice(string.ascii_lowercase) for _ in range(name_length)).capitalize()
+			return ''.join(randomizer.choice(string.ascii_lowercase) for _ in range(name_length)).capitalize()
 		else:
-			return ''.join(random.choice(string.ascii_lowercase) for _ in range(name_length))
+			return ''.join(randomizer.choice(string.ascii_lowercase) for _ in range(name_length))
 
 	@staticmethod
 	def get_random_number(min, max):
-		return random.randint(min, max)
+		return randomizer.randint(min, max)
 
 	@staticmethod
 	def output(code, console, file):

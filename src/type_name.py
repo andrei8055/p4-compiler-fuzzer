@@ -12,6 +12,9 @@ class type_name(object):
 	def __init__(self, prefixed_type=None):
 		self.prefixed_type = prefixed_type
 
+	def get_ref_type(self):
+		return self.prefixed_type.get_ref_type()
+
 	def randomize(self):
 		self.prefixed_type = prefixed_type()
 		self.prefixed_type.randomize()

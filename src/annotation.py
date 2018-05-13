@@ -1,10 +1,13 @@
-from common import common
 from name import name
 from expression_list import expression_list
-import random
+from randomizer import randomizer
 
 
 class annotation(object):
+	type = None
+	types = ["name", "nameExpressionList"]
+	# TODO: implement nameExpressionList and set probability higher than 0 for it
+	probabilities = [10, 0]
 	name = None
 	expression_list = None
 	name_min_length = 1
@@ -26,11 +29,13 @@ class annotation(object):
 		return self.expression_list
 
 	def randomize(self):
-		common.usedRandomize()
-		self.name = name()
-		self.name.randomize()
-		rnd = random.randint(0,1)
-		if rnd == 0:
+		self.type = randomizer.getRandom(self.probabilities)
+		if self.type == 0:
+			self.name = name()
+			self.name.randomize()
+		elif self.type == 1:
+			self.name = name()
+			self.name.randomize()
 			self.expression_list = expression_list()
 			self.expression_list.randomize()
 
@@ -38,5 +43,5 @@ class annotation(object):
 	def generate_code(self):
 		code = '@' + self.name.generate_code()
 		if self.expression_list is not None:
-			code += ' ' + self.expression_list.generate_code()
+			code += '(' + self.expression_list.generate_code() + ')'
 		return code

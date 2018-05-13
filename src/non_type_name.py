@@ -1,14 +1,16 @@
-import random
 from identifier import identifier
 from apply_literal import apply_literal
 from key_literal import key_literal
 from actions_literal import actions_literal
 from state_literal import state_literal
-from common import common
+from randomizer import randomizer
 
 
 class non_type_name(object):
-	type = 'non_type_name'
+	type = None
+	types = ["IDENTIFIER", "APPLY", "KEY", "ACTIONS", "STATE"]
+	# TODO: implement APPLY, KEY, ACTIONS, STATE and set probabilities higher than 0 for them
+	probabilities = [10, 0, 0, 0, 0]
 	value = None
 
 	# nonTypeName
@@ -23,17 +25,16 @@ class non_type_name(object):
 		self.value = value
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(0, 4)
-		if rnd == 0:
+		self.type = randomizer.getRandom(self.probabilities)
+		if self.type == 0:
 			self.value = identifier()
-		elif rnd == 1:
+		elif self.type == 1:
 			self.value = apply_literal()
-		elif rnd == 2:
+		elif self.type == 2:
 			self.value = key_literal()
-		elif rnd == 3:
+		elif self.type == 3:
 			self.value = actions_literal()
-		elif rnd == 4:
+		elif self.type == 4:
 			self.value = state_literal()
 			
 		self.value.randomize()

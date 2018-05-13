@@ -9,8 +9,8 @@ class expression_list(object):
 	min_list_size = 0
 	max_list_size = 5
 
-	def __init__(self, exp_list=[]):
-		self.exp_list = exp_list
+	def __init__(self, exp_list=None):
+		self.exp_list = exp_list if exp_list is not None else []
 
 	def randomize(self):
 		common.usedRandomize()

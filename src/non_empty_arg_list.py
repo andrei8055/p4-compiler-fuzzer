@@ -9,8 +9,8 @@ class non_empty_arg_list(object):
 	min_list_size = 1
 	max_list_size = 5
 
-	def __init__(self, argmument_list=[]):
-		self.argmument_list = argmument_list
+	def __init__(self, argmument_list=None):
+		self.argmument_list = argmument_list if argmument_list is not None else []
 
 	def randomize(self):
 		common.usedRandomize()

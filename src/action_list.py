@@ -14,8 +14,8 @@ class action_list(object):
 	# | tablePropertyList tableProperty
 	# ;
 
-	def __init__(self, _action_list=[]):
-		self._action_list = _action_list
+	def __init__(self, _action_list=None):
+		self._action_list = _action_list if _action_list is not None else []
 
 	def randomize(self):
 		common.usedRandomize()

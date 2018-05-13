@@ -1,6 +1,5 @@
 from type_name import type_name
 from argument_list import argument_list
-from common import common
 
 
 class direct_application(object):
@@ -16,7 +15,6 @@ class direct_application(object):
 		self.argument_list = argument_list
 
 	def randomize(self):
-		common.usedRandomize()
 		self.type_name = type_name()
 		self.type_name.randomize()
 		if self.type_name.prefixed_type is not None:

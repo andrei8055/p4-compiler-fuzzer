@@ -7,6 +7,9 @@ class bool(object):
 	def get_name(self):
 		return self.name
 
+	def get_ref_type(self):
+		return "bool"
+
 	def generate_code(self):
 		return 'bool'
 

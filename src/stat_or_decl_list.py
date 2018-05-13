@@ -15,8 +15,8 @@ class stat_or_decl_list(object):
 	# ;
 
 
-	def __init__(self, list=[]):
-		self.list = list
+	def __init__(self, list=None):
+		self.list = list if list is not None else []
 
 	def randomize(self):
 		common.usedRandomize()

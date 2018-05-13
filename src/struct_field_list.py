@@ -12,13 +12,16 @@ class struct_field_list(object):
 	types = ["empty", "structFieldList"]
 	probabilities = [5,5]
 
+	fromObj = None
+
 	# structFieldList
 	# : / *empty * /
 	# | structFieldList structField
 	# ;
 
-	def __init__(self, field_list=[]):
-		self.field_list = field_list
+	def __init__(self, field_list=None, fromObj=None):
+		self.field_list = field_list if field_list is not None else []
+		self.fromObj = fromObj
 
 	def getType(self):
 		return self.types[self.type]
@@ -30,13 +33,13 @@ class struct_field_list(object):
 		else:
 			rndl = randomizer.randint(self.min_list_size, self.max_list_size)
 			for x in range(0, rndl):
-				_struct_field = struct_field()
+				_struct_field = struct_field(fromObj=self.fromObj)
 				_struct_field.randomize()
 				self.field_list.append(_struct_field)
 
 	def generate_code(self):
 		code = ''
 		for _struct_field in self.field_list:
-			code += _struct_field.generate_code() + ' '
+			code += _struct_field.generate_code() + '\n'
 		return code
 

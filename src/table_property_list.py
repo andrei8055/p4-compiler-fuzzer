@@ -14,8 +14,8 @@ class table_property_list(object):
 	# | tablePropertyList tableProperty
 	# ;
 
-	def __init__(self, property_list=[]):
-		self.property_list = property_list
+	def __init__(self, property_list=None):
+		self.property_list = property_list if property_list is not None else []
 
 	def randomize(self):
 		common.usedRandomize()

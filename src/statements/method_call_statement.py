@@ -3,9 +3,9 @@ class method_call_statement(object):
 	l_value = None
 	argument_list = None
 
-	def __init__(self, l_value, argument_list=[]):
+	def __init__(self, l_value, argument_list=None):
 		self.l_value = l_value
-		self.argument_list = argument_list
+		self.argument_list = argument_list if argument_list is not None else []
 
 	def generate_code(self):
 		code = ''

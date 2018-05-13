@@ -1,10 +1,11 @@
 from dontcare_literal import dontcare_literal
-import random
-from common import common
+from randomizer import randomizer
 
 
 class type_arg(object):
-	type = 'type_arg'
+	type = None
+	types = ["DONTCARE", "typeRef"]
+	probabilities = [5, 5]
 	value = None
 
 	# typeArg
@@ -16,11 +17,10 @@ class type_arg(object):
 		self.value = value
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(0, 1)
-		if rnd == 0:
+		self.type = randomizer.getRandom(self.probabilities)
+		if self.type == 0:
 			self.value = dontcare_literal()
-		elif rnd == 1:
+		elif self.type == 1:
 			from type_ref import type_ref
 			self.value = type_ref()
 		self.value.randomize()

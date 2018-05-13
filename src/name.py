@@ -1,15 +1,14 @@
-import random
 from non_type_name import non_type_name
 from type_literal import type_literal
 from error_literal import error_literal
-from common import common
+from randomizer import randomizer
 
 
 class name(object):
 	type = None
-	types = ["type", "dotPrefixType"]
-	# TODO: implement dotPrefixType and set probability higher than 0 for it
-	probabilities = [10, 0]
+	types = ["nonTypeName", "TYPE", "ERROR"]
+	# TODO: implement TYPE and ERROR and set probabilities higher than 0 for them
+	probabilities = [10, 0, 0]
 	value = None
 
 	# name
@@ -22,13 +21,12 @@ class name(object):
 		self.value = value
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(0, 2)
-		if rnd == 0:
+		self.type = randomizer.getRandom(self.probabilities)
+		if self.type == 0:
 			self.value = non_type_name()
-		elif rnd == 1:
+		elif self.type == 1:
 			self.value = type_literal()
-		elif rnd == 2:
+		elif self.type == 2:
 			self.value = error_literal()
 		self.value.randomize()
 

@@ -14,8 +14,8 @@ class parser_local_elements(object):
 	# | parserLocalElements parserLocalElement
 	# ;
 
-	def __init__(self, parser_local_elements_list=[]):
-		self.parser_local_elements_list = parser_local_elements_list
+	def __init__(self, parser_local_elements_list=None):
+		self.parser_local_elements_list = parser_local_elements_list if parser_local_elements_list is not None else []
 
 	def randomize(self):
 		common.usedRandomize()

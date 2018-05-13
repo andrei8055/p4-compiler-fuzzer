@@ -14,10 +14,10 @@ class enumeration(object):
 	field_min_number = 1
 	field_max_number = 10
 
-	def __init__(self, annotation=None, name='', identifiers=[]):
+	def __init__(self, annotation=None, name='', identifiers=None):
 		self.annotation = annotation
 		self.name = name
-		self.identifiers = identifiers
+		self.identifiers = identifiers if identifiers is not None else []
 
 	def get_annotation(self):
 		return self.annotation

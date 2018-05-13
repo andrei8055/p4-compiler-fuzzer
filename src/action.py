@@ -14,11 +14,11 @@ class action(object):
 	name_min_length = 1
 	name_max_length = 50
 
-	def __init__(self, annotation, name=None, parameter_list=None, expression_list=[]):
+	def __init__(self, annotation, name=None, parameter_list=None, expression_list=None):
 		self.annotation = annotation
 		self.name = name
 		self.parameter_list = parameter_list
-		self.expression_list = expression_list
+		self.expression_list = expression_list if expression_list is not None else []
 
 	def get_name(self):
 		return self.name

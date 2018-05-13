@@ -5,8 +5,8 @@ class scope(object):
 	@staticmethod
 	def create_new_scope():
 		new_scope = {
-			"types": [],
-			"variables": []
+			"types": {},
+			"variables": {}
 		}
 		return new_scope
 
@@ -25,13 +25,25 @@ class scope(object):
 		return local_scope
 
 	@staticmethod
-	def insert_type(name,type):
+	def insert_type(name, type):
 		local_scope = scope.get_local()
-		local_scope["types"].append({name: { "type": type }})
+		local_scope["types"].update({name: {"type": type}})
+
+	@staticmethod
+	def insert_variable(name, type):
+		local_scope = scope.get_local()
+		local_scope["variables"].update({name: {"type": type}})
 
 	@staticmethod
 	def get_available_types():
-		available_types = []
+		available_types = {}
 		for local_scope in scope.scope_stack:
-			available_types.extend(local_scope["types"])
+			available_types.update(local_scope["types"])
 		return available_types
+
+	@staticmethod
+	def get_available_variables():
+		available_variables = {}
+		for local_scope in scope.scope_stack:
+			available_variables.update(local_scope["variables"])
+		return available_variables
