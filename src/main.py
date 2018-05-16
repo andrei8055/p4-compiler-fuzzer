@@ -3,6 +3,7 @@ import os
 
 from bmv2_random_program_generator import bmv2_random_program_generator
 from common import common
+from randomizer import randomizer
 
 filename = ""
 console = False
@@ -20,6 +21,11 @@ else:
 curdir = os.path.dirname(__file__)
 file_path = os.path.join(curdir, filename)
 file = open(file_path, "w")
+
+seed = randomizer.generateRandomSeed()
+print str(seed) + '\n'
+seed = 4473699869
+randomizer.setSeed(seed)
 
 generator = bmv2_random_program_generator()
 code = generator.generate()

@@ -40,7 +40,7 @@ class struct_field(object):
 			self.name.randomize()
 			if not self.filter():
 				break
-			scope.insert_variable(self.name.generate_code(), self.type_ref.get_ref_type())
+		scope.insert_variable(self.name.generate_code(), self.type_ref.get_ref_type())
 
 	def generate_code(self):
 		code = self.opt_annotations.generate_code()

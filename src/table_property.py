@@ -3,8 +3,7 @@ from action_list import action_list
 from entries_list import entries_list
 from opt_annotations import opt_annotations
 from initializer import initializer
-import random
-from common import common
+from randomizer import randomizer
 
 
 class table_property(object):
@@ -27,8 +26,7 @@ class table_property(object):
 		self.const_initializer = const_initializer
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(0, 4)
+		rnd = randomizer.randint(0, 4)
 		if rnd == 0:
 			self.value = key_element_list()
 		elif rnd == 1:

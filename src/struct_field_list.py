@@ -1,6 +1,5 @@
 from struct_field import struct_field
 from randomizer import randomizer
-import random
 
 
 class struct_field_list(object):

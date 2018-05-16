@@ -1,6 +1,5 @@
 from table_property import table_property
-import random
-from common import common
+from randomizer import randomizer
 
 
 class table_property_list(object):
@@ -18,8 +17,7 @@ class table_property_list(object):
 		self.property_list = property_list if property_list is not None else []
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(self.min_list_size, self.max_list_size)
+		rnd = randomizer.randint(self.min_list_size, self.max_list_size)
 		for x in range(0, rnd):
 			_table_property = table_property()
 			_table_property.randomize()

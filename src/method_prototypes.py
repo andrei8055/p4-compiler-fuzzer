@@ -1,6 +1,5 @@
 from method_prototype import method_prototype
-import random
-from common import common
+from randomizer import randomizer
 
 
 class method_prototypes(object):
@@ -18,12 +17,11 @@ class method_prototypes(object):
 		self.prototypes_list = prototypes_list if prototypes_list is not None else []
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(0, 1)
+		rnd = randomizer.randint(0, 1)
 		if rnd == 0:
 			self.local_declarations_list = []
 		else:
-			rndl = random.randint(self.min_list_size, self.max_list_size)
+			rndl = randomizer.randint(self.min_list_size, self.max_list_size)
 			for x in range(0, rndl):
 				_method_prototype = method_prototype()
 				_method_prototype.randomize()

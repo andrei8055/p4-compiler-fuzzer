@@ -1,6 +1,5 @@
 from l_value import l_value
 from expression import expression
-from common import common
 
 
 class assignment_statement(object):
@@ -15,7 +14,6 @@ class assignment_statement(object):
 		self.expression = expression
 
 	def randomize(self):
-		common.usedRandomize()
 		self.lvalue = l_value()
 		self.lvalue.randomize()
 		self.expression = expression()

@@ -1,6 +1,6 @@
 from annotation import annotation
+from randomizer import randomizer
 from common import common
-import random
 
 
 class enumeration(object):
@@ -29,12 +29,11 @@ class enumeration(object):
 		return self.identifiers
 
 	def randomize(self):
-		common.usedRandomize()
 		_annotation = annotation()
 		_annotation.randomize()
 		self.annotation = _annotation
 		self.name = self.generate_name()
-		self.identifiers = self.generate_identifiers(random.randint(self.field_min_number, self.field_max_number))
+		self.identifiers = self.generate_identifiers(randomizer.randint(self.field_min_number, self.field_max_number))
 
 	def generate_code(self):
 		return 'enum' + ' ' + self.name + ' ' + '{' + self.generate_fields_code(self.identifiers) + '}\n'

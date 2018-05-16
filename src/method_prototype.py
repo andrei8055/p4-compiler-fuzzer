@@ -1,7 +1,6 @@
-import random
+from randomizer import randomizer
 from function_prototype import function_prototype
 from parameter_list import parameter_list
-from common import common
 
 
 class method_prototype(object):
@@ -17,8 +16,7 @@ class method_prototype(object):
 		self.value = value
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(0, 1)
+		rnd = randomizer.randint(0, 1)
 		if rnd == 0:
 			self.value = function_prototype()
 		elif rnd == 1:

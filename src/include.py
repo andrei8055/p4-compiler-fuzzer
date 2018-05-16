@@ -1,5 +1,5 @@
 from common import common
-import random
+from randomizer import randomizer
 
 
 class include(object):
@@ -12,8 +12,7 @@ class include(object):
 		self.name = name
 
 	def randomize(self):
-		common.usedRandomize()
-		common.get_random_string(random.randint(self.name_min_length, self.name_max_length), False)
+		common.get_random_string(randomizer.randint(self.name_min_length, self.name_max_length), False)
 
 	def generate_code(self):
 		return '#include' + '<' + self.name + '>'

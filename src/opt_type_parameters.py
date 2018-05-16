@@ -1,6 +1,5 @@
 from type_parameter_list import type_parameter_list
-import random
-from common import common
+from randomizer import randomizer
 
 
 class opt_type_parameters(object):
@@ -16,8 +15,7 @@ class opt_type_parameters(object):
 		self.type_parameter_list = type_parameter_list
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(0, 1)
+		rnd = randomizer.randint(0, 1)
 		if rnd == 0:
 			self.type_parameter_list = None
 		else:

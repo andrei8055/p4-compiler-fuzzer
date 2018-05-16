@@ -33,7 +33,7 @@ class header_type_declaration(object):
 		scope.insert_type(self.name.generate_code(), "header")
 
 	def generate_code(self):
-		return self.opt_annotations.generate_code() + ' header ' + self.name.generate_code() + ' ' + '{' + self.struct_field_list.generate_code() + '}'
+		return self.opt_annotations.generate_code() + 'header ' + self.name.generate_code() + ' ' + '{' + self.struct_field_list.generate_code() + '}\n\n'
 
 	def filter(self):
 		available_types = scope.get_available_types()

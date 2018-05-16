@@ -1,6 +1,5 @@
-import random
+from randomizer import randomizer
 from non_type_name import non_type_name
-from common import common
 
 
 class prefixed_non_type_name(object):
@@ -13,8 +12,7 @@ class prefixed_non_type_name(object):
 		self.non_type_name = non_type_name
 
 	def randomize(self):
-		common.usedRandomize()
-		self.prefix = random.choice([True, False])
+		self.prefix = randomizer.choice([True, False])
 		self.non_type_name = non_type_name()
 		self.non_type_name.randomize()
 

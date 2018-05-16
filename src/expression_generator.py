@@ -1,4 +1,4 @@
-import random
+from randomizer import randomizer
 from common import common
 
 
@@ -30,7 +30,7 @@ class expression_generator:
 		if 'expression' not in expression:
 			return expression
 		else:
-			if random.choice([0, 1]) == 0:
+			if randomizer.choice([0, 1]) == 0:
 				replace = self.generate_base_expression(type)
 				expression = self.nth_repl(expression, 'expression', replace, 1)
 				return self.replace(expression, type)
@@ -41,26 +41,26 @@ class expression_generator:
 
 
 	def get_expression_template(self):
-		operator = random.choice(self.boolean_operator)
+		operator = randomizer.choice(self.boolean_operator)
 		return '(expression)' + ' ' + operator + ' ' + '(expression)'
 
 	def generate_composed_expression(self, type):
 		if type == 'bool':
-			operator = random.choice(self.boolean_operator)
+			operator = randomizer.choice(self.boolean_operator)
 			return 'expression' + ' ' + operator + ' ' + 'expression'
 		if type == 'string':
-			operator = random.choice(["+"])
+			operator = randomizer.choice(["+"])
 			return 'expression' + ' ' + operator + ' ' + 'expression'
 		if type == 'arithmetic':
-			operator = random.choice(self.aritmetic_operators)
+			operator = randomizer.choice(self.aritmetic_operators)
 			return 'expression' + ' ' + operator + ' ' + 'expression'
 
 	def generate_base_expression(self, type):
 		if type == 'bool':
 			values = ['true', 'false']
-			return random.choice(values)
+			return randomizer.choice(values)
 		if type == 'string':
-			return '"' + common.get_random_string(random.randint(self.string_min_length, self.string_max_length), False) + '"'
+			return '"' + common.get_random_string(randomizer.randint(self.string_min_length, self.string_max_length), False) + '"'
 		if type == 'arithmetic':
 			return common.get_random_number(self.numeric_min_size, self.numeric_max_size)
 

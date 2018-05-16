@@ -1,7 +1,6 @@
-import random
+from randomizer import randomizer
 from name import name
 from select_expression import select_expression
-from common import common
 
 
 class state_expression(object):
@@ -17,8 +16,7 @@ class state_expression(object):
 		self.value = value
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(0, 1)
+		rnd = randomizer.randint(0, 1)
 		if rnd == 0:
 			self.value = name()
 		elif rnd == 1:

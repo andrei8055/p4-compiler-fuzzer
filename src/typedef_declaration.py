@@ -2,8 +2,7 @@ from type_ref import type_ref
 from derived_type_declaration import derived_type_declaration
 from name import name
 from annotations import annotations
-import random
-from common import common
+from randomizer import randomizer
 
 
 class typedef_declaration(object):
@@ -25,8 +24,7 @@ class typedef_declaration(object):
 		self.name = name
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(0, 3)
+		rnd = randomizer.randint(0, 3)
 		if rnd == 0:
 			self.annotation = annotations()
 			self.annotation.randomize()

@@ -1,11 +1,10 @@
-import random
-from common import common
+from randomizer import randomizer
 
 class int(object):
 	name = 'int'
 	size = None
 
-	min_size = 1
+	min_size = 2
 	max_size = 100000
 
 	def get_name(self):
@@ -22,8 +21,7 @@ class int(object):
 		return self.size
 
 	def randomize(self):
-		common.usedRandomize()
-		self.size = random.randint(self.min_size, self.max_size)
+		self.size = randomizer.randint(self.min_size, self.max_size)
 
 	def generate_code(self):
 		return self.name + '<' + str(self.size) + '>'

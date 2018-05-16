@@ -1,6 +1,5 @@
 from non_type_name import non_type_name
-import random
-from common import common
+from randomizer import randomizer
 
 
 class type_parameter_list(object):
@@ -18,8 +17,7 @@ class type_parameter_list(object):
 		self.parameter_list = parameter_list if parameter_list is not None else []
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(self.min_list_size, self.max_list_size)
+		rnd = randomizer.randint(self.min_list_size, self.max_list_size)
 		for x in range(0, rnd):
 			_non_type_name = non_type_name()
 			_non_type_name.randomize()

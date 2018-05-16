@@ -1,6 +1,5 @@
 from key_element import key_element
-import random
-from common import common
+from randomizer import randomizer
 
 
 class key_element_list(object):
@@ -18,12 +17,11 @@ class key_element_list(object):
 		self.element_list = element_list if element_list is not None else []
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(0, 1)
+		rnd = randomizer.randint(0, 1)
 		if rnd == 0:
 			self.element_list = []
 		else:
-			rndl = random.randint(self.min_list_size, self.max_list_size)
+			rndl = randomizer.randint(self.min_list_size, self.max_list_size)
 			for x in range(0, rndl):
 				_key_element = key_element()
 				_key_element.randomize()

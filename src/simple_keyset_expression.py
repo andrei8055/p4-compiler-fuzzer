@@ -1,4 +1,4 @@
-import random
+from randomizer import randomizer
 from expression import expression
 from default_literal import default_literal
 from dontcare_literal import dontcare_literal
@@ -23,8 +23,7 @@ class simple_keyset_expression(object):
 		self.value = value
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(0, 4)
+		rnd = randomizer.randint(0, 4)
 		if rnd == 0:
 			self.value = expression()
 		elif rnd == 1:

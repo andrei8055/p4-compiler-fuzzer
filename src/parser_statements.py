@@ -1,6 +1,5 @@
 from parser_statement import parser_statement
-import random
-from common import common
+from randomizer import randomizer
 
 
 class parser_statements(object):
@@ -18,12 +17,11 @@ class parser_statements(object):
 		self.parser_statements_list = parser_statements_list if parser_statements_list is not None else []
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(0, 1)
+		rnd = randomizer.randint(0, 1)
 		if rnd == 0:
 			self.parser_statements_list = []
 		else:
-			rndl = random.randint(self.min_list_size, self.max_list_size)
+			rndl = randomizer.randint(self.min_list_size, self.max_list_size)
 			for x in range(0, rndl):
 				_parser_statement = parser_statement()
 				_parser_statement.randomize()
@@ -32,6 +30,6 @@ class parser_statements(object):
 	def generate_code(self):
 		code = ''
 		for parser_statement in self.parser_statements_list:
-			code += parser_statement.generate_code + ' '
+			code += parser_statement.generate_code() + ' '
 		return code
 

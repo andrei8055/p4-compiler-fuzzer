@@ -3,8 +3,8 @@ from varbit import varbit
 from error import error
 from bit import bit
 from int import int
-import random
-from common import common
+from randomizer import randomizer
+from void import void
 
 
 class base_type_generator(object):
@@ -16,12 +16,12 @@ class base_type_generator(object):
 	base_types = ['void', 'error', 'match', 'bool', 'bit', 'varbit', 'int']
 
 	def generate_random(self, types):
-		size = random.randint(self.base_type_min_size, self.base_type_max_size)
+		size = randomizer.randint(self.base_type_min_size, self.base_type_max_size)
 		identifier_list = [] #todo randomize identifier_list
-		type = random.choice(self.base_types)
+		type = randomizer.choice(self.base_types)
 
 		if len(types) > 0:
-			type = random.choice(types)
+			type = randomizer.choice(types)
 
 		if type == 'void':
 			return void()

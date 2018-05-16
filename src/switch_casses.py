@@ -1,6 +1,5 @@
 from switch_casse import switch_casse
-import random
-from common import common
+from randomizer import randomizer
 
 
 class switch_casses(object):
@@ -18,12 +17,11 @@ class switch_casses(object):
 		self.casses = casses if casses is not None else []
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(0, 1)
+		rnd = randomizer.randint(0, 1)
 		if rnd == 0:
 			self.casses = []
 		else:
-			rndl = random.randint(self.min_list_size, self.max_list_size)
+			rndl = randomizer.randint(self.min_list_size, self.max_list_size)
 			for x in range(0, rndl):
 				_switch_casse = switch_casse()
 				_switch_casse.randomize()

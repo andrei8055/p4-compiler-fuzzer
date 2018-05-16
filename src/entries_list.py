@@ -1,6 +1,5 @@
 from entry import entry
-import random
-from common import common
+from randomizer import randomizer
 
 
 class entries_list(object):
@@ -17,8 +16,7 @@ class entries_list(object):
 		self.entry_list = entry_list if entry_list is not None else []
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(self.min_list_size, self.max_list_size)
+		rnd = randomizer.randint(self.min_list_size, self.max_list_size)
 		for x in range(0, rnd):
 			_entry = entry()
 			_entry.randomize()

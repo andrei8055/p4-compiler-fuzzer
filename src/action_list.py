@@ -1,5 +1,5 @@
 from action_ref import action_ref
-import random
+from randomizer import randomizer
 from common import common
 
 
@@ -19,7 +19,7 @@ class action_list(object):
 
 	def randomize(self):
 		common.usedRandomize()
-		rnd = random.randint(self.min_list_size, self.max_list_size)
+		rnd = randomizer.randint(self.min_list_size, self.max_list_size)
 		for x in range(0, rnd):
 			_action = action_ref()
 			_action.randomize()

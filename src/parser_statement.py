@@ -1,10 +1,9 @@
-import random
+from randomizer import randomizer
 from constant_declaration import constant_declaration
 from variable_declaration import variable_declaration
 from assignment_or_method_call_statement import assignment_or_method_call_statement
 from direct_application import direct_application
 from parser_block_statement import parser_block_statement
-from common import common
 
 
 class parser_statement(object):
@@ -23,8 +22,7 @@ class parser_statement(object):
 		self.value = value
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(0, 4)
+		rnd = randomizer.randint(0, 4)
 		if rnd == 0:
 			self.value = assignment_or_method_call_statement()
 		elif rnd == 1:

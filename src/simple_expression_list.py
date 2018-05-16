@@ -1,6 +1,5 @@
 from simple_keyset_expression import simple_keyset_expression
-import random
-from common import common
+from randomizer import randomizer
 
 
 class simple_expression_list(object):
@@ -13,8 +12,7 @@ class simple_expression_list(object):
 		self.expression_list = expression_list if expression_list is not None else []
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(self.min_list_size, self.max_list_size)
+		rnd = randomizer.randint(self.min_list_size, self.max_list_size)
 		for x in range(0, rnd):
 			_simple_keyset_expression = simple_keyset_expression()
 			_simple_keyset_expression.randomize()

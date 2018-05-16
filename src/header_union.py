@@ -1,6 +1,6 @@
 from annotation import annotation
 from common import common
-import random
+from randomizer import randomizer
 
 
 class header_union(object):
@@ -40,7 +40,7 @@ class header_union(object):
         _annotation.randomize()
         self.annotation = _annotation
         self.name = self.generate_name()
-        self.headers = random.sample(headers, random.randint(0, len(headers)))
+        self.headers = randomizer.sample(headers, randomizer.randint(0, len(headers)))
 
     def generate_name(self):
         return common.get_random_string(self.name_length, True) + '_union'

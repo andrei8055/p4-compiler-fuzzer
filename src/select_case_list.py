@@ -1,6 +1,5 @@
 from select_case import select_case
-import random
-from common import common
+from randomizer import randomizer
 
 
 class select_case_list(object):
@@ -18,12 +17,11 @@ class select_case_list(object):
 		self.case_list = case_list if case_list is not None else []
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(0, 1)
+		rnd = randomizer.randint(0, 1)
 		if rnd == 0:
 			self.case_list = []
 		else:
-			rndl = random.randint(self.min_list_size, self.max_list_size)
+			rndl = randomizer.randint(self.min_list_size, self.max_list_size)
 			for x in range(0, rndl):
 				_select_case = select_case()
 				_select_case.randomize()

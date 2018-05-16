@@ -6,6 +6,14 @@ class randomizer(object):
 	seed = None
 
 	@staticmethod
+	def generateRandomSeed():
+		return random.randint(0, 10000000000)
+
+	@staticmethod
+	def getSeed():
+		return randomizer.seed
+
+	@staticmethod
 	def setSeed(seed):
 		randomizer.seed = seed
 		random.seed(seed)
@@ -25,5 +33,9 @@ class randomizer(object):
 	@staticmethod
 	def choice(seq):
 		return random.choice(seq)
+
+	@staticmethod
+	def sample(population, k):
+		return random.sample(population, k)
 
 

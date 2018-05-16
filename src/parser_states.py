@@ -1,6 +1,5 @@
 from parser_state import parser_state
-import random
-from common import common
+from randomizer import randomizer
 
 
 class parser_states(object):
@@ -18,8 +17,7 @@ class parser_states(object):
 		self.parser_states_list = parser_states_list if parser_states_list is not None else []
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(self.min_list_size, self.max_list_size)
+		rnd = randomizer.randint(self.min_list_size, self.max_list_size)
 		for x in range(0, rnd):
 			_parser_state = parser_state()
 			_parser_state.randomize()

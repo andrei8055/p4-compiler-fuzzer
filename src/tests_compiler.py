@@ -14,10 +14,10 @@ errorsPath = os.path.join(outputPath, "errors")
 cnx = mysql.connector.connect(user="p4-compiler-fuzzer", password="p4-compiler-fuzzer", host="localhost", database="fuzzer")
 cursor = cnx.cursor()
 
-add_bug = "INSERT INTO bugs (`test`, `error`, `file`, `known`) VALUES (%s, %s, %s, %s)"
+add_bug = "INSERT INTO bugs (`test`, `error`, `file`, `seed`, `known`) VALUES (%s, %s, %s, %s, %s)"
 
 files = [os.path.splitext(f)[0] for f in os.listdir(inputPath) if re.match(r'[0-9]{10}\.p4', f)]
-currentTest = None if not files else sorted(files)[0]
+currentTest = None if len(files) < 2 else sorted(files)[0]
 
 while currentTest:
     currentFile = os.path.join(inputPath, currentTest + ".p4")
@@ -32,12 +32,15 @@ while currentTest:
     except subprocess.CalledProcessError as e:
         errorFile = os.path.join(errorsPath, currentTest + ".p4")
         errorLogFile = os.path.join(errorsPath, currentTest + ".err")
+        seed_line = open(tmpFile).readline().rstrip()
+        seed_match = re.search('//seed: ([0-9]+)', seed_line)
+        seed = seed_match.group(1) if seed_match is not None else 0
         shutil.copyfile(tmpFile, errorFile)
         f = open(errorLogFile, "w")
         f.write(e.output)
         f.close()
 
-        data_bug = (currentTest, e.output, errorFile, 0)
+        data_bug = (currentTest, e.output, errorFile, seed, 0)
         cursor.execute(add_bug, data_bug)
         cnx.commit()
 
@@ -46,4 +49,4 @@ while currentTest:
     os.remove(tmpFile)
 
     files = [os.path.splitext(f)[0] for f in os.listdir(inputPath) if re.match(r'[0-9]{10}\.p4', f)]
-    currentTest = None if not files else sorted(files)[0]
+    currentTest = None if len(files) < 2 else sorted(files)[0]

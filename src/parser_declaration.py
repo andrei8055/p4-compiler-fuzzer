@@ -2,7 +2,6 @@ from parser_type_declaration import parser_type_declaration
 from opt_constructor_parameters import opt_constructor_parameters
 from parser_local_elements import parser_local_elements
 from parser_states import parser_states
-from common import common
 
 
 class parser_declaration(object):
@@ -25,7 +24,6 @@ class parser_declaration(object):
 		self.parser_states = parser_states
 
 	def randomize(self):
-		common.usedRandomize()
 		self.parser_type_declaration = parser_type_declaration()
 		self.parser_type_declaration.randomize()
 		self.opt_constructor_parameters = opt_constructor_parameters()

@@ -1,5 +1,5 @@
 from type_arg import type_arg
-import random
+from randomizer import randomizer
 
 
 class type_argument_list(object):
@@ -17,7 +17,7 @@ class type_argument_list(object):
 		self.argument_list = argument_list if argument_list is not None else []
 
 	def randomize(self):
-		rnd = random.randint(self.min_list_size, self.max_list_size)
+		rnd = randomizer.randint(self.min_list_size, self.max_list_size)
 		for x in range(0, rnd):
 			_arg_type = type_arg()
 			_arg_type.randomize()

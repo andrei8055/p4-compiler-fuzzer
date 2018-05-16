@@ -1,6 +1,4 @@
-import random
 from dot_prefix import dot_prefix
-from common import common
 from randomizer import randomizer
 from scope import scope
 

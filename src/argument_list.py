@@ -1,5 +1,5 @@
 from non_empty_arg_list import non_empty_arg_list
-import random
+from randomizer import randomizer
 from common import common
 
 
@@ -17,7 +17,7 @@ class argument_list(object):
 
 	def randomize(self):
 		common.usedRandomize()
-		rnd = random.randint(0, 1)
+		rnd = randomizer.randint(0, 1)
 		if rnd == 0:
 			self.non_empty_arg_list = None
 		else:

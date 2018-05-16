@@ -1,5 +1,6 @@
 from struct_type_declaration import struct_type_declaration
 from header_type_declaration import header_type_declaration
+from parser_declaration import parser_declaration
 from struct_field_list import struct_field_list
 from scope import scope
 from randomizer import randomizer
@@ -8,10 +9,13 @@ from randomizer import randomizer
 class bmv2_random_program_generator(object):
 
 	min_random_structs = 0
-	max_random_structs = 500
+	max_random_structs = 100
 
 	min_random_headers = 0
-	max_random_headers = 500
+	max_random_headers = 100
+
+	min_random_parsers = 0
+	max_random_parsers = 10
 
 	def __init__(self):
 		pass
@@ -19,16 +23,21 @@ class bmv2_random_program_generator(object):
 	def generate(self):
 		scope.start_local()
 		code = ""
+		code += self.output_seed_comment()
 		code += self.generate_bmv2_includes()
 		code += self.generate_bmv2_structs()
 		code += self.generate_random_structs()
 		code += self.generate_random_headers()
 		code += self.generate_bmv2_parser()
-		self.generate_random_parsers()
+		#TODO:continue implement parsers
+		#code += self.generate_random_parsers()
 		code += self.generate_bmv2_controls()
 		self.generate_random_controls()
 		code += self.generate_bmv2_init()
 		return code
+
+	def output_seed_comment(self):
+		return "//seed: " + str(randomizer.getSeed()) + "\n"
 
 	def generate_bmv2_includes(self):
 		# TODO: better
@@ -76,11 +85,20 @@ class bmv2_random_program_generator(object):
 
 	def generate_bmv2_parser(self):
 		# TODO: Implement
-		code = "parser ParserImpl(packet_in packet,\nout headers_t hdr,\ninout metadata_t meta,\ninout standard_metadata_t standard_metadata) {\nstate start {\ntransition select() {\n\ndefault: accept;\n}\n}\n}"
+		code = "parser ParserImpl(packet_in packet,\nout headers_t hdr,\ninout metadata_t meta,\ninout standard_metadata_t standard_metadata) {\nstate start {\ntransition select() {\n\ndefault: accept;\n}\n}\n}\n\n"
 		return code
 
 	def generate_random_parsers(self):
-		pass
+		rnd = randomizer.randint(self.min_random_parsers, self.max_random_parsers)
+		parser_declarations = []
+		for x in range(0, rnd):
+			_parser_declaration = parser_declaration()
+			_parser_declaration.randomize()
+			parser_declarations.append(_parser_declaration)
+		code = ""
+		for _parser_declaration in parser_declarations:
+			code += _parser_declaration.generate_code()
+		return code
 
 	def generate_bmv2_controls(self):
 		# TODO: Implement
@@ -88,7 +106,7 @@ class bmv2_random_program_generator(object):
 		code += "control EgressImpl(inout headers_t hdr,\ninout metadata_t meta,\ninout standard_metadata_t standard_metadata) {\napply {\n\n}\n}\n\n"
 		code += "control VerifyChecksumImpl(inout headers_t hdr, inout metadata_t meta) {\napply {\n\n}\n}\n\n"
 		code += "control ComputeChecksumImpl(inout headers_t hdr, inout metadata_t meta) {\napply {\n}\n}\n\n"
-		code += "control DeparserImpl(packet_out packet, in headers_t hdr) {\napply {\n}\n}"
+		code += "control DeparserImpl(packet_out packet, in headers_t hdr) {\napply {\n}\n}\n\n"
 		return code
 
 	def generate_random_controls(self):

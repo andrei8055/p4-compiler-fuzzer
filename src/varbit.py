@@ -1,5 +1,4 @@
-import random
-from common import common
+from randomizer import randomizer
 
 
 class varbit(object):
@@ -23,8 +22,7 @@ class varbit(object):
 		return self.size
 
 	def randomize(self):
-		common.usedRandomize()
-		self.size = random.randint(self.min_size, self.max_size)
+		self.size = randomizer.randint(self.min_size, self.max_size)
 
 	def generate_code(self):
 		return self.name + '<' + str(self.size) + '>'

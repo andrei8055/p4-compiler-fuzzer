@@ -1,6 +1,5 @@
 from name import name
-import random
-from common import common
+from randomizer import randomizer
 
 
 class identifier_list(object):
@@ -18,8 +17,7 @@ class identifier_list(object):
 		self.identifier_list = identifier_list if identifier_list is not None else []
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(self.min_list_size, self.max_list_size)
+		rnd = randomizer.randint(self.min_list_size, self.max_list_size)
 		for x in range(0, rnd):
 			_name = name()
 			_name.randomize()

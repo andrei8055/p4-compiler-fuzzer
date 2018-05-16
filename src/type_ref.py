@@ -1,9 +1,7 @@
-import random
 from base_type import base_type
 from type_name import type_name
 from specialized_type import specialized_type
 from header_stack_type import header_stack_type
-from common import common
 from randomizer import randomizer
 
 

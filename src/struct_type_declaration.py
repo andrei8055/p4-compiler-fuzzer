@@ -39,7 +39,7 @@ class struct_type_declaration(object):
 		# TODO: fix duplicate struct field name generation
 		code += 'struct ' + (self.name if isinstance(self.name, basestring) else self.name.generate_code())
 		code += ' ' + '{\n' + self.struct_field_list.generate_code() + '}'
-		code += '\n'
+		code += '\n\n'
 		return code
 
 	def filter(self):

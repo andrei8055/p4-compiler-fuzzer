@@ -1,6 +1,5 @@
 from argument import argument
-import random
-from common import common
+from randomizer import randomizer
 
 
 class non_empty_arg_list(object):
@@ -13,8 +12,7 @@ class non_empty_arg_list(object):
 		self.argmument_list = argmument_list if argmument_list is not None else []
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(self.min_list_size, self.max_list_size)
+		rnd = randomizer.randint(self.min_list_size, self.max_list_size)
 		for x in range(0, rnd):
 			_argument = argument()
 			_argument.randomize()

@@ -1,5 +1,5 @@
 from common import common
-import random
+from randomizer import randomizer
 
 
 class literal(object):
@@ -13,7 +13,7 @@ class literal(object):
         # if type == 'error':
         #     return error(identifier_list)
         if type.get_name() == 'bool':
-            return random.choice(["true", "false"])
+            return randomizer.choice(["true", "false"])
         if type.get_name() == 'bit':
             return '"' + common.get_random_string(type.get_size(), False) + '"'
         if type.get_name() == 'varbit':

@@ -1,6 +1,5 @@
 from control_local_declaration import control_local_declaration
-import random
-from common import common
+from randomizer import randomizer
 
 
 class control_local_declarations(object):
@@ -18,12 +17,11 @@ class control_local_declarations(object):
 		self.local_declarations_list = local_declarations_list if local_declarations_list is not None else []
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(0, 1)
+		rnd = randomizer.randint(0, 1)
 		if rnd == 0:
 			self.local_declarations_list = []
 		else:
-			rndl = random.randint(self.min_list_size, self.max_list_size)
+			rndl = randomizer.randint(self.min_list_size, self.max_list_size)
 			for x in range(0, rndl):
 				_control_local_declaration = control_local_declaration()
 				_control_local_declaration.randomize()

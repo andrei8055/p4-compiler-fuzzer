@@ -1,6 +1,5 @@
 from expression import expression
-import random
-from common import common
+from randomizer import randomizer
 
 
 class expression_list(object):
@@ -13,8 +12,7 @@ class expression_list(object):
 		self.exp_list = exp_list if exp_list is not None else []
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(self.min_list_size, self.max_list_size)
+		rnd = randomizer.randint(self.min_list_size, self.max_list_size)
 		for x in range(0, rnd):
 			_expression = expression()
 			_expression.randomize()

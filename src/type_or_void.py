@@ -1,8 +1,7 @@
 from type_ref import type_ref
 from void import void
 from non_type_name import non_type_name
-import random
-from common import common
+from randomizer import randomizer
 
 
 class type_or_void(object):
@@ -19,8 +18,7 @@ class type_or_void(object):
 		self.value = value
 
 	def randomize(self):
-		common.usedRandomize()
-		rnd = random.randint(0, 5)
+		rnd = randomizer.randint(0, 5)
 		if rnd == 0:
 			self.value = type_ref()
 		elif rnd == 1:
