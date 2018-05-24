@@ -23,8 +23,7 @@ file_path = os.path.join(curdir, filename)
 file = open(file_path, "w")
 
 seed = randomizer.generateRandomSeed()
-print str(seed) + '\n'
-seed = 4473699869
+#seed = 4473699869
 randomizer.setSeed(seed)
 
 generator = bmv2_random_program_generator()

@@ -10,7 +10,7 @@ class type_ref(object):
     types = ["baseType", "typeName", "specializedType", "headerStackType"]
     probabilities = [2,3,2,3]
 
-    maxDepth = 1
+    maxDepth = 5
     curDepth = 0
 
     value = None

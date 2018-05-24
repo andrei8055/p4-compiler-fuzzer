@@ -49,11 +49,6 @@ class struct_field(object):
 		return code
 
 	def filter(self):
-		from struct_type_declaration import struct_type_declaration
-		if isinstance(self.fromObj, struct_type_declaration):
-			# TODO: varbit does not work in structs for some weird reasons ???
-			if self.type_ref.get_ref_type() == "varbit":
-				return True
 		if self.type_ref.get_type() == 'specializedType':
 			return True
 		if self.type_ref.get_type() == 'headerStackType':
