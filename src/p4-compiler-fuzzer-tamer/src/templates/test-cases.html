@@ -1,0 +1,32 @@
+<html>
+<head>
+    <link rel="stylesheet" href="/pure-min.css"/>
+    <title>My Webpage</title>
+</head>
+<body>
+
+<table class="pure-table">
+    <thead>
+    <tr>
+        <th>#</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for case in testCases %}
+    <tr>
+        <td>{{ case }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+
+<!--<ul id="navigation">
+    {% for case in testCases %}
+    <li>{{ case }}</li>
+    {% endfor %}
+</ul>
+
+<h1>My Webpage</h1>-->
+</table>
+</body>
+</html>
