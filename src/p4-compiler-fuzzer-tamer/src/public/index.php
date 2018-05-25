@@ -53,8 +53,6 @@ $app->get('/cases', function ($request, $response, $args) {
     $mapper = new TestCaseMapper($this->db);
     $testCases = $mapper->getTestCases();
 
-    $testCases = [1,2,3];
-
     return $this->view->render($response, 'test-cases.html', [
         'testCases' => $testCases
     ]);

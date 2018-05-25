@@ -2,7 +2,7 @@
 class TestCaseMapper extends Mapper
 {
     public function getTestCases() {
-        $sql = "";
+        $sql = "SELECT * FROM bugs";
         $stmt = $this->db->query($sql);
         $results = [];
         while($row = $stmt->fetch()) {

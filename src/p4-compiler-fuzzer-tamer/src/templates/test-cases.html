@@ -1,7 +1,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="/pure-min.css"/>
-    <title>My Webpage</title>
+    <title>My Webpage now MODIFIEEEEEEEEED</title>
 </head>
 <body>
 
@@ -9,13 +9,17 @@
     <thead>
     <tr>
         <th>#</th>
+        <th>test</th>
+        <th>file</th>
     </tr>
     </thead>
 
     <tbody>
     {% for case in testCases %}
     <tr>
-        <td>{{ case }}</td>
+        <td>{{ case.id }}</td>
+        <td>{{ case.test }}</td>
+        <td>{{ case.file }}</td>
     </tr>
     {% endfor %}
     </tbody>
