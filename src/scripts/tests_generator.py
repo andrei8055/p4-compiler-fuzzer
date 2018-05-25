@@ -4,7 +4,7 @@ import os
 import re
 
 curDir = os.path.dirname(__file__)
-inputPath = os.path.join(curDir, "../input")
+inputPath = os.path.join(curDir, "../../input")
 
 files = [os.path.splitext(f)[0] for f in os.listdir(inputPath) if re.match(r'[0-9]{10}\.p4', f)]
 sortedFiles = sorted(files)
@@ -18,5 +18,5 @@ curNo = lastNo
 while curNo < maxNo:
     curNo += 1
     filename = str(curNo).zfill(10)
-    subprocess.call([sys.executable, curDir + "/main.py", "../input/" + filename + ".p4", "false"])
+    subprocess.call([sys.executable, curDir + "/../p4-testcase-generator/main.py", "../../input/" + filename + ".p4", "false"])
     print "Test " + filename + " generated"

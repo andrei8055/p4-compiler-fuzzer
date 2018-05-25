@@ -52,3 +52,6 @@ mkdir input
 mkdir output
 cd output
 mkdir errors
+
+cd ~/p4-compiler-fuzzer/src/p4-compiler-fuzzer-tamer/src
+composer install -vv

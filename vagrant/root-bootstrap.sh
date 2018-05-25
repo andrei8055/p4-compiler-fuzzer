@@ -52,3 +52,18 @@ mysql -uroot -pp4compilerfuzzer fuzzer < /home/p4-compiler-fuzzer/p4-compiler-fu
 
 sed -i 's/.*bind-address.*/bind-address = 0.0.0.0/g' /etc/mysql/mysql.conf.d/mysqld.cnf
 service mysql restart
+
+cd ~
+sudo apt-get install php7.0
+sudo apt-get install php7.0-fpm
+sudo apt-get install php7.0-mysql
+sudo apt-get install apache2
+sudo a2enmod rewrite
+sudo a2enmod proxy_fcgi setenvif
+sudo a2enconf php7.0-fpm
+sudo service apache2 restart
+sudo apt-get install composer
+cd /etc/apache2/sites-available/
+sudo touch p4-compiler-fuzzer-tamer.conf
+sudo echo -e 'Listen 8055\n<VirtualHost *:8055>\nServerName localhost\nDocumentRoot "/home/p4-compiler-fuzzer/p4-compiler-fuzzer/src/p4-compiler-fuzzer-tamer/src/public/"\nSetEnv APPLICATION_ENV "development"\n<Directory "/home/p4-compiler-fuzzer/p4-compiler-fuzzer/src/p4-compiler-fuzzer-tamer/src/public/">\nOptions Indexes FollowSymLinks MultiViews\nAllowOverride all\nOrder Deny,Allow\nAllow from all\nRequire all granted\n</Directory>\n</VirtualHost>\n' | sudo tee p4-compiler-fuzzer-tamer.conf
+sudo ln -s /etc/apache2/sites-available/p4-compiler-fuzzer-tamer.conf  /etc/apache2/sites-enabled/p4-compiler-fuzzer-tamer.conf

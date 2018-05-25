@@ -5,6 +5,7 @@ Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/xenial64"
   config.vm.network "forwarded_port", guest: 22, host: 2202, id: 'ssh'
   config.vm.network "forwarded_port", guest: 3306, host: 33062
+  config.vm.network "forwarded_port", guest: 8055, host: 8055
   config.ssh.forward_agent = true
   config.vm.provider "virtualbox" do |vb|
     vb.name = "p4-compiler-fuzzer-dev"
