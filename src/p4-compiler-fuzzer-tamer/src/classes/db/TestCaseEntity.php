@@ -1,4 +1,5 @@
 <?php
+namespace db;
 class TestCaseEntity
 {
     private $id;

@@ -50,8 +50,12 @@ $container['view'] = function ($container) {
 $app->get('/cases', function ($request, $response, $args) {
 
     $this->logger->addInfo("Reading test cases");
-    $mapper = new TestCaseMapper($this->db);
+    $mapper = new db\TestCaseMapper($this->db);
     $testCases = $mapper->getTestCases();
+
+    $tamer = new taming\Taming($testCases, 'levenshtein');
+    $testCases = $tamer->tame();
+
 
     return $this->view->render($response, 'test-cases.html', [
         'testCases' => $testCases

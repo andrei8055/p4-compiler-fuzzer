@@ -1,4 +1,5 @@
 <?php
+namespace db;
 abstract class Mapper {
     protected $db;
     public function __construct($db) {
