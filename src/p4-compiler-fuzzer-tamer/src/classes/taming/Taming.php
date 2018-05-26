@@ -2,7 +2,6 @@
 namespace taming;
 
 class Taming {
-    //comment
     /** @var  \db\TestCaseEntity[]  */
     private $cases;
     private $algorithm;
