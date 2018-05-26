@@ -8,6 +8,8 @@ class TestCaseEntity
     private $file;
     private $seed;
     private $known;
+    private $is_medoid;
+    private $cluster;
 
 
     /**
@@ -26,6 +28,12 @@ class TestCaseEntity
         $this->file = $data['file'];
         $this->seed = $data['seed'];
         $this->known = $data['known'];
+        if(isset($data['is_medoid'])) {
+            $this->is_medoid = $data['is_medoid'];
+        }
+        if(isset($data['cluster'])) {
+            $this->cluster = $data['cluster'];
+        }
 
     }
 
@@ -124,5 +132,39 @@ class TestCaseEntity
     {
         return $this->known;
     }
+
+    /**
+     * @param mixed $cluster
+     */
+    public function setCluster($cluster)
+    {
+        $this->cluster = $cluster;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCluster()
+    {
+        return $this->cluster;
+    }
+
+    /**
+     * @param mixed $is_medoid
+     */
+    public function setIsMedoid($is_medoid)
+    {
+        $this->is_medoid = $is_medoid;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsMedoid()
+    {
+        return $this->is_medoid;
+    }
+
+
 
 }

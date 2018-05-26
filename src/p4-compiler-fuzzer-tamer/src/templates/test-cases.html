@@ -4,7 +4,7 @@
     <title>My Webpage now MODIFIEEEEEEEEED</title>
 </head>
 <body>
-
+<h1> Levenshtein taming</h1>
 <table class="pure-table">
     <thead>
     <tr>
@@ -24,13 +24,34 @@
     {% endfor %}
     </tbody>
 
-<!--<ul id="navigation">
-    {% for case in testCases %}
-    <li>{{ case }}</li>
-    {% endfor %}
-</ul>
+</table>
+<table class="pure-table">
 
-<h1>My Webpage</h1>-->
+    <h1> Clustering taming</h1>
+
+    <table class="pure-table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>test</th>
+            <th>file</th>
+            <th>cluster</th>
+            <th>medoid</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for case in clusteredTestCases %}
+        <tr>
+            <td>{{ case.id }}</td>
+            <td>{{ case.test }}</td>
+            <td>{{ case.error }}</td>
+            <td>{{ case.cluster }}</td>
+            <td>{{ case.isMedoid }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+
 </table>
 </body>
 </html>

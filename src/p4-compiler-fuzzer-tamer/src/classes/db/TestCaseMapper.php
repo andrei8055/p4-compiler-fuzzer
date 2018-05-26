@@ -13,4 +13,14 @@ class TestCaseMapper extends Mapper
         return $results;
     }
 
+    public function getClusteredTestCases() {
+        $sql = "SELECT b.*, tb.is_medoid, tb.cluster FROM bugs b INNER JOIN tamed_bugs tb on b.id = tb.bug_id ORDER BY cluster";
+        $stmt = $this->db->query($sql);
+        $results = [];
+        while($row = $stmt->fetch()) {
+            $results[] = new TestCaseEntity($row);
+        }
+        return $results;
+    }
+
 }
