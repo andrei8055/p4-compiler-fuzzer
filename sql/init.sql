@@ -10,3 +10,11 @@ CREATE TABLE fuzzer.bugs (
 ENGINE=InnoDB
 DEFAULT CHARSET=latin1
 COLLATE=latin1_swedish_ci ;
+
+CREATE TABLE `tamed_bugs` (
+  `bug_id` int(11) NOT NULL,
+  `cluster` int(11) NOT NULL,
+  `is_medoid` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`bug_id`),
+  CONSTRAINT `tamed_bugs_bugs_FK` FOREIGN KEY (`bug_id`) REFERENCES `bugs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1

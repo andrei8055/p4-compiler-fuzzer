@@ -2,6 +2,9 @@ import argparse
 from pyclustering.cluster.kmedoids import kmedoids
 import mysql.connector
 import math
+import p4fuzzclib
+import sys
+from datetime import datetime
 
 def main():
 	argparse.ArgumentParser(description="P4Fuzz Bugs Tamer")
@@ -13,17 +16,27 @@ def main():
 	caseErrors = []
 
 	cursor.execute("DELETE FROM tamed_bugs")
+	cnx.commit()
 
 	cursor.execute("SELECT id, error FROM bugs")
 	for (id, error) in cursor:
 		caseIds.append(id)
-		caseErrors.append(error)
+		caseErrors.append(str(error))
 
-	print "Loaded data from database"
+	dt = datetime.now()
+	print "Loading data from database..."
 
-	dist = [[ andrei_distance(caseErrors[i], caseErrors[j]) for j in range(len(caseErrors)) ] for i in range(len(caseErrors)) ]
 
-	print "Calculated distances"
+	dt2 = datetime.now()
+	diff = dt2 - dt
+	print str(diff.total_seconds() * 1000) + " Loaded data from database"
+
+	dist = p4fuzzclib.calc_distance_matrix(caseErrors)
+	dist = [list(x) for x in dist]
+
+	dt3 = datetime.now()
+	diff = dt3 - dt2
+	print str(diff.total_seconds() * 1000) + " Calculated distances"
 
 	initial_medoids = [0, len(caseErrors)-1]
 
@@ -47,7 +60,7 @@ def main():
 				if medoid_distances[error_index] > max_dist:
 					max_dist = medoid_distances[error_index]
 					new_medoid = error_index
-			if max_dist > 20:
+			if max_dist > 40:
 				initial_medoids = medoids
 				initial_medoids.append(new_medoid)
 				kmedoids_instance = kmedoids(dist, initial_medoids, 100, data_type='distance_matrix')
@@ -60,8 +73,6 @@ def main():
 
 	for i, cluster in enumerate(clusters):
 		medoid = medoids[i]
-		print i
-		print medoid
 		for error_index in cluster:
 			is_medoid = True if medoid == error_index else False
 			data = (caseIds[error_index], i, is_medoid)

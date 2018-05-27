@@ -34,6 +34,18 @@ sudo make install
 cd ..
 cd ..
 
+sudo apt-get install swig
+
+sudo apt-get install gcc-multilib g++-multilib
+
+mkdir pyclustering
+cd pyclustering/
+git clone https://github.com/annoviko/pyclustering.git .
+cd ccore
+make ccore
+
+sudo -H pip install nltk
+
 mkdir mysql_connector
 cd mysql_connector/
 wget https://dev.mysql.com/get/Downloads/Connector-Python/mysql-connector-python_8.0.11-1ubuntu16.04_all.deb
@@ -55,3 +67,9 @@ mkdir errors
 
 cd ~/p4-compiler-fuzzer/src/p4-compiler-fuzzer-tamer/src
 composer install -vv
+
+cd /home/vagrant/pyclustering
+PYTHONPATH=`pwd`
+export PYTHONPATH=${PYTHONPATH}
+
+cd ~

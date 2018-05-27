@@ -15,6 +15,6 @@ Vagrant.configure(2) do |config|
   config.vm.hostname = "p4-compiler-fuzzer-dev"
   config.vm.provision "shell", path: "root-bootstrap.sh"
   config.vm.provision "shell", privileged: false, path: "user-bootstrap.sh"
-  config.vm.synced_folder "../src/", "/home/p4-compiler-fuzzer/p4-compiler-fuzzer/src", :owner => "p4-compiler-fuzzer"
-  config.vm.synced_folder "../sql/", "/home/p4-compiler-fuzzer/p4-compiler-fuzzer/sql", :owner => "p4-compiler-fuzzer"
+  config.vm.synced_folder "../src/", "/home/p4-compiler-fuzzer/p4-compiler-fuzzer/src", :owner => "p4-compiler-fuzzer", :group => "vagrant"
+  config.vm.synced_folder "../sql/", "/home/p4-compiler-fuzzer/p4-compiler-fuzzer/sql", :owner => "p4-compiler-fuzzer", :group => "vagrant"
 end

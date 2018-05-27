@@ -1,31 +1,44 @@
-import sys
 import os
+import argparse
 
 from bmv2_random_program_generator import bmv2_random_program_generator
 from common import common
 from randomizer import randomizer
 
-filename = ""
-console = False
+def main():
+	parser = argparse.ArgumentParser(description="P4 Fuzzer Testcase Generator")
+	parser.add_argument(
+		'-f',
+		'--filename',
+		dest='filename',
+		type=str,
+		default='',
+		help='<Required> The filename to be generated',
+		required=True)
+	parser.add_argument(
+		'-s',
+		'--show',
+		dest='show',
+		type=str,
+		default='False',
+		help='Show the generated program in console: True/False')
+	args = parser.parse_args()
 
-if len(sys.argv) > 1:
-	filename = sys.argv[1]
-	if sys.argv[2] == "false":
-		console = False
-	else:
-		console = True
-else:
-	sys.exit("Error! Missing argument 1 - output filename")
+	filename = args.filename
+	console = True if args.show == "True" or args.show == "true" else False
 
-# print the program to file
-curdir = os.path.dirname(__file__)
-file_path = os.path.join(curdir, filename)
-file = open(file_path, "w")
+	# print the program to file
+	curdir = os.path.dirname(__file__)
+	file_path = os.path.join(curdir, filename)
+	file = open(file_path, "w")
 
-seed = randomizer.generateRandomSeed()
-#seed = 4473699869
-randomizer.setSeed(seed)
+	seed = randomizer.generateRandomSeed()
+	#seed = 4473699869
+	randomizer.setSeed(seed)
 
-generator = bmv2_random_program_generator()
-code = generator.generate()
-common.output(code, console, file)
+	generator = bmv2_random_program_generator()
+	code = generator.generate()
+	common.output(code, console, file)
+
+if __name__ == '__main__':
+	main()
