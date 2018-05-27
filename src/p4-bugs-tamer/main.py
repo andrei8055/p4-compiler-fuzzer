@@ -31,8 +31,8 @@ def main():
 	diff = dt2 - dt
 	print str(diff.total_seconds() * 1000) + " Loaded data from database"
 
-	dist = p4fuzzclib.calc_distance_matrix(caseErrors)
-	dist = [list(x) for x in dist]
+	dist_tuple = p4fuzzclib.calc_distance_matrix(caseErrors)
+	dist = [list(x) for x in dist_tuple]
 
 	dt3 = datetime.now()
 	diff = dt3 - dt2
@@ -47,20 +47,19 @@ def main():
 
 	print "Clustered #1 ..."
 
-	done = False
+	has_large = True
 	cnt = 1
-	while not done:
+	while has_large:
 		cnt += 1
+		has_large = False
 		for i, cluster in enumerate(clusters):
-			max_dist = 0
-			new_medoid = None
 			medoid = medoids[i]
 			medoid_distances = dist[medoid]
-			for error_index in cluster:
-				if medoid_distances[error_index] > max_dist:
-					max_dist = medoid_distances[error_index]
-					new_medoid = error_index
-			if max_dist > 40:
+			max_points = p4fuzzclib.calc_max_distance_cluster(dist_tuple, cluster)
+			max_dist = dist[max_points[0]][max_points[1]]
+			if max_dist > 60:
+				has_large = True
+				new_medoid = max_points[0] if medoid_distances[max_points[0]] > medoid_distances[max_points[1]] else max_points[1]
 				initial_medoids = medoids
 				initial_medoids.append(new_medoid)
 				kmedoids_instance = kmedoids(dist, initial_medoids, 100, data_type='distance_matrix')
@@ -68,8 +67,12 @@ def main():
 				clusters = kmedoids_instance.get_clusters()
 				medoids = kmedoids_instance.get_medoids()
 			else:
-				done = True
+				print "Cluster " + str(i) + ": " + str(max_dist)
 		print "Clustered #" + str(cnt) + " ..."
+
+	dt4 = datetime.now()
+	diff = dt4 - dt3
+	print str(diff.total_seconds() * 1000) + " Clustering finished"
 
 	for i, cluster in enumerate(clusters):
 		medoid = medoids[i]
@@ -78,6 +81,10 @@ def main():
 			data = (caseIds[error_index], i, is_medoid)
 			cursor.execute("INSERT INTO tamed_bugs (`bug_id`, `cluster`, `is_medoid`) VALUES (%s, %s, %s)", data)
 			cnx.commit()
+
+	dt5 = datetime.now()
+	diff = dt5 - dt4
+	print str(diff.total_seconds() * 1000) + " Tamed bugs clusters inserted into database finished! All Done!"
 
 
 def andrei_distance(string1, string2):

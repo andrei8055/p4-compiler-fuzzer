@@ -62,3 +62,23 @@ std::vector< std::vector<int> > calc_distance_matrix(std::vector<std::string> da
     delete[] dist;
     return result;
 }
+
+std::vector<int> calc_max_distance_cluster(std::vector< std::vector<int> > dist, std::vector<int> cluster){
+    int max = 0;
+    int max_points[2] = {0, 0};
+    for(std::vector<int>::iterator i = cluster.begin(); i != cluster.end(); i++){
+        int i_index = i - cluster.begin();
+        for(std::vector<int>::iterator j = cluster.begin() + i_index; j != cluster.end(); j++){
+            int distance = dist[*i][*j];
+            if(distance > max){
+                max = distance;
+                max_points[0] = *i;
+                max_points[1] = *j;
+            }
+        }
+    }
+    std::vector<int> points;
+    points.push_back(max_points[0]);
+    points.push_back(max_points[1]);
+    return points;
+}
