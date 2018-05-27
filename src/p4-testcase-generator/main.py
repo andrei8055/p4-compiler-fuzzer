@@ -24,13 +24,11 @@ def main():
 		help='Show the generated program in console: True/False')
 	args = parser.parse_args()
 
-	filename = args.filename
+	filename = args.filename.strip()
 	console = True if args.show == "True" or args.show == "true" else False
 
 	# print the program to file
-	curdir = os.path.dirname(__file__)
-	file_path = os.path.join(curdir, filename)
-	file = open(file_path, "w")
+	file = open(filename, "w")
 
 	seed = randomizer.generateRandomSeed()
 	#seed = 4473699869
