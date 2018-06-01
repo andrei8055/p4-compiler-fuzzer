@@ -51,7 +51,7 @@ def main():
 	add_bug = "INSERT INTO bugs (`test`, `error`, `file`, `seed`, `known`) VALUES (%s, %s, %s, %s, %s)"
 
 	try:
-		result = subprocess.check_output(["/usr/local/bin/p4c-bm2-ss " + input + " -o " + output + " > /dev/null"],
+		result = subprocess.check_output(["/usr/local/bin/p4c-bm2-ss --Wdisable " + input + " -o " + output + " > /dev/null"],
 										 stderr=subprocess.STDOUT, shell=True)
 		print "Test " + currentTest + " passed"
 	except subprocess.CalledProcessError as e:

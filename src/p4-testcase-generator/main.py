@@ -31,7 +31,8 @@ def main():
 	file = open(filename, "w")
 
 	seed = randomizer.generateRandomSeed()
-	#seed = 4473699869
+	seed = 7501307245
+	#print seed
 	randomizer.setSeed(seed)
 
 	generator = bmv2_random_program_generator()

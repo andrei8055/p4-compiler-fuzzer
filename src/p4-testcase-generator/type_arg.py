@@ -5,7 +5,7 @@ from randomizer import randomizer
 class type_arg(object):
 	type = None
 	types = ["DONTCARE", "typeRef"]
-	probabilities = [5, 5]
+	probabilities = [50, 50]
 	value = None
 
 	# typeArg

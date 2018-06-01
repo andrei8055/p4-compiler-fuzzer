@@ -8,7 +8,7 @@ class name(object):
 	type = None
 	types = ["nonTypeName", "TYPE", "ERROR"]
 	# TODO: implement TYPE and ERROR and set probabilities higher than 0 for them
-	probabilities = [10, 0, 0]
+	probabilities = [100, 0, 0]
 	value = None
 
 	# name

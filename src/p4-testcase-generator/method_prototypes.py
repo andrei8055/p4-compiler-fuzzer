@@ -30,6 +30,6 @@ class method_prototypes(object):
 	def generate_code(self):
 		code = ''
 		for method_prototype in self.prototypes_list:
-			code += method_prototype.generate_code() + ' '
+			code += method_prototype.generate_code() + ' ' + "\n"
 		return code
 

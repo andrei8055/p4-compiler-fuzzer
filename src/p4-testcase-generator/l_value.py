@@ -6,7 +6,7 @@ from expression import expression
 class l_value:
 	type = None
 	types = ["prefixedNonTypeName", "lValueMemberAccess", "lValueArrayAccess", "lValueArrayRange"]
-	probabilities = [3, 2, 3, 2]
+	probabilities = [30, 20, 30, 20]
 
 	maxDepth = 2
 	curDepth = 0

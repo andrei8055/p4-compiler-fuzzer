@@ -5,7 +5,10 @@ from randomizer import randomizer
 
 
 class type_or_void(object):
-	type = 'type_or_void'
+	type = None
+	types = ["typeRef", "void", "nonTypeName"]
+	# TODO: allow other types
+	probabilities = [0,100,0]
 	value = None
 
 	# typeOrVoid
@@ -18,12 +21,12 @@ class type_or_void(object):
 		self.value = value
 
 	def randomize(self):
-		rnd = randomizer.randint(0, 5)
-		if rnd == 0:
+		self.type = randomizer.getRandom(self.probabilities)
+		if self.type == 0:
 			self.value = type_ref()
-		elif rnd == 1:
+		elif self.type == 1:
 			self.value = void()
-		elif rnd == 2:
+		elif self.type == 2:
 			self.value = non_type_name(None)
 		self.value.randomize()
 

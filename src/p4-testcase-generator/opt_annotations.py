@@ -5,7 +5,7 @@ from randomizer import randomizer
 class opt_annotations(object):
 	type = None
 	types = ["empty", "annotations"]
-	probabilities = [5,5]
+	probabilities = [50,50]
 	annotations = None
 
 	# optAnnotations

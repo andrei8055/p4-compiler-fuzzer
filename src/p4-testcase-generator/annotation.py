@@ -7,7 +7,7 @@ class annotation(object):
 	type = None
 	types = ["name", "nameExpressionList"]
 	# TODO: implement nameExpressionList and set probability higher than 0 for it
-	probabilities = [10, 0]
+	probabilities = [100, 0]
 	name = None
 	expression_list = None
 	name_min_length = 1

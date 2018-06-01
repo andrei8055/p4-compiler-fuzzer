@@ -6,7 +6,7 @@ class type_parameter_list(object):
 	type = 'type_parameter_list'
 	parameter_list = []
 	min_list_size = 1
-	max_list_size = 5
+	max_list_size = 1
 
 	# typeParameterList
 	# : nonTypeName

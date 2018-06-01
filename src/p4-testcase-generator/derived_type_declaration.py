@@ -8,7 +8,7 @@ from randomizer import randomizer
 class derived_type_declaration(object):
 	type = None
 	types = ["headerTypeDeclaration", "headerUnionDeclaration", "structTypeDeclaration", "enumDeclaration"]
-	probabilities = [3, 3, 3, 1]
+	probabilities = [30, 30, 30, 10]
 	value = None
 
 	# derivedTypeDeclaration

@@ -25,9 +25,9 @@ class scope(object):
 		return local_scope
 
 	@staticmethod
-	def insert_type(name, type):
+	def insert_type(name, type, specializations=0):
 		local_scope = scope.get_local()
-		local_scope["types"].update({name: {"type": type}})
+		local_scope["types"].update({name: {"type": type, "specializations": specializations}})
 
 	@staticmethod
 	def insert_variable(name, type):
@@ -35,10 +35,12 @@ class scope(object):
 		local_scope["variables"].update({name: {"type": type}})
 
 	@staticmethod
-	def get_available_types():
+	def get_available_types(only_type=None):
 		available_types = {}
 		for local_scope in scope.scope_stack:
-			available_types.update(local_scope["types"])
+			for local_type in local_scope["types"].items():
+				if (only_type is not None and local_type[1]["type"] == only_type) or only_type is None:
+					available_types.update({local_type[0]: local_type[1]})
 		return available_types
 
 	@staticmethod

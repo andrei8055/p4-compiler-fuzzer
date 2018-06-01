@@ -10,7 +10,7 @@ class type_declaration(object):
 	type = None
 	types = ["derivedTypeDeclaration", "typedefDeclaration", "parserTypeDeclaration", "controlTypeDeclaration",
 			 "packageTypeDeclaration"]
-	probabilities = [2, 2, 2, 2, 2]
+	probabilities = [20, 20, 20, 20, 20]
 	value = None
 
 	# typeDeclaration

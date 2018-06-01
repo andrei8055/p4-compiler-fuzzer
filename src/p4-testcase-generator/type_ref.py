@@ -8,10 +8,12 @@ from randomizer import randomizer
 class type_ref(object):
     type = None
     types = ["baseType", "typeName", "specializedType", "headerStackType"]
-    probabilities = [2,3,2,3]
+    probabilities = [50,50,0,0]
 
     maxDepth = 5
     curDepth = 0
+
+    force_type = None
 
     value = None
 
@@ -22,8 +24,9 @@ class type_ref(object):
     # | headerStackType
     # ;
 
-    def __init__(self, value=None):
+    def __init__(self, value=None, force_type=None):
         self.value = value
+        self.force_type = force_type
 
     def get_type(self):
         return self.types[self.type]
@@ -35,6 +38,8 @@ class type_ref(object):
         self.__class__.curDepth += 1
         while True:
             self.type = randomizer.getRandom(self.probabilities)
+            if self.force_type is not None:
+                self.type = self.force_type
             if self.type == 0:
                 self.value = base_type()
             elif self.type == 1:

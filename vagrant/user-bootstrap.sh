@@ -68,8 +68,5 @@ mkdir errors
 cd ~/p4-compiler-fuzzer/src/p4-compiler-fuzzer-tamer/src
 composer install -vv
 
-cd /home/vagrant/pyclustering
-PYTHONPATH=`pwd`
-export PYTHONPATH=${PYTHONPATH}
-
+echo "export PYTHONPATH='${PYTHONPATH}:/home/vagrant/pyclustering:/home/p4-compiler-fuzzer/p4-compiler-fuzzer/src/p4fuzzclib'" | tee -a ~/.bashrc
 cd ~

@@ -10,7 +10,7 @@ class base_type(object):
 	type = None
 	types = ["BOOL", "ERROR", "BIT", "BITOFINTEGER", "INTOFINTEGER", "VARBITOFINTEGER"]
 	# TODO: implement TYPE and ERROR and set probabilities higher than 0 for them
-	probabilities = [2,2,2,2,1,1]
+	probabilities = [20,20,20,20,10,10]
 	value = None
 
 	# baseType

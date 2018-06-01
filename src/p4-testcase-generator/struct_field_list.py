@@ -9,7 +9,7 @@ class struct_field_list(object):
 
 	type = None
 	types = ["empty", "structFieldList"]
-	probabilities = [5,5]
+	probabilities = [50,50]
 
 	fromObj = None
 

@@ -10,7 +10,7 @@ class non_type_name(object):
 	type = None
 	types = ["IDENTIFIER", "APPLY", "KEY", "ACTIONS", "STATE"]
 	# TODO: implement APPLY, KEY, ACTIONS, STATE and set probabilities higher than 0 for them
-	probabilities = [10, 0, 0, 0, 0]
+	probabilities = [100, 0, 0, 0, 0]
 	value = None
 
 	# nonTypeName
