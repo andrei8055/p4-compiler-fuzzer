@@ -44,6 +44,7 @@ class bmv2_random_program_generator(object):
 		code += self.generate_bmv2_controls()
 		self.generate_random_controls()
 		code += self.generate_bmv2_init()
+		scope.stop_local()
 		return code
 
 	def output_seed_comment(self):
