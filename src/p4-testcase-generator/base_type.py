@@ -9,7 +9,6 @@ from randomizer import randomizer
 class base_type(object):
 	type = None
 	types = ["BOOL", "ERROR", "BIT", "BITOFINTEGER", "INTOFINTEGER", "VARBITOFINTEGER"]
-	# TODO: implement TYPE and ERROR and set probabilities higher than 0 for them
 	probabilities = [20,20,20,20,10,10]
 	value = None
 
