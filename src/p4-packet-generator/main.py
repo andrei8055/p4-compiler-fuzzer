@@ -1,11 +1,14 @@
 import commands
 import sys
+import os
 
-file = sys.argv[1]
+curDir = os.path.dirname(__file__)
+file_path = sys.argv[1]
+file = os.path.abspath(os.path.join(curDir, file_path))
 bash_command = 'p4pktgen ' + file + ' -au -rss -d'
 error, output = commands.getstatusoutput(bash_command)
-filename = file.split('.')[0]
-f = open('packets/' + filename + '.pkt','w')
+filename = os.path.splitext(file)[0]
+f = open(filename + '.pkt','w+')
 
 
 for line in output.splitlines():
