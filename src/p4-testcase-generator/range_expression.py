@@ -19,6 +19,7 @@ class range_expression(object):
         self.right_expression.randomize()
 
     def generate_code(self):
+        common.usedCodeGenerator(self)
         return self.left_expression.generate_code() + ' .. ' + self.right_expression.generate_code()
 
 

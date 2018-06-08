@@ -1,5 +1,6 @@
 from annotations import annotations
 from randomizer import randomizer
+from common import common
 
 
 class opt_annotations(object):
@@ -25,6 +26,7 @@ class opt_annotations(object):
 			self.annotations = None
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		if self.annotations is not None:
 			return self.annotations.generate_code()
 		else:

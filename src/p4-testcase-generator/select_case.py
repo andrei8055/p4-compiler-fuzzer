@@ -24,4 +24,5 @@ class select_case(object):
 		self.name.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.keyset_expression.generate_code() + ' : ' + self.name.generate_code() + ' ; '

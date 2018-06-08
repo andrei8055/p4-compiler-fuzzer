@@ -1,4 +1,5 @@
 from opt_annotations import opt_annotations
+from common import common
 
 
 class parser_block_statement(object):
@@ -22,4 +23,5 @@ class parser_block_statement(object):
 		self.parser_statements.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.opt_annotations.generate_code() + ' { ' + self.parser_statements.generate_code() + ' } '

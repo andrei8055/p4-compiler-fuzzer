@@ -35,4 +35,5 @@ class function_prototype(object):
 		self.parameter_list.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.type_or_void.generate_code() + ' ' + self.name.generate_code() + ' ' + self.opt_type_parameters.generate_code() + ' (' + self.parameter_list.generate_code() + ')'

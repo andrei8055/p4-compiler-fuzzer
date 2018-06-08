@@ -33,4 +33,5 @@ class extern_declaration_method(object):
 		self.method_prototypes.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.opt_annotations.generate_code() + ' extern ' + self.non_type_name.generate_code() + ' ' + self.opt_type_parameters.generate_code() + '{' + self.method_prototypes.generate_code() + '}'

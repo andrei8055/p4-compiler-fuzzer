@@ -4,6 +4,7 @@ from action_declaration import action_declaration
 from table_declaration import table_declaration
 from instantiation import instantiation
 from variable_declaration import variable_declaration
+from common import common
 
 
 class control_local_declaration(object):
@@ -36,4 +37,5 @@ class control_local_declaration(object):
 		self.value.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.value.generate_code()

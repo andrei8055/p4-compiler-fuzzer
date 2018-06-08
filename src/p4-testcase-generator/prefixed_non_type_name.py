@@ -1,5 +1,6 @@
 from randomizer import randomizer
 from non_type_name import non_type_name
+from common import common
 
 
 class prefixed_non_type_name(object):
@@ -17,6 +18,7 @@ class prefixed_non_type_name(object):
 		self.non_type_name.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		if self.prefix:
 			code += '.'

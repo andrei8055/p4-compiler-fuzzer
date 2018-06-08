@@ -1,4 +1,5 @@
 from randomizer import randomizer
+from common import common
 
 
 class bit(object):
@@ -25,6 +26,7 @@ class bit(object):
 		self.size = randomizer.randint(self.min_size, self.max_size)
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		if self.size is None:
 			return self.name
 		else:

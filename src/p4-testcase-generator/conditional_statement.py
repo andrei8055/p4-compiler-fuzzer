@@ -28,6 +28,7 @@ class conditional_statement(object):
 		self.else_statement.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = 'if (' + self.expression.generate_code() + ')' + self.if_statement.generate_code() + ' '
 		if self.else_statement is not None:
 			code += ' else ' + self.if_statement.else_statement() + ' '

@@ -4,12 +4,12 @@ from key_literal import key_literal
 from actions_literal import actions_literal
 from state_literal import state_literal
 from randomizer import randomizer
+from common import common
 
 
 class non_type_name(object):
 	type = None
 	types = ["IDENTIFIER", "APPLY", "KEY", "ACTIONS", "STATE"]
-	# TODO: implement APPLY, KEY, ACTIONS, STATE and set probabilities higher than 0 for them
 	probabilities = [100, 0, 0, 0, 0]
 	value = None
 
@@ -41,4 +41,5 @@ class non_type_name(object):
 
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.value.generate_code()

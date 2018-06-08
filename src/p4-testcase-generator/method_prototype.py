@@ -1,6 +1,7 @@
 from randomizer import randomizer
 from function_prototype import function_prototype
 from parameter_list import parameter_list
+from common import common
 
 
 class method_prototype(object):
@@ -27,6 +28,7 @@ class method_prototype(object):
 		self.value.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		if self.type == 0:
 			return self.value.generate_code() + ';'
 		elif self.type == 1:

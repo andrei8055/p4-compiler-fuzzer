@@ -1,6 +1,7 @@
 from name import name
 from expression_list import expression_list
 from randomizer import randomizer
+from common import common
 
 
 class annotation(object):
@@ -41,6 +42,7 @@ class annotation(object):
 
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = '@' + self.name.generate_code()
 		if self.expression_list is not None:
 			code += '(' + self.expression_list.generate_code() + ')'

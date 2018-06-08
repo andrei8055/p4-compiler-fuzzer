@@ -1,5 +1,6 @@
 from type_arg import type_arg
 from randomizer import randomizer
+from common import common
 
 
 class type_argument_list(object):
@@ -24,6 +25,7 @@ class type_argument_list(object):
 			self.argument_list.append(_arg_type)
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		for x in range(0, len(self.argument_list)):
 			code += self.argument_list[x].generate_code()

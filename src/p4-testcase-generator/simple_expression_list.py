@@ -1,5 +1,6 @@
 from simple_keyset_expression import simple_keyset_expression
 from randomizer import randomizer
+from common import common
 
 
 class simple_expression_list(object):
@@ -19,6 +20,7 @@ class simple_expression_list(object):
 			self.expression_list.append(_simple_keyset_expression)
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		for x in range(0, len(self.expression_list)):
 			code += self.expression_list[x].generate_code()

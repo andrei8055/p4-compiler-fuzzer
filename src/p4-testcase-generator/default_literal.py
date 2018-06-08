@@ -9,4 +9,5 @@ class default_literal(object):
 		pass
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return "default"

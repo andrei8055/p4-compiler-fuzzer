@@ -14,7 +14,6 @@ class expression(object):
 
 	def randomize(self):
 		common.usedRandomize()
-		# TODO: implement
 		self.non_type_name = non_type_name()
 		self.non_type_name.randomize()
 
@@ -63,7 +62,7 @@ class expression(object):
 	# ;
 
 	def generate_code(self):
-		# TODO: implement correctly
+		common.usedCodeGenerator(self)
 		code = ""
 		if self.member is not None and self.expression is not None:
 			code += self.expression.generate_code() + "." + self.member.generate_code()

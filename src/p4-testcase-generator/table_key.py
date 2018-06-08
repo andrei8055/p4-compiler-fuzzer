@@ -23,6 +23,7 @@ class table_key(object):
 
 	#  KEY '=' '{' keyElementList '}'
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		code += 'key = { \n'
 		for x in range(0, len(self.key_elements)):

@@ -28,6 +28,7 @@ class method_call_statement(object):
 		self.argument_list.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		code += self.lvalue.generate_code() + ' '
 		if self.type_argument_list is not None:

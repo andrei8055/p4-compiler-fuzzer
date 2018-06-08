@@ -4,6 +4,7 @@ from variable_declaration import variable_declaration
 from assignment_or_method_call_statement import assignment_or_method_call_statement
 from direct_application import direct_application
 from parser_block_statement import parser_block_statement
+from common import common
 
 
 class parser_statement(object):
@@ -36,4 +37,5 @@ class parser_statement(object):
 		self.value.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.value.generate_code()

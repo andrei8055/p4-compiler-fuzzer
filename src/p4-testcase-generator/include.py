@@ -15,4 +15,5 @@ class include(object):
 		common.get_random_string(randomizer.randint(self.name_min_length, self.name_max_length), False)
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return '#include' + '<' + self.name + '>'

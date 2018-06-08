@@ -1,5 +1,6 @@
 from name import name
 from randomizer import randomizer
+from common import common
 
 
 class identifier_list(object):
@@ -24,6 +25,7 @@ class identifier_list(object):
 			self.identifier_list.append(_name)
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		for x in range(0, len(self.identifier_list)):
 			code += self.identifier_list[x].generate_code()

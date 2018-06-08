@@ -1,5 +1,6 @@
 from l_value import l_value
 from expression import expression
+from common import common
 
 
 class assignment_statement(object):
@@ -20,5 +21,6 @@ class assignment_statement(object):
 		self.expression.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.lvalue.generate_code() + ' = ' + self.expression.generate_code() + ';'
 

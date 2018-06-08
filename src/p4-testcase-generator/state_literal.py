@@ -10,4 +10,5 @@ class state_literal(object):
 		pass
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return "state"

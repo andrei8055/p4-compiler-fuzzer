@@ -35,8 +35,8 @@ class struct_type_declaration(object):
 		scope.insert_type(self.name.generate_code(), "struct")
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = self.opt_annotations.generate_code()
-		# TODO: fix duplicate struct field name generation
 		code += 'struct ' + (self.name if isinstance(self.name, basestring) else self.name.generate_code())
 		code += ' ' + '{\n' + self.struct_field_list.generate_code() + '}'
 		code += '\n\n'

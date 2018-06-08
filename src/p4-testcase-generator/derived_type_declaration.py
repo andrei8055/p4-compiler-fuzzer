@@ -3,6 +3,7 @@ from header_union_declaration import header_union_declaration
 from struct_type_declaration import struct_type_declaration
 from enum_declaration import enum_declaration
 from randomizer import randomizer
+from common import common
 
 
 class derived_type_declaration(object):
@@ -34,4 +35,5 @@ class derived_type_declaration(object):
 		self.value.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.value.generate_code()

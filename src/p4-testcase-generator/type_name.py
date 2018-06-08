@@ -1,4 +1,5 @@
 from prefixed_type import prefixed_type
+from common import common
 
 
 class type_name(object):
@@ -22,4 +23,5 @@ class type_name(object):
 			self.prefixed_type = None
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.prefixed_type.generate_code()

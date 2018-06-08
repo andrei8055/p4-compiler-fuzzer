@@ -1,4 +1,5 @@
 from identifier_list import identifier_list
+from common import common
 
 
 class error_declaration(object):
@@ -19,5 +20,6 @@ class error_declaration(object):
 			self.identifier_list.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return 'error ' + ' ' + '{' + self.identifier_list.generate_code() + '}'
 

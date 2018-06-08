@@ -1,5 +1,6 @@
 from type_name import type_name
 from expression import expression
+from common import common
 
 
 class header_stack_type(object):
@@ -28,4 +29,5 @@ class header_stack_type(object):
 			self.type_name = None
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.type_name.generate_code() + ' [' + self.expression.generate_code() + ']'

@@ -31,4 +31,5 @@ class assignment_or_method_call_statement(object):
 		self.value.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.value.generate_code()

@@ -12,6 +12,7 @@ class void(object):
 		pass
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return 'void'
 
 	def generate_code_ref(self):

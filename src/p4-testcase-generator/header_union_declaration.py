@@ -2,6 +2,7 @@ from opt_annotations import opt_annotations
 from name import name
 from struct_field_list import struct_field_list
 from scope import scope
+from common import common
 
 
 class header_union_declaration(object):
@@ -33,6 +34,7 @@ class header_union_declaration(object):
 		scope.insert_type(self.name.generate_code(), "header_union")
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.opt_annotations.generate_code() + ' header_union ' + self.name.generate_code() + ' ' + '{' + self.struct_field_list.generate_code() + '}'
 
 	def filter(self):

@@ -1,5 +1,6 @@
 from randomizer import randomizer
 from state_expression import state_expression
+from common import common
 
 
 class transition_statement(object):
@@ -23,6 +24,7 @@ class transition_statement(object):
 			self.state_expression.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		if self.state_expression is not None:
 			return 'transition' + ' ' + self.state_expression.generate_code()
 		else:

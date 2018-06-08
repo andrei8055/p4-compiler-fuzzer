@@ -13,7 +13,6 @@ class expression_generator:
 	def __init__(self):
 		pass
 
-	# TODO finsh project
 	def generate_random(self, type):
 		_type = type
 		if type in ['bit', 'int']:

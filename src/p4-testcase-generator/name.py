@@ -2,12 +2,12 @@ from non_type_name import non_type_name
 from type_literal import type_literal
 from error_literal import error_literal
 from randomizer import randomizer
+from common import common
 
 
 class name(object):
 	type = None
 	types = ["nonTypeName", "TYPE", "ERROR"]
-	# TODO: implement TYPE and ERROR and set probabilities higher than 0 for them
 	probabilities = [100, 0, 0]
 	value = None
 
@@ -31,4 +31,5 @@ class name(object):
 		self.value.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.value.generate_code()

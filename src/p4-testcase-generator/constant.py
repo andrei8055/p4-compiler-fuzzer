@@ -33,4 +33,5 @@ class constant(object):
 		self.value = literal.get(self.type)
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return 'const' + ' ' + self.type.generate_code() + ' ' + self.name + ' = ' + str(self.value) + ';'

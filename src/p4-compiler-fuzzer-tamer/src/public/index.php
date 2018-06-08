@@ -52,11 +52,12 @@ $app->get('/cases', function ($request, $response, $args) {
     $this->logger->addInfo("Reading test cases");
     $mapper = new db\TestCaseMapper($this->db);
     $testCases = $mapper->getTestCases();
+    shuffle ($testCases);
     $clusteredCases = $mapper->getClusteredTestCases();
 
     //$tamer = new taming\Taming($testCases, 'levenshtein');
     //$testCases = $tamer->tame();
-    $testCases = [];
+    //$testCases = [];
 
     return $this->view->render($response, 'test-cases.html', [
         'testCases' => $testCases, 'clusteredTestCases' => $clusteredCases

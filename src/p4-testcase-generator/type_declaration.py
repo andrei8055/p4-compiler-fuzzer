@@ -4,6 +4,7 @@ from parser_type_declaration import parser_type_declaration
 from control_type_declaration import control_type_declaration
 from package_type_declaration import package_type_declaration
 from randomizer import randomizer
+from common import common
 
 
 class type_declaration(object):
@@ -39,4 +40,5 @@ class type_declaration(object):
 		self.value.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.value.generate_code()

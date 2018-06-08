@@ -7,6 +7,7 @@ from return_statement import return_statement
 from switch_statement import switch_statement
 from randomizer import randomizer
 from block_statement import block_statement
+from common import common
 
 
 class statement(object):
@@ -48,5 +49,6 @@ class statement(object):
 		self.value.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.value.generate_code()
 

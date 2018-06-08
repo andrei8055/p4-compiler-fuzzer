@@ -1,6 +1,7 @@
 from randomizer import randomizer
 from name import name
 from select_expression import select_expression
+from common import common
 
 
 class state_expression(object):
@@ -24,6 +25,7 @@ class state_expression(object):
 		self.value.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		if type(self.value).__name__ == 'name':
 			return self.value.generate_code() + ';'
 		elif type(self.value).__name__ == 'select_expression':

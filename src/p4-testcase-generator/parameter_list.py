@@ -1,5 +1,6 @@
 from non_empty_parameter_list import non_empty_parameter_list
 from randomizer import randomizer
+from common import common
 
 
 class parameter_list(object):
@@ -23,6 +24,7 @@ class parameter_list(object):
 			self.non_empty_parameter_list.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		if self.non_empty_parameter_list is not None:
 			return self.non_empty_parameter_list.generate_code()
 		else:

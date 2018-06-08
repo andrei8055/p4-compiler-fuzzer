@@ -1,5 +1,6 @@
 import os
 import argparse
+from datetime import datetime
 
 from bmv2_random_program_generator import bmv2_random_program_generator
 from common import common
@@ -31,12 +32,25 @@ def main():
 	file = open(filename, "w")
 
 	seed = randomizer.generateRandomSeed()
-	seed = 7501307245
-	#print seed
+	#seed = 2470199104
 	randomizer.setSeed(seed)
+	print "Seed: " + str(seed)
 
 	generator = bmv2_random_program_generator()
+	dt1 = datetime.now()
 	code = generator.generate()
+	dt2 = datetime.now()
+
+	code = "//unique_tokens: " + str(len(common.tokens.keys())) + "\n" + "//tokens: " + str(common.get_total_tokens()) + "\n" + "//size: " + str(len(code.encode('utf-8'))) + "\n" + code
+
+	print "Unique tokens: " + str(len(common.tokens.keys()))
+	print "Tokens: " + str(common.get_total_tokens())
+	print "Size: " + str(len(code.encode('utf-8')))
+
+	diff = dt2 - dt1
+
+	print "Time: " + str(diff.total_seconds())
+
 	common.output(code, console, file)
 
 if __name__ == '__main__':

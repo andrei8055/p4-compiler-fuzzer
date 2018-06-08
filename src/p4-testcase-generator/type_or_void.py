@@ -2,6 +2,7 @@ from type_ref import type_ref
 from void import void
 from non_type_name import non_type_name
 from randomizer import randomizer
+from common import common
 
 
 class type_or_void(object):
@@ -31,4 +32,5 @@ class type_or_void(object):
 		self.value.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.value.generate_code()

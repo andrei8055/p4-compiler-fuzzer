@@ -1,5 +1,6 @@
 from statement_or_declaration import statement_or_declaration
 from randomizer import randomizer
+from common import common
 
 
 class stat_or_decl_list(object):
@@ -29,6 +30,7 @@ class stat_or_decl_list(object):
 				self.list.append(_statement_or_declaration)
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		for _statement_or_declaration in self.list:
 			code += _statement_or_declaration.generate_code() + ' '

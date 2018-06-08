@@ -9,4 +9,5 @@ class return_statement(object):
 		pass
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return 'return;'

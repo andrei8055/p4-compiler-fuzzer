@@ -46,6 +46,7 @@ class tuple(object):
 		return common.get_random_string(self.max_field_name_length, False) + '_' + name
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		if self.annotation is not None:
 			code = self.annotation.generate_code() + ' '

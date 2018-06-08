@@ -1,5 +1,6 @@
 from key_element import key_element
 from randomizer import randomizer
+from common import common
 
 
 class key_element_list(object):
@@ -28,6 +29,7 @@ class key_element_list(object):
 				self.element_list.append(_key_element)
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		for _key_element in self.element_list:
 			code += _key_element.generate_code() + ' '

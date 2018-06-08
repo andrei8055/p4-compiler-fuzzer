@@ -3,6 +3,7 @@ from type_ref import type_ref
 from name import name
 from scope import scope
 from header_type_declaration import header_type_declaration
+from common import common
 
 
 class struct_field(object):
@@ -14,7 +15,6 @@ class struct_field(object):
 
 	fromObj = None
 
-	# TODO: allow only one varbit instead of none
 	header_banned_types = ["struct", "header", "bool", "error", "varbit"]
 
 	# structField
@@ -43,6 +43,7 @@ class struct_field(object):
 		scope.insert_variable(self.name.generate_code(), self.type_ref.get_ref_type())
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = self.opt_annotations.generate_code()
 		code += self.type_ref.generate_code() + ' '
 		code += self.name.generate_code() + ';'

@@ -32,4 +32,5 @@ class variable(object):
 		self.value = 1  # todo generate random value based on type
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.type.generate_code() + ' ' + self.name + ' = ' + str(self.value) + ';'

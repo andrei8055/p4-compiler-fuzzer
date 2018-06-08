@@ -1,5 +1,6 @@
 from method_prototype import method_prototype
 from randomizer import randomizer
+from common import common
 
 
 class method_prototypes(object):
@@ -28,6 +29,7 @@ class method_prototypes(object):
 				self.prototypes_list.append(_method_prototype)
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		for method_prototype in self.prototypes_list:
 			code += method_prototype.generate_code() + ' ' + "\n"

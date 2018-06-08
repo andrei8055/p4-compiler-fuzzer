@@ -1,5 +1,6 @@
 from entry import entry
 from randomizer import randomizer
+from common import common
 
 
 class entries_list(object):
@@ -23,6 +24,7 @@ class entries_list(object):
 			self.entry_list.append(_entry)
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		for _entry in self.entry_list:
 			code += _entry.generate_code() + ' '

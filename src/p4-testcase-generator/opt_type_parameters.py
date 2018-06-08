@@ -1,5 +1,6 @@
 from type_parameter_list import type_parameter_list
 from randomizer import randomizer
+from common import common
 
 
 class opt_type_parameters(object):
@@ -23,6 +24,7 @@ class opt_type_parameters(object):
 			self.type_parameter_list.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		if self.type_parameter_list is not None:
 			return '<' + self.type_parameter_list.generate_code() + '>'
 		else:

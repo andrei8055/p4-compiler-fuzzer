@@ -1,5 +1,6 @@
 from randomizer import randomizer
 from parameter_list import parameter_list
+from common import common
 
 
 class opt_constructor_parameters(object):
@@ -23,6 +24,7 @@ class opt_constructor_parameters(object):
 			self.parameter_list.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		if self.parameter_list is not None:
 			return '(' + self.parameter_list.generate_code() + ')'
 		else:

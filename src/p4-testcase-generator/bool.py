@@ -11,6 +11,7 @@ class bool(object):
 		return "bool"
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return 'bool'
 
 	def randomize(self):

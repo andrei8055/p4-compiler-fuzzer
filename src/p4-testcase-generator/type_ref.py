@@ -3,6 +3,7 @@ from type_name import type_name
 from specialized_type import specialized_type
 from header_stack_type import header_stack_type
 from randomizer import randomizer
+from common import common
 
 
 class type_ref(object):
@@ -69,4 +70,5 @@ class type_ref(object):
         return False
 
     def generate_code(self):
+        common.usedCodeGenerator(self)
         return self.value.generate_code()

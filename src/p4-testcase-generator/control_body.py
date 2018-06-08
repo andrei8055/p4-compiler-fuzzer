@@ -19,4 +19,5 @@ class control_body(object):
 		self.block_statement.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.block_statement.generate_code()

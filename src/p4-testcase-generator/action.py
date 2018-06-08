@@ -47,6 +47,7 @@ class action(object):
 		self.expression_list = []  #todo randomize expression list
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		if self.annotation is not None:
 			code += self.annotation.generate_code()

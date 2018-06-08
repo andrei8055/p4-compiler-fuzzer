@@ -9,4 +9,5 @@ class dot_prefix(object):
 		pass
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return "."

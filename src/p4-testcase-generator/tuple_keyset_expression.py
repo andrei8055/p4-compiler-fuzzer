@@ -24,4 +24,5 @@ class tuple_keyset_expression(object):
 		self.simple_expression_list.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return '(' + self.simple_keyset_expression.generate_code() + ', ' + self.simple_expression_list.generate_code() + ') '

@@ -1,4 +1,6 @@
 from randomizer import randomizer
+from common import common
+
 
 class int(object):
 	name = 'int'
@@ -24,6 +26,7 @@ class int(object):
 		self.size = randomizer.randint(self.min_size, self.max_size)
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.name + '<' + str(self.size) + '>'
 
 	def generate_code_ref(self):

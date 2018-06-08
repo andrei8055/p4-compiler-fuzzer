@@ -37,4 +37,5 @@ class package_type_declaration(object):
 		self.parameter_list.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.opt_annotations.generate_code() + ' package ' + self.name.generate_code() + self.opt_type_parameters.generate_code() + ' (' + self.parameter_list.generate_code() + ') '

@@ -23,6 +23,7 @@ class identifier(object):
 				break
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.value
 
 	def filter(self):

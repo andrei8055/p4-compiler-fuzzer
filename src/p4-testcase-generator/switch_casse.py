@@ -1,5 +1,6 @@
 from switch_label import switch_label
 from randomizer import randomizer
+from common import common
 
 
 class switch_casse(object):
@@ -28,6 +29,7 @@ class switch_casse(object):
 			self.block_statement.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		code += self.switch_label.generate_code() + ':'
 		if self.block_statement is not None:

@@ -20,5 +20,6 @@ class match_kind_declaration(object):
 		self.identifier_list.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return 'match_kind ' + ' ' + '{' + self.identifier_list.generate_code() + '}'
 

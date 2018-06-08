@@ -2,6 +2,7 @@ from opt_annotations import opt_annotations
 from name import name
 from identifier_list import identifier_list
 from scope import scope
+from common import common
 
 
 class enum_declaration(object):
@@ -33,6 +34,7 @@ class enum_declaration(object):
 		scope.insert_type(self.name.generate_code(), "enum")
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.opt_annotations.generate_code() + ' enum ' + self.name.generate_code() + ' ' + '{' + self.identifier_list.generate_code() + '}'
 
 	def filter(self):

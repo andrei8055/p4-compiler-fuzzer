@@ -18,4 +18,5 @@ class tuple_type(object):
 		self.type_argument_list.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return 'tuple <' + self.type_argument_list.generate_code() + '>'

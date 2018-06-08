@@ -23,4 +23,5 @@ class extern_declaration_function(object):
 		self.function_prototype.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.opt_annotations.generate_code() + ' extern ' + self.function_prototype.generate_code()

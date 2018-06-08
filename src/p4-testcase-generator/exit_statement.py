@@ -9,4 +9,5 @@ class exit_statement(object):
 		pass
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return 'exit;'

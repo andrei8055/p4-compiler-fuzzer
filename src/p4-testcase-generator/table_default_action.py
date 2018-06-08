@@ -23,5 +23,6 @@ class table_default_action(object):
 
 	#  default_action = value ';'
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = 'default_action = ' + self.value + ';'
 		return code

@@ -1,5 +1,6 @@
 from type_name import type_name
 from argument_list import argument_list
+from common import common
 
 
 class direct_application(object):
@@ -24,5 +25,6 @@ class direct_application(object):
 			self.type_name = None
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.type_name.generate_code() + '.apply(' + self.argument_list.generate_code() + ');'
 

@@ -8,6 +8,7 @@ from control_declaration import control_declaration
 from instantiation import instantiation
 from error_declaration import error_declaration
 from match_kind_declaration import match_kind_declaration
+from common import common
 
 class declaration(object):
 	type = 'declaration'
@@ -51,4 +52,5 @@ class declaration(object):
 		self.value.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.value.generate_code()

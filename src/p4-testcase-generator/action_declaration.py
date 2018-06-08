@@ -35,4 +35,5 @@ class action_declaration(object):
 		self.block_statement.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.opt_annotations.generate_code() + ' action ' + self.name.generate_code() + ' ' + '(' + self.parameter_list.generate_code() + ')' + ' ' + self.block_statement.generate_code()

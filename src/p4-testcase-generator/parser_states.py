@@ -1,5 +1,6 @@
 from parser_state import parser_state
 from randomizer import randomizer
+from common import common
 
 
 class parser_states(object):
@@ -24,6 +25,7 @@ class parser_states(object):
 			self.parser_states_list.append(_parser_state)
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		for parser_state in self.parser_states_list:
 			code += parser_state.generate_code() + ' '

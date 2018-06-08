@@ -1,5 +1,6 @@
 from switch_casse import switch_casse
 from randomizer import randomizer
+from common import common
 
 
 class switch_casses(object):
@@ -28,6 +29,7 @@ class switch_casses(object):
 				self.casses.append(_switch_casse)
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		for _switch_casse in self.casses:
 			code += _switch_casse.generate_code() + ' '

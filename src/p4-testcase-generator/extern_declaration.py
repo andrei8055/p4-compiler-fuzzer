@@ -5,6 +5,7 @@ from method_prototypes import method_prototypes
 from function_prototype import function_prototype
 from randomizer import randomizer
 from scope import scope
+from common import common
 
 
 class extern_declaration(object):
@@ -59,6 +60,7 @@ class extern_declaration(object):
 		scope.insert_type(self.non_type_name.generate_code(), "extern", specializations)
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ""
 		if self.type == 0:
 			code += self.opt_annotations.generate_code()

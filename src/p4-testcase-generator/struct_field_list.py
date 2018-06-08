@@ -1,11 +1,12 @@
 from struct_field import struct_field
 from randomizer import randomizer
+from common import common
 
 
 class struct_field_list(object):
 	field_list = []
 	min_list_size = 1
-	max_list_size = 5
+	max_list_size = 30
 
 	type = None
 	types = ["empty", "structFieldList"]
@@ -37,6 +38,7 @@ class struct_field_list(object):
 				self.field_list.append(_struct_field)
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		for _struct_field in self.field_list:
 			code += _struct_field.generate_code() + '\n'

@@ -16,4 +16,5 @@ class table_const_entries(object):
 
 	#  CONST ENTRIES '=' '{' entriesList '}' /* immutable entries */
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		pass

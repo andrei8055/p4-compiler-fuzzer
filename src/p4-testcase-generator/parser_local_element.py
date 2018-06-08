@@ -2,6 +2,7 @@ from randomizer import randomizer
 from constant_declaration import constant_declaration
 from variable_declaration import variable_declaration
 from instantiation import instantiation
+from common import common
 
 
 class parser_local_element(object):
@@ -28,4 +29,5 @@ class parser_local_element(object):
 		self.value.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.value.generate_code()

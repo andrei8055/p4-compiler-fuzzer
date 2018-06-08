@@ -5,6 +5,7 @@ import math
 import p4fuzzclib
 import sys
 from datetime import datetime
+from nltk.metrics import edit_distance
 
 def main():
 	argparse.ArgumentParser(description="P4Fuzz Bugs Tamer")
@@ -18,7 +19,7 @@ def main():
 	cursor.execute("DELETE FROM tamed_bugs")
 	cnx.commit()
 
-	cursor.execute("SELECT id, error FROM bugs")
+	cursor.execute("SELECT id, error FROM bugs WHERE id < 3200")
 	for (id, error) in cursor:
 		caseIds.append(id)
 		caseErrors.append(str(error))
@@ -36,7 +37,17 @@ def main():
 
 	dt3 = datetime.now()
 	diff = dt3 - dt2
-	print str(diff.total_seconds() * 1000) + " Calculated distances"
+	print str(diff.total_seconds()) + " Calculated distances using token"
+
+	# dists = [edit_distance(caseErrors[i], caseErrors[j])
+	# 		for i in range(1, len(caseErrors))
+	# 		for j in range(0, i)]
+	#
+	# dt7 = datetime.now()
+	# diff = dt7 - dt3
+	# print str(diff.total_seconds()) + " Calculated distances using lev"
+
+	# sys.exit()
 
 	initial_medoids = [0, len(caseErrors)-1]
 
@@ -85,6 +96,10 @@ def main():
 	dt5 = datetime.now()
 	diff = dt5 - dt4
 	print str(diff.total_seconds() * 1000) + " Tamed bugs clusters inserted into database finished! All Done!"
+
+	dt6 = datetime.now()
+	diff = dt6 - dt
+	print "Total time: " + str(diff.total_seconds())
 
 
 def andrei_distance(string1, string2):

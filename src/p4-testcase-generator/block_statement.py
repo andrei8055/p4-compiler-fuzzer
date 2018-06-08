@@ -24,5 +24,6 @@ class block_statement(object):
 		self.stat_or_decl_list.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.opt_annotations.generate_code() + '{' + self.stat_or_decl_list.generate_code() + '} '
 

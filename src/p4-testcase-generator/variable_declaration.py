@@ -36,6 +36,7 @@ class variable_declaration(object):
 		self.opt_initializer.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		if self.annotations is not None:
 			code += self.annotations.generate_code() + ' '

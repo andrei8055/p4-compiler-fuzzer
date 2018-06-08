@@ -36,6 +36,7 @@ class enumeration(object):
 		self.identifiers = self.generate_identifiers(randomizer.randint(self.field_min_number, self.field_max_number))
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return 'enum' + ' ' + self.name + ' ' + '{' + self.generate_fields_code(self.identifiers) + '}\n'
 
 	def generate_code_ref(self):

@@ -28,4 +28,5 @@ class entry(object):
 		self.action_ref.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.opt_annotations.generate_code() + ' ' + self.keyset_expression.generate_code() + ':' + self.action_ref.generate_code()

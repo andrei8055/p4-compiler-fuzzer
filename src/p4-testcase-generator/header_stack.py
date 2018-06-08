@@ -25,6 +25,7 @@ class header_stack(object):
 		return common.get_random_string(self.name_max_length, False) + '_union'
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.header.get_name() + '[' + str(self.size) + '] ' + self.name + ';'
 
 	def generate_code_ref(self):

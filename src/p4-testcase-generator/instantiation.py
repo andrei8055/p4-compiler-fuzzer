@@ -39,4 +39,5 @@ class instantiation(object):
 		self.argument_list.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.opt_annotations.generate_code() + ' ' + self.type_ref.generate_code() + ' (' + self.argument_list.generate_code() + ') ' + self.name.generate_code() + ';'

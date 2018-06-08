@@ -25,6 +25,7 @@ class argument_list(object):
 			self.non_empty_arg_list.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		if self.non_empty_arg_list is not None:
 			return self.non_empty_arg_list.generate_code()
 		else:

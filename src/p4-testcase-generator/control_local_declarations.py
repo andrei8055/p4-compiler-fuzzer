@@ -1,5 +1,6 @@
 from control_local_declaration import control_local_declaration
 from randomizer import randomizer
+from common import common
 
 
 class control_local_declarations(object):
@@ -28,6 +29,7 @@ class control_local_declarations(object):
 				self.local_declarations_list.append(_control_local_declaration)
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		for local_declaration in self.local_declarations_list:
 			code += local_declaration.generate_code() + ' '

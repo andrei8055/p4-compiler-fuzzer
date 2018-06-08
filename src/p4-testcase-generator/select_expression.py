@@ -24,4 +24,5 @@ class select_expression(object):
 		self.select_case_list.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return 'select(' + self.expression_list.generate_code() + ') { ' + self.select_case_list.generate_code() + ' } '

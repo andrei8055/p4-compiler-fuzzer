@@ -35,4 +35,5 @@ class constant_declaration(object):
 		self.initializer.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.opt_annotations.generate_code() + ' const ' + self.type_ref.generate_code() + ' ' + self.name.generate_code() + ' = ' + self.initializer.generate_code()

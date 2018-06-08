@@ -1,5 +1,6 @@
 from select_case import select_case
 from randomizer import randomizer
+from common import common
 
 
 class select_case_list(object):
@@ -28,6 +29,7 @@ class select_case_list(object):
 				self.case_list.append(_select_case)
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		for select_case in self.case_list:
 			code += select_case.generate_code() + ' '

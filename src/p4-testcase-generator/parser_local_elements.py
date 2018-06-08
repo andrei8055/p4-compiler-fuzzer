@@ -1,5 +1,6 @@
 from parser_local_element import parser_local_element
 from randomizer import randomizer
+from common import common
 
 
 class parser_local_elements(object):
@@ -28,6 +29,7 @@ class parser_local_elements(object):
 				self.parser_local_elements_list.append(_parser_local_element)
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		for parser_local_element in self.parser_local_elements_list:
 			code += parser_local_element.generate_code() + ' '

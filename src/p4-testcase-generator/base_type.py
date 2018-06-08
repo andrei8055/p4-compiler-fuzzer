@@ -4,6 +4,7 @@ from bit import bit
 from int import int
 from varbit import varbit
 from randomizer import randomizer
+from common import common
 
 
 class base_type(object):
@@ -49,4 +50,5 @@ class base_type(object):
 			self.value.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.value.generate_code()

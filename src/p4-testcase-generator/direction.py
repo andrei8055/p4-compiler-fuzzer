@@ -3,6 +3,8 @@ from in_literal import in_literal
 from inout_literal import inout_literal
 from out_literal import out_literal
 from empty_literal import empty_literal
+from common import common
+
 
 class direction(object):
 	type = 'direction'
@@ -31,4 +33,5 @@ class direction(object):
 		self.value.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.value.generate_code()

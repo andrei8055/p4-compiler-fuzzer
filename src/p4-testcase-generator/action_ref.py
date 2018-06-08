@@ -30,6 +30,7 @@ class action_ref(object):
 		self.argument_list.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = self.opt_annotations.generate_code() + ' ' + self.name.generate_code() + ' '
 		if self.argument_list is not None:
 			code += '(' + self.argument_list.generate_code() + ')'

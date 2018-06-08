@@ -28,4 +28,5 @@ class specialized_type(object):
 			self.prefixed_type = None
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.prefixed_type.generate_code() + '<' + self.type_argument_list.generate_code() + '>'

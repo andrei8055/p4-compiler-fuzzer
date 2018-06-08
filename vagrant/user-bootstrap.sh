@@ -52,6 +52,15 @@ wget https://dev.mysql.com/get/Downloads/Connector-Python/mysql-connector-python
 sudo dpkg -i mysql-connector-python_8.0.11-1ubuntu16.04_all.deb
 cd ..
 
+sudo apt-get -y install bison build-essential cmake flex git libedit-dev libllvm3.7 llvm-3.7-dev libclang-3.7-dev python zlib1g-dev libelf-dev
+git clone https://github.com/iovisor/bcc.git
+mkdir bcc/build
+cd bcc/build
+cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+make
+sudo make install
+sudo -H pip install pyroute2
+
 git clone https://github.com/p4pktgen/p4pktgen.git
 cd p4pktgen
 ./tools/install.sh

@@ -36,4 +36,5 @@ class control_declaration(object):
 		self.control_body.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.control_type_declaration.generate_code() + ' ' + self.opt_constructor_parameters.generate_code() + '{ ' + self.control_local_declarations.generate_code() + ' apply ' + self.control_body.generate_code() + '}'

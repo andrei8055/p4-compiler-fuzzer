@@ -3,6 +3,7 @@ from derived_type_declaration import derived_type_declaration
 from name import name
 from annotations import annotations
 from randomizer import randomizer
+from common import common
 
 
 class typedef_declaration(object):
@@ -53,6 +54,7 @@ class typedef_declaration(object):
 		self.value.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		if self.annotation is not None:
 			code += self.annotation.generate_code() + ' '

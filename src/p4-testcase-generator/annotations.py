@@ -1,5 +1,6 @@
 from annotation import annotation
 from randomizer import randomizer
+from common import common
 
 
 class annotations(object):
@@ -21,6 +22,7 @@ class annotations(object):
 			self.annotation_list.append(_annotation)
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		for _annotation in self.annotation_list:
 			code += _annotation.generate_code() + '\n'

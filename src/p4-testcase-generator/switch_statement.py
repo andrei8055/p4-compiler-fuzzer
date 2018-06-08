@@ -24,4 +24,5 @@ class switch_statement(object):
 		self.switch_casses.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return 'switch (' + self.expression.generate_code() + ') {' + self.switch_casses.generate_code() + '} '

@@ -1,5 +1,6 @@
 from expression import expression
 from randomizer import randomizer
+from common import common
 
 
 class expression_list(object):
@@ -19,6 +20,7 @@ class expression_list(object):
 			self.exp_list.append(_expression)
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		for x in range(0, len(self.exp_list)):
 			code = code + self.exp_list[x].generate_code()

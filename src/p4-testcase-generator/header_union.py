@@ -46,6 +46,7 @@ class header_union(object):
         return common.get_random_string(self.name_length, True) + '_union'
 
     def generate_code(self):
+        common.usedCodeGenerator(self)
         code = ''
         if self.annotation is not None:
             code = self.annotation.generate_code() + ' '

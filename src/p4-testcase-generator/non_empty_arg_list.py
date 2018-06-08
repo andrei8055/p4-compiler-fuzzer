@@ -1,5 +1,6 @@
 from argument import argument
 from randomizer import randomizer
+from common import common
 
 
 class non_empty_arg_list(object):
@@ -19,6 +20,7 @@ class non_empty_arg_list(object):
 			self.argmument_list.append(_argument)
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		for x in range(0, len(self.argmument_list)):
 			code = code + self.argmument_list[x].generate_code()

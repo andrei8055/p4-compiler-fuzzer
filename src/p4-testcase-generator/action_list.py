@@ -26,6 +26,7 @@ class action_list(object):
 			self._action_list.append(_action)
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		for _action in self._action_list:
 			code += _action.generate_code() + '; '

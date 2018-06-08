@@ -2,6 +2,7 @@ from randomizer import randomizer
 from scope import scope
 from type_ref import type_ref
 from non_type_name import non_type_name
+from common import common
 
 
 class extern_variable_creation(object):
@@ -32,6 +33,7 @@ class extern_variable_creation(object):
 		scope.insert_variable(self.non_type_name.generate_code(), "extern_variable")
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ""
 		code += self.extern_name
 		if len(self.specializations_refs) > 0:
@@ -40,8 +42,9 @@ class extern_variable_creation(object):
 				code += specialization_ref.generate_code()
 				if i < len(self.specializations_refs) - 1:
 					code += ", "
-			code += ">() "
-			code += self.non_type_name.generate_code() + ";\n\n"
+			code += ">"
+		code += "() "
+		code += self.non_type_name.generate_code() + ";\n\n"
 		return code
 
 	def filter(self):

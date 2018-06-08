@@ -1,6 +1,7 @@
 from dot_prefix import dot_prefix
 from randomizer import randomizer
 from scope import scope
+from common import common
 
 
 class prefixed_type(object):
@@ -49,6 +50,7 @@ class prefixed_type(object):
 			self.value = None
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		if self.prefix is not None:
 			return self.prefix.generate_code() + self.value.keys()[0]
 		else:

@@ -1,6 +1,7 @@
 from default_literal import default_literal
 from name import name
 from randomizer import randomizer
+from common import common
 
 
 class switch_label(object):
@@ -24,4 +25,5 @@ class switch_label(object):
 		self.value.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.value.generate_code()

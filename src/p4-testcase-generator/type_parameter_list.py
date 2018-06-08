@@ -1,5 +1,6 @@
 from non_type_name import non_type_name
 from randomizer import randomizer
+from common import common
 
 
 class type_parameter_list(object):
@@ -24,6 +25,7 @@ class type_parameter_list(object):
 			self.parameter_list.append(_non_type_name)
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		for x in range(0, len(self.parameter_list)):
 			code += self.parameter_list[x].generate_code()

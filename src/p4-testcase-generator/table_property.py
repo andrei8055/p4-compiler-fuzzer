@@ -4,6 +4,7 @@ from entries_list import entries_list
 from opt_annotations import opt_annotations
 from initializer import initializer
 from randomizer import randomizer
+from common import common
 
 
 class table_property(object):
@@ -45,6 +46,7 @@ class table_property(object):
 		self.value.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		if type(self.value).__name__ == 'key_element_list':
 			code += 'key = { ' + self.value.generate_code() + '} '

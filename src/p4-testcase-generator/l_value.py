@@ -2,6 +2,8 @@ from randomizer import randomizer
 from prefixed_non_type_name import prefixed_non_type_name
 from member import member
 from expression import expression
+from common import common
+
 
 class l_value:
 	type = None
@@ -66,6 +68,7 @@ class l_value:
 		return False
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ""
 		if self.type == 0:
 			code += self.prefixedNonTypeName.generate_code()

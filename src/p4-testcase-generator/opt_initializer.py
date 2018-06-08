@@ -1,5 +1,6 @@
 from initializer import initializer
 from randomizer import randomizer
+from common import common
 
 
 class opt_initializer(object):
@@ -23,6 +24,7 @@ class opt_initializer(object):
 			self.initializer = None
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		if self.initializer is not None:
 			return '=' + self.initializer.generate_code()
 		else:

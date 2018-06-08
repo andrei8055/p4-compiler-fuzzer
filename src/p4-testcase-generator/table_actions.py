@@ -23,6 +23,7 @@ class table_actions(object):
 
 	#  ACTIONS '=' '{' actionList '}'
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		code += 'actions = { \n'
 		for action in self.action_elements:

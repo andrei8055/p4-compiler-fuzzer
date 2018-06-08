@@ -3,6 +3,7 @@ from constant_declaration import constant_declaration
 from statement import statement
 from instantiation import instantiation
 from randomizer import randomizer
+from common import common
 
 
 class statement_or_declaration(object):
@@ -32,4 +33,5 @@ class statement_or_declaration(object):
 		self.value.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.value.generate_code()

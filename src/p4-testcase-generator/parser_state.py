@@ -3,6 +3,7 @@ from parser_statements import parser_statements
 from transition_statement import transition_statement
 from name import name
 from common import common
+from common import common
 
 
 class parser_state(object):
@@ -37,4 +38,5 @@ class parser_state(object):
 		self.transition_statement.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.opt_annotations.generate_code() + ' state ' + self.name.generate_code() + ' { ' +self.parser_statements.generate_code() + ' ' + self.transition_statement.generate_code() + '} '

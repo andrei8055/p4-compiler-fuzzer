@@ -1,5 +1,6 @@
 from table_property import table_property
 from randomizer import randomizer
+from common import common
 
 
 class table_property_list(object):
@@ -24,6 +25,7 @@ class table_property_list(object):
 			self.property_list.append(_table_property)
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		code = ''
 		for _table_property in self.property_list:
 			code += _table_property.generate_code() + ' '

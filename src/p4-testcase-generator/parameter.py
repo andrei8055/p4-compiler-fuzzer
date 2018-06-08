@@ -3,6 +3,7 @@ from direction import direction
 from name import name
 from scope import scope
 from type_ref import type_ref
+from common import common
 
 
 class parameter(object):
@@ -45,6 +46,7 @@ class parameter(object):
 				break
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.opt_annotations.generate_code() + ' ' + self.direction.generate_code() + ' ' + self.type_ref.generate_code() + ' ' + self.name.generate_code()
 
 	def filter(self):

@@ -1,5 +1,6 @@
 from dontcare_literal import dontcare_literal
 from randomizer import randomizer
+from common import common
 
 
 class type_arg(object):
@@ -26,4 +27,5 @@ class type_arg(object):
 		self.value.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.value.generate_code()

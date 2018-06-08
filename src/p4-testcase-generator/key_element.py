@@ -38,4 +38,5 @@ class key_element(object):
 		self.opt_annotations.randomize()
 
 	def generate_code(self):
+		common.usedCodeGenerator(self)
 		return self.expression.generate_code() + ':' + self.name.generate_code() + ' ' + self.opt_annotations.generate_code()

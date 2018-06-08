@@ -11,19 +11,21 @@ from randomizer import randomizer
 class bmv2_random_program_generator(object):
 
 	min_random_structs = 1
-	max_random_structs = 10
+	max_random_structs = 25
 
 	min_random_headers = 1
-	max_random_headers = 10
+	max_random_headers = 25
 
-	min_random_parsers = 0
-	max_random_parsers = 10
+	min_random_parsers = 1
+	max_random_parsers = 25
 
 	min_random_externs = 1
 	max_random_externs = 25
 
 	min_extern_variables = 1
-	max_extern_variables = 100
+	max_extern_variables = 50
+
+	struct_name = ""
 
 	def __init__(self):
 		pass
@@ -51,7 +53,6 @@ class bmv2_random_program_generator(object):
 		return "//seed: " + str(randomizer.getSeed()) + "\n"
 
 	def generate_bmv2_includes(self):
-		# TODO: better
 		return "#include <core.p4>\n#include <v1model.p4>\n"
 
 
@@ -59,7 +60,6 @@ class bmv2_random_program_generator(object):
 		headers_t = struct_type_declaration(name="headers_t")
 		_struct_field_list = struct_field_list(fromObj=headers_t)
 		headers_t.struct_field_list = _struct_field_list
-		# TODO: if we randomize headers_t fields we need to write to them all in the parser to avoid warning
 		metadata_t = struct_type_declaration(name="metadata_t")
 		_struct_field_list2 = struct_field_list(fromObj=metadata_t)
 		_struct_field_list2.randomize()
@@ -119,8 +119,9 @@ class bmv2_random_program_generator(object):
 		return code
 
 	def generate_bmv2_parser(self):
-		# TODO: Implement
-		code = "parser ParserImpl(packet_in packet,\nout headers_t hdr,\ninout metadata_t meta,\ninout standard_metadata_t standard_metadata) {\nstate start {\ntransition select() {\n\ndefault: accept;\n}\n}\n}\n\n"
+		available_structs = scope.get_available_types(only_type="struct")
+		self.struct_name = available_structs.keys()[randomizer.randint(0, len(available_structs) - 1)]
+		code = "parser ParserImpl(packet_in packet,\nout headers_t hdr,\ninout " + self.struct_name + " meta,\ninout standard_metadata_t standard_metadata) {\nstate start {\ntransition select() {\n\ndefault: accept;\n}\n}\n}\n\n"
 		return code
 
 	def generate_random_parsers(self):
@@ -136,11 +137,10 @@ class bmv2_random_program_generator(object):
 		return code
 
 	def generate_bmv2_controls(self):
-		# TODO: Implement
-		code = "control IngressImpl(inout headers_t hdr,\ninout metadata_t meta,\ninout standard_metadata_t standard_metadata) {\napply {\n}\n}\n\n"
-		code += "control EgressImpl(inout headers_t hdr,\ninout metadata_t meta,\ninout standard_metadata_t standard_metadata) {\napply {\n\n}\n}\n\n"
-		code += "control VerifyChecksumImpl(inout headers_t hdr, inout metadata_t meta) {\napply {\n\n}\n}\n\n"
-		code += "control ComputeChecksumImpl(inout headers_t hdr, inout metadata_t meta) {\napply {\n}\n}\n\n"
+		code = "control IngressImpl(inout headers_t hdr,\ninout " + self.struct_name + " meta,\ninout standard_metadata_t standard_metadata) {\napply {\n}\n}\n\n"
+		code += "control EgressImpl(inout headers_t hdr,\ninout " + self.struct_name + " meta,\ninout standard_metadata_t standard_metadata) {\napply {\n\n}\n}\n\n"
+		code += "control VerifyChecksumImpl(inout headers_t hdr, inout " + self.struct_name + " meta) {\napply {\n\n}\n}\n\n"
+		code += "control ComputeChecksumImpl(inout headers_t hdr, inout " + self.struct_name + " meta) {\napply {\n}\n}\n\n"
 		code += "control DeparserImpl(packet_out packet, in headers_t hdr) {\napply {\n}\n}\n\n"
 		return code
 
@@ -148,6 +148,5 @@ class bmv2_random_program_generator(object):
 		pass
 
 	def generate_bmv2_init(self):
-		# TODO: implement
 		code = "V1Switch(ParserImpl(),\nVerifyChecksumImpl(),\nIngressImpl(),\nEgressImpl(),\nComputeChecksumImpl(),\nDeparserImpl()) main;"
 		return code
