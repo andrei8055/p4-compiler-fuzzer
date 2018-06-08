@@ -41,12 +41,20 @@ def main():
 		default='',
 		help='<Required> Path for the errors folder',
 		required=True)
+	parser.add_argument(
+		'-t',
+		'--target',
+		dest='target',
+		type=str,
+		default='bmv2',
+		help='The target for the code generation: bmv2/ebpf')
 	args = parser.parse_args()
 
 	currentTest = args.number.strip()
 	input = args.input.strip()
 	output = args.output.strip()
 	errorsPath = args.errors.strip()
+	target = args.target
 
 	cnx = mysql.connector.connect(user="p4-compiler-fuzzer", password="p4-compiler-fuzzer", host="localhost", database="fuzzer")
 	cursor = cnx.cursor()
@@ -68,7 +76,11 @@ def main():
 
 	dt1 = datetime.now()
 	try:
-		result = subprocess.check_output(["/usr/local/bin/p4c-bm2-ss --Wdisable " + input + " -o " + output + " > /dev/null"],
+		if target == "bmv2":
+			result = subprocess.check_output(["/usr/local/bin/p4c-bm2-ss --Wdisable " + input + " -o " + output + " > /dev/null"],
+										 stderr=subprocess.STDOUT, shell=True)
+		else:
+			result = subprocess.check_output(["/usr/local/bin/p4c-ebpf --Wdisable " + input + " -o " + output + " > /dev/null"],
 										 stderr=subprocess.STDOUT, shell=True)
 		print "Test " + currentTest + " passed"
 	except subprocess.CalledProcessError as e:

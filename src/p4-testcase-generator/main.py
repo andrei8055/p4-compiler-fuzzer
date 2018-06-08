@@ -3,6 +3,7 @@ import argparse
 from datetime import datetime
 
 from bmv2_random_program_generator import bmv2_random_program_generator
+from ebpf_random_program_generator import ebpf_random_program_generator
 from common import common
 from randomizer import randomizer
 
@@ -23,10 +24,18 @@ def main():
 		type=str,
 		default='False',
 		help='Show the generated program in console: True/False')
+	parser.add_argument(
+		'-t',
+		'--target',
+		dest='target',
+		type=str,
+		default='bmv2',
+		help='The target for the code generation: bmv2/ebpf')
 	args = parser.parse_args()
 
 	filename = args.filename.strip()
 	console = True if args.show == "True" or args.show == "true" else False
+	target = args.target
 
 	# print the program to file
 	file = open(filename, "w")
@@ -36,7 +45,7 @@ def main():
 	randomizer.setSeed(seed)
 	print "Seed: " + str(seed)
 
-	generator = bmv2_random_program_generator()
+	generator = bmv2_random_program_generator() if target == "bmv2" else ebpf_random_program_generator()
 	dt1 = datetime.now()
 	code = generator.generate()
 	dt2 = datetime.now()

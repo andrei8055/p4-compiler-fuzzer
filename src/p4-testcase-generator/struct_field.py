@@ -2,7 +2,6 @@ from opt_annotations import opt_annotations
 from type_ref import type_ref
 from name import name
 from scope import scope
-from header_type_declaration import header_type_declaration
 from common import common
 
 
@@ -50,6 +49,8 @@ class struct_field(object):
 		return code
 
 	def filter(self):
+		from header_type_declaration import header_type_declaration
+		from struct_type_declaration import struct_type_declaration
 		if self.type_ref.get_type() == 'specializedType':
 			return True
 		if self.type_ref.get_type() == 'headerStackType':

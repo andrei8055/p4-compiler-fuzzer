@@ -33,6 +33,6 @@ class method_call_statement(object):
 		code += self.lvalue.generate_code() + ' '
 		if self.type_argument_list is not None:
 			code += '<' + self.type_argument_list.generate_code() + '>'
-			code += '(' + self.argument_list.generate_code() + ')'
+		code += '(' + self.argument_list.generate_code() + ')'
 		return code
 
