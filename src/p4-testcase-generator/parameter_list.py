@@ -4,7 +4,9 @@ from common import common
 
 
 class parameter_list(object):
-	type = 'parameter_list'
+	type = None
+	types = ["empty", "nonEmptyParameterList"]
+	probabilities = [50, 50]
 	non_empty_parameter_list = None
 
 	# parameterList
@@ -16,8 +18,8 @@ class parameter_list(object):
 		self.non_empty_parameter_list = non_empty_parameter_list
 
 	def randomize(self):
-		rnd = randomizer.randint(0, 1)
-		if rnd == 0:
+		self.type = randomizer.getRandom(self.probabilities)
+		if self.type == 0:
 			self.non_empty_parameter_list = None
 		else:
 			self.non_empty_parameter_list = non_empty_parameter_list()

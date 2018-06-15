@@ -35,6 +35,9 @@ class type_ref(object):
     def get_ref_type(self):
         return self.value.get_ref_type()
 
+    def get_type_decl(self):
+        return self.value.get_type_decl()
+
     def randomize(self):
         self.__class__.curDepth += 1
         while True:

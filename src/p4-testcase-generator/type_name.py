@@ -16,6 +16,9 @@ class type_name(object):
 	def get_ref_type(self):
 		return self.prefixed_type.get_ref_type()
 
+	def get_type_decl(self):
+		return self.prefixed_type.get_type_decl()
+
 	def randomize(self):
 		self.prefixed_type = prefixed_type()
 		self.prefixed_type.randomize()

@@ -5,7 +5,7 @@ from non_type_name import non_type_name
 from common import common
 
 
-class extern_variable_creation(object):
+class parser_creation(object):
 	def __init__(self):
 		self.specializations_refs = []
 		pass
@@ -30,7 +30,7 @@ class extern_variable_creation(object):
 				self.specializations_refs.append(_type_ref)
 			if not self.filter():
 				break
-		scope.insert_variable(self.non_type_name.generate_code(), "extern_variable", self)
+		scope.insert_variable(self.non_type_name.generate_code(), "extern_variable")
 
 	def generate_code(self):
 		common.usedCodeGenerator(self)

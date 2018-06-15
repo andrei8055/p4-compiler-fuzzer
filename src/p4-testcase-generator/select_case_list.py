@@ -32,6 +32,6 @@ class select_case_list(object):
 		common.usedCodeGenerator(self)
 		code = ''
 		for select_case in self.case_list:
-			code += select_case.generate_code() + ' '
+			code += select_case.generate_code() + '\n'
 		return code
 

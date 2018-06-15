@@ -27,6 +27,9 @@ class prefixed_type(object):
 	def get_ref_type(self):
 		return self.value[self.value.keys()[0]]["type"]
 
+	def get_type_decl(self):
+		return self.value[self.value.keys()[0]]["object"]
+
 	def randomize(self):
 		self.type = randomizer.getRandom(self.probabilities)
 		if self.type == 0:

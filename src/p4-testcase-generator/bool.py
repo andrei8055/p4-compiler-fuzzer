@@ -1,4 +1,5 @@
 from common import common
+from randomizer import randomizer
 
 
 class bool(object):
@@ -10,6 +11,9 @@ class bool(object):
 	def get_ref_type(self):
 		return "bool"
 
+	def get_type_decl(self):
+		return self
+
 	def generate_code(self):
 		common.usedCodeGenerator(self)
 		return 'bool'
@@ -20,3 +24,9 @@ class bool(object):
 
 	def generate_code_ref(self):
 		return 'bool'
+
+	def generate_literal(self):
+		rnd = randomizer.randint(0, 1)
+		if rnd == 0:
+			return "false"
+		return "true"

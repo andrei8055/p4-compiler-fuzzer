@@ -1,6 +1,7 @@
 from keyset_expression import keyset_expression
-from name import name
 from common import common
+from scope import scope
+from randomizer import randomizer
 
 
 class select_case(object):
@@ -20,9 +21,9 @@ class select_case(object):
 		common.usedRandomize()
 		self.keyset_expression = keyset_expression()
 		self.keyset_expression.randomize()
-		self.name = name()
-		self.name.randomize()
+		available_states = scope.get_available_states()
+		self.name = available_states.keys()[randomizer.randint(0, len(available_states) - 1)]
 
 	def generate_code(self):
 		common.usedCodeGenerator(self)
-		return self.keyset_expression.generate_code() + ' : ' + self.name.generate_code() + ' ; '
+		return self.keyset_expression.generate_code() + ' : ' + self.name + ' ; '

@@ -19,6 +19,9 @@ class header_stack_type(object):
 	def get_ref_type(self):
 		return "header_stack"
 
+	def get_type_decl(self):
+		return self
+
 	def randomize(self):
 		self.type_name = type_name()
 		self.type_name.randomize()

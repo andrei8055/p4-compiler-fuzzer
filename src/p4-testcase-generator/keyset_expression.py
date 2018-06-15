@@ -5,7 +5,9 @@ from common import common
 
 
 class keyset_expression(object):
-	type = 'keyset_expression'
+	type = None
+	types = ["tupleKeysetExpression", "simpleKeysetExpression"]
+	probabilities = [0, 50]
 	value = None
 
 	# keysetExpression
@@ -18,10 +20,10 @@ class keyset_expression(object):
 
 	def randomize(self):
 		common.usedRandomize()
-		rnd = randomizer.randint(0, 1)
-		if rnd == 0:
+		self.type = randomizer.getRandom(self.probabilities)
+		if self.type == 0:
 			self.value = tuple_keyset_expression()
-		elif rnd == 1:
+		elif self.type == 1:
 			self.value = simple_keyset_expression()
 		self.value.randomize()
 

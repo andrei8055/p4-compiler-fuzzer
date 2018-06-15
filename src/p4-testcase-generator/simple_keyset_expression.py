@@ -8,7 +8,9 @@ from common import common
 
 
 class simple_keyset_expression(object):
-	type = 'simple_keyset_expression'
+	type = None
+	types = ["expression", "DEFAULT", "DONTCARE", "expressionMASKexpression", "expressionRANGEexpression"]
+	probabilities = [0, 50, 50, 0, 0]
 	value = None
 
 	# simpleKeysetExpression
@@ -23,16 +25,16 @@ class simple_keyset_expression(object):
 		self.value = value
 
 	def randomize(self):
-		rnd = randomizer.randint(0, 4)
-		if rnd == 0:
+		self.type = randomizer.getRandom(self.probabilities)
+		if self.type == 0:
 			self.value = expression()
-		elif rnd == 1:
+		elif self.type == 1:
 			self.value = default_literal()
-		elif rnd == 2:
+		elif self.type == 2:
 			self.value = dontcare_literal()
-		elif rnd == 3:
+		elif self.type == 3:
 			self.value = mask_expression()
-		elif rnd == 4:
+		elif self.type == 4:
 			self.value = range_expression()
 		self.value.randomize()
 

@@ -31,7 +31,7 @@ class enum_declaration(object):
 			self.identifier_list.randomize()
 			if not self.filter():
 				break
-		scope.insert_type(self.name.generate_code(), "enum")
+		scope.insert_type(self.name.generate_code(), "enum", self)
 
 	def generate_code(self):
 		common.usedCodeGenerator(self)

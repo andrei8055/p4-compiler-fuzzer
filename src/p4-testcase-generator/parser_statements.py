@@ -32,6 +32,6 @@ class parser_statements(object):
 		common.usedCodeGenerator(self)
 		code = ''
 		for parser_statement in self.parser_statements_list:
-			code += parser_statement.generate_code() + ' '
+			code += parser_statement.generate_code() + '\n'
 		return code
 

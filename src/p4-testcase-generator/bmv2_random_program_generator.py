@@ -4,6 +4,10 @@ from extern_declaration import extern_declaration
 from extern_variable_creation import extern_variable_creation
 from parser_declaration import parser_declaration
 from struct_field_list import struct_field_list
+from parser_local_elements import parser_local_elements
+from parser_states import parser_states
+from parameter import parameter
+from prefixed_type import prefixed_type
 from scope import scope
 from randomizer import randomizer
 
@@ -42,7 +46,7 @@ class bmv2_random_program_generator(object):
 		code += self.generate_extern_variables()
 		code += self.generate_bmv2_parser()
 		#TODO:continue implement parsers
-		#code += self.generate_random_parsers()
+		code += self.generate_random_parsers()
 		code += self.generate_bmv2_controls()
 		self.generate_random_controls()
 		code += self.generate_bmv2_init()
@@ -121,7 +125,16 @@ class bmv2_random_program_generator(object):
 	def generate_bmv2_parser(self):
 		available_structs = scope.get_available_types(only_type="struct")
 		self.struct_name = available_structs.keys()[randomizer.randint(0, len(available_structs) - 1)]
-		code = "parser ParserImpl(packet_in packet,\nout headers_t hdr,\ninout " + self.struct_name + " meta,\ninout standard_metadata_t standard_metadata) {\nstate start {\ntransition select() {\n\ndefault: accept;\n}\n}\n}\n\n"
+		scope.start_local()
+		_parameter = parameter(type_ref=prefixed_type(value={self.struct_name: available_structs[self.struct_name]}))
+		scope.insert_parameter("meta", "struct", _parameter)
+		_parser_states = parser_states()
+		_parser_states.randomize()
+		_parser_local_elements = parser_local_elements()
+		_parser_local_elements.randomize()
+		code = "parser ParserImpl(packet_in packet,\nout headers_t hdr,\ninout " + self.struct_name + " meta,\ninout standard_metadata_t standard_metadata) {\n" + _parser_local_elements.generate_code() + "\n" + _parser_states.generate_code() + "\n}\n\n"
+		scope.stop_local()
+		# "state start {\ntransition select() {\n\ndefault: accept;\n}\n}"
 		return code
 
 	def generate_random_parsers(self):

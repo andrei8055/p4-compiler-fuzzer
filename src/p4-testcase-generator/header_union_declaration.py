@@ -31,7 +31,7 @@ class header_union_declaration(object):
 			self.struct_field_list.randomize()
 			if not self.filter():
 				break
-		scope.insert_type(self.name.generate_code(), "header_union")
+		scope.insert_type(self.name.generate_code(), "header_union", self)
 
 	def generate_code(self):
 		common.usedCodeGenerator(self)

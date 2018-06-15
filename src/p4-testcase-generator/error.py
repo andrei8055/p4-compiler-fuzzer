@@ -1,4 +1,5 @@
 from common import common
+from randomizer import randomizer
 
 
 class error(object):
@@ -13,6 +14,9 @@ class error(object):
 
 	def get_ref_type(self):
 		return "error"
+
+	def get_type_decl(self):
+		return self
 
 	def get_identifier_list(self):
 		return self.identifier_list
@@ -32,3 +36,20 @@ class error(object):
 
 	def generate_code_ref(self):
 		return 'error'
+
+	def generate_literal(self):
+		rnd = randomizer.randint(0, 5)
+		code = "error."
+		if rnd == 0:
+			code += "NoError"
+		if rnd == 1:
+			code += "PacketTooShort"
+		if rnd == 2:
+			code += "NoMatch"
+		if rnd == 3:
+			code += "StackOutOfBounds"
+		if rnd == 4:
+			code += "HeaderTooShort"
+		if rnd == 5:
+			code += "ParserTimeout"
+		return code

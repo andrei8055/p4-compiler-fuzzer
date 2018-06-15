@@ -4,7 +4,10 @@ from common import common
 
 
 class opt_constructor_parameters(object):
-	type = 'opt_constructor_parameters'
+	type = None
+	types = ["empty", "parameterList"]
+	probabilities = [100, 0]
+
 	parameter_list = None
 
 	# optConstructorParameters
@@ -16,8 +19,8 @@ class opt_constructor_parameters(object):
 		self.parameter_list = parameter_list
 
 	def randomize(self):
-		rnd = randomizer.randint(0, 1)
-		if rnd == 0:
+		self.type = randomizer.getRandom(self.probabilities)
+		if self.type == 0:
 			self.parameter_list = None
 		else:
 			self.parameter_list = parameter_list()

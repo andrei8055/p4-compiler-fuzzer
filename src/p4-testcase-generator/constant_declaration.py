@@ -25,15 +25,22 @@ class constant_declaration(object):
 
 	def randomize(self):
 		common.usedRandomize()
-		self.opt_annotations = opt_annotations()
-		self.opt_annotations.randomize()
-		self.type_ref = type_ref()
-		self.type_ref.randomize()
-		self.name = name()
-		self.name.randomize()
-		self.initializer = initializer()
-		self.initializer.randomize()
+		while True:
+			self.opt_annotations = opt_annotations()
+			self.opt_annotations.randomize()
+			self.type_ref = type_ref(force_type=0)
+			self.type_ref.randomize()
+			self.name = name()
+			self.name.randomize()
+			self.initializer = self.type_ref.value.generate_literal()
+			if not self.filter():
+				break
+
+	def filter(self):
+		if self.type_ref.get_ref_type() in ["varbit", "error"]:
+			return True
+		return False
 
 	def generate_code(self):
 		common.usedCodeGenerator(self)
-		return self.opt_annotations.generate_code() + ' const ' + self.type_ref.generate_code() + ' ' + self.name.generate_code() + ' = ' + self.initializer.generate_code()
+		return self.opt_annotations.generate_code() + 'const ' + self.type_ref.generate_code() + ' ' + self.name.generate_code() + ' = ' + self.initializer + ';'

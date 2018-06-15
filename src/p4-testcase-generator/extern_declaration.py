@@ -52,12 +52,12 @@ class extern_declaration(object):
 		if self.type == 0:
 			if self.opt_type_parameters.type_parameter_list is not None:
 				for parameter in self.opt_type_parameters.type_parameter_list.parameter_list:
-					scope.insert_type(parameter.generate_code(), "template")
+					scope.insert_type(parameter.generate_code(), "template", parameter)
 					specializations += 1
 			self.method_prototypes = method_prototypes()
 			self.method_prototypes.randomize()
 		scope.stop_local()
-		scope.insert_type(self.non_type_name.generate_code(), "extern", specializations)
+		scope.insert_type(self.non_type_name.generate_code(), "extern", self, specializations)
 
 	def generate_code(self):
 		common.usedCodeGenerator(self)

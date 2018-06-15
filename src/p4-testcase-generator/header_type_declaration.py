@@ -31,7 +31,7 @@ class header_type_declaration(object):
 			self.struct_field_list.randomize()
 			if not self.filter():
 				break
-		scope.insert_type(self.name.generate_code(), "header")
+		scope.insert_type(self.name.generate_code(), "header", self)
 
 	def generate_code(self):
 		common.usedCodeGenerator(self)

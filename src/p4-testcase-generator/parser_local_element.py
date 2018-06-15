@@ -6,7 +6,9 @@ from common import common
 
 
 class parser_local_element(object):
-	type = 'parser_local_element'
+	type = None
+	types = ["constantDeclaration", "variableDeclaration", "instantiation"]
+	probabilities = [50, 50, 0]
 	value = None
 
 	# parserLocalElement
@@ -19,12 +21,12 @@ class parser_local_element(object):
 		self.value = value
 
 	def randomize(self):
-		rnd = randomizer.randint(0, 2)
-		if rnd == 0:
+		self.type = randomizer.getRandom(self.probabilities)
+		if self.type == 0:
 			self.value = constant_declaration()
-		elif rnd == 1:
+		elif self.type == 1:
 			self.value = variable_declaration()
-		elif rnd == 2:
+		elif self.type == 2:
 			self.value = instantiation()
 		self.value.randomize()
 

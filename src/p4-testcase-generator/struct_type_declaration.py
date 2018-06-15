@@ -32,7 +32,7 @@ class struct_type_declaration(object):
 			if not self.filter():
 				break
 		scope.stop_local()
-		scope.insert_type(self.name.generate_code(), "struct")
+		scope.insert_type(self.name.generate_code(), "struct", self)
 
 	def generate_code(self):
 		common.usedCodeGenerator(self)

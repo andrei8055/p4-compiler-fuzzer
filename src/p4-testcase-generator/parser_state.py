@@ -39,4 +39,4 @@ class parser_state(object):
 
 	def generate_code(self):
 		common.usedCodeGenerator(self)
-		return self.opt_annotations.generate_code() + ' state ' + self.name.generate_code() + ' { ' +self.parser_statements.generate_code() + ' ' + self.transition_statement.generate_code() + '} '
+		return self.opt_annotations.generate_code() + 'state ' + self.name.generate_code() + ' {\n' +self.parser_statements.generate_code() + '\n' + self.transition_statement.generate_code() + '\n}\n'

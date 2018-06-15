@@ -31,6 +31,9 @@ class base_type(object):
 	def get_ref_type(self):
 		return self.value.get_ref_type()
 
+	def get_type_decl(self):
+		return self.value.get_type_decl()
+
 	def randomize(self):
 		self.type = randomizer.getRandom(self.probabilities)
 		if self.type == 0:
@@ -52,3 +55,6 @@ class base_type(object):
 	def generate_code(self):
 		common.usedCodeGenerator(self)
 		return self.value.generate_code()
+
+	def generate_literal(self):
+		return self.value.generate_literal()

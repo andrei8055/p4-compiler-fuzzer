@@ -26,14 +26,22 @@ class variable_declaration(object):
 
 	def randomize(self):
 		common.usedRandomize()
-		self.annotations = annotations()
-		self.annotations.randomize()
-		self.type_ref = type_ref()
-		self.type_ref.randomize()
-		self.name = name()
-		self.name.randomize()
-		self.opt_initializer = opt_initializer()
-		self.opt_initializer.randomize()
+		while True:
+			self.annotations = annotations()
+			self.annotations.randomize()
+			self.type_ref = type_ref()
+			self.type_ref.randomize()
+			self.name = name()
+			self.name.randomize()
+			self.opt_initializer = opt_initializer()
+			self.opt_initializer.randomize()
+			if not self.filter():
+				break
+
+	def filter(self):
+		if self.type_ref.type == 1 and self.type_ref.get_ref_type() == "extern":
+			return True
+		return False
 
 	def generate_code(self):
 		common.usedCodeGenerator(self)

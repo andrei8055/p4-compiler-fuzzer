@@ -8,7 +8,10 @@ from common import common
 
 
 class parser_statement(object):
-	type = 'parser_statement'
+	type = None
+	types = ["assignmentOrMethodCallStatement", "directApplication", "parserBlockStatement", "constantDeclaration", "variableDeclaration"]
+	probabilities = [0, 0, 30, 35, 35]
+
 	value = None
 
 	# parserStatement
@@ -23,16 +26,16 @@ class parser_statement(object):
 		self.value = value
 
 	def randomize(self):
-		rnd = randomizer.randint(0, 4)
-		if rnd == 0:
+		self.type = randomizer.getRandom(self.probabilities)
+		if self.type == 0:
 			self.value = assignment_or_method_call_statement()
-		elif rnd == 1:
+		elif self.type == 1:
 			self.value = direct_application()
-		elif rnd == 2:
+		elif self.type == 2:
 			self.value = parser_block_statement()
-		elif rnd == 3:
+		elif self.type == 3:
 			self.value = constant_declaration()
-		elif rnd == 4:
+		elif self.type == 4:
 			self.value = variable_declaration()
 		self.value.randomize()
 

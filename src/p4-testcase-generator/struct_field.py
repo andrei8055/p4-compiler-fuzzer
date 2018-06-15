@@ -39,7 +39,7 @@ class struct_field(object):
 			self.name.randomize()
 			if not self.filter():
 				break
-		scope.insert_variable(self.name.generate_code(), self.type_ref.get_ref_type())
+		scope.insert_variable(self.name.generate_code(), self.type_ref.get_ref_type(), self)
 
 	def generate_code(self):
 		common.usedCodeGenerator(self)

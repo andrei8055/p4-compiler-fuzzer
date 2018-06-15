@@ -32,6 +32,6 @@ class parser_local_elements(object):
 		common.usedCodeGenerator(self)
 		code = ''
 		for parser_local_element in self.parser_local_elements_list:
-			code += parser_local_element.generate_code() + ' '
+			code += parser_local_element.generate_code() + '\n'
 		return code
 
