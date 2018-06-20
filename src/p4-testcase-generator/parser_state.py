@@ -3,7 +3,7 @@ from parser_statements import parser_statements
 from transition_statement import transition_statement
 from name import name
 from common import common
-from common import common
+from scope import scope
 
 
 class parser_state(object):
@@ -28,14 +28,26 @@ class parser_state(object):
 
 	def randomize(self):
 		common.usedRandomize()
-		self.opt_annotations = opt_annotations()
-		self.opt_annotations.randomize()
-		self.name = name()
-		self.name.randomize()
-		self.parser_statements = parser_statements()
-		self.parser_statements.randomize()
-		self.transition_statement = transition_statement()
-		self.transition_statement.randomize()
+		while True:
+			self.opt_annotations = opt_annotations()
+			self.opt_annotations.randomize()
+			self.name = name()
+			self.name.randomize()
+			self.parser_statements = parser_statements()
+			self.parser_statements.randomize()
+			self.transition_statement = transition_statement()
+			self.transition_statement.randomize()
+			if not self.filter():
+				break
+
+	def filter(self):
+		if self.name.generate_code() in scope.get_available_types():
+			return True
+		if self.name.generate_code() in scope.get_available_variables():
+			return True
+		if self.name.generate_code() in scope.get_available_states():
+			return True
+		return False
 
 	def generate_code(self):
 		common.usedCodeGenerator(self)

@@ -3,6 +3,7 @@ from name import name
 from parameter_list import parameter_list
 from block_statement import block_statement
 from common import common
+from scope import scope
 
 
 class action_declaration(object):
@@ -25,14 +26,28 @@ class action_declaration(object):
 
 	def randomize(self):
 		common.usedRandomize()
-		self.opt_annotations = opt_annotations()
-		self.opt_annotations.randomize()
-		self.name = name()
-		self.name.randomize()
-		self.parameter_list = parameter_list()
-		#self.parameter_list.randomize()
-		self.block_statement = block_statement()
-		self.block_statement.randomize()
+		while True:
+			self.opt_annotations = opt_annotations()
+			self.opt_annotations.randomize()
+			self.name = name()
+			self.name.randomize()
+			self.parameter_list = parameter_list()
+			#self.parameter_list.randomize()
+			self.block_statement = block_statement()
+			self.block_statement.randomize()
+			if not self.filter():
+				break
+
+	def filter(self):
+		if self.name.generate_code() in scope.get_available_types():
+			return True
+		if self.name.generate_code() in scope.get_available_variables():
+			return True
+		if self.name.generate_code() in scope.get_available_states():
+			return True
+		if self.name.generate_code() in scope.get_available_actions():
+			return True
+		return False
 
 	def generate_code(self):
 		common.usedCodeGenerator(self)

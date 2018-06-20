@@ -4,8 +4,12 @@ import os
 import re
 import shutil
 import mysql.connector
+import signal
 
 from datetime import datetime
+
+def signaled(signum, frame):
+	print "Test failed (compilation time too long)"
 
 def main():
 	parser = argparse.ArgumentParser(description="P4 Fuzzer Testcase Tester")
@@ -75,6 +79,8 @@ def main():
 	size = size_match.group(1) if size_match is not None else 0
 
 	dt1 = datetime.now()
+	signal.signal(signal.SIGALRM, signaled)
+	signal.alarm(15)
 	try:
 		if target == "bmv2":
 			result = subprocess.check_output(["/usr/local/bin/p4c-bm2-ss --Wdisable " + input + " -o " + output + " > /dev/null"],
@@ -110,8 +116,6 @@ def main():
 		print "Time: " + str(diff.total_seconds())
 		cursor.execute("UPDATE tests SET `compile_time`=" + str(diff.total_seconds()) + " WHERE `test` LIKE '" + currentTest + "'")
 		cnx.commit()
-
-
 
 if __name__ == '__main__':
 	main()

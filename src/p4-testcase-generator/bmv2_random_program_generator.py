@@ -23,16 +23,16 @@ class bmv2_random_program_generator(object):
 	max_random_headers = 25
 
 	min_random_parsers = 1
-	max_random_parsers = 25
+	max_random_parsers = 5
 
 	min_random_externs = 1
 	max_random_externs = 25
 
 	min_extern_variables = 1
-	max_extern_variables = 50
+	max_extern_variables = 25
 
 	min_random_controls = 1
-	max_random_controls = 25
+	max_random_controls = 5
 
 	struct_name = ""
 
