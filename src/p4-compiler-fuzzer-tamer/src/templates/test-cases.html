@@ -1,47 +1,50 @@
 <html>
 <head>
     <link rel="stylesheet" href="/pure-min.css"/>
+    <link rel="stylesheet" href="/style.css"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"> </script>
+    <script type="text/javascript" src="/script.js"> </script>
     <title>P4Fuzz Potential Bugs Found</title>
 </head>
 <body>
-<h1> Random order</h1>
-<table class="pure-table">
-    <thead>
-    <tr>
-        <th>#</th>
-        <th>test</th>
-        <th>error</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    {% for case in testCases %}
-    <tr>
-        <td>{{ case.id }}</td>
-        <td>{{ case.test }}</td>
-        <td>{{ case.error }}</td>
-    </tr>
-    {% endfor %}
-    </tbody>
-
-</table>
-<table class="pure-table">
-
-    <h1> Clustering taming</h1>
-
+<a class="a-title random-order-toggle" href="javascript:;">Random order</a>
+<div class="random-order">
     <table class="pure-table">
         <thead>
         <tr>
             <th>#</th>
             <th>test</th>
-            <th>file</th>
-            <th>cluster</th>
-            <th>medoid</th>
+            <th>error</th>
         </tr>
         </thead>
 
         <tbody>
-        {% for case in clusteredTestCases %}
+        {% for case in testCases %}
+        <tr>
+            <td>{{ case.id }}</td>
+            <td>{{ case.test }}</td>
+            <td>{{ case.error }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+<a class="a-title clustered-order-toggle" href="javascript:;">Clustering taming</a>
+<div class="clustered-order">
+    <table class="pure-table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>test</th>
+            <th>error</th>
+            <th>cluster</th>
+            <th>medoid</th>
+        </tr>
+        </thead>
+        {% for cluster in clusteredTestCases %}
+        <tbody>
+        {% for case in cluster %}
         <tr>
             <td>{{ case.id }}</td>
             <td>{{ case.test }}</td>
@@ -51,7 +54,8 @@
         </tr>
         {% endfor %}
         </tbody>
-
-</table>
+        {% endfor %}
+    </table>
+</div>
 </body>
 </html>

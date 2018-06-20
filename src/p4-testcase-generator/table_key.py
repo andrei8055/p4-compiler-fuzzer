@@ -25,7 +25,7 @@ class table_key(object):
 	def generate_code(self):
 		common.usedCodeGenerator(self)
 		code = ''
-		code += 'key = { \n'
+		code += 'key = {\n\n'
 		for x in range(0, len(self.key_elements)):
 			code = code + str(self.key_elements[x].generate_code())
 			code += '\n'

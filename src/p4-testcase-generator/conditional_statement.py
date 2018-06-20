@@ -19,6 +19,7 @@ class conditional_statement(object):
 		self.else_statement = else_statement
 
 	def randomize(self):
+		from statement import statement
 		common.usedRandomize()
 		self.expression = expression()
 		self.expression.randomize()

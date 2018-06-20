@@ -31,4 +31,4 @@ class table_declaration(object):
 
 	def generate_code(self):
 		common.usedCodeGenerator(self)
-		return self.opt_annotations.generate_code() + ' table ' + self.name.generate_code() + ' ' + '{' + self.table_property_list.generate_code() + '}'
+		return self.opt_annotations.generate_code() + ' table ' + self.name.generate_code() + ' ' + '{\n\n' + self.table_property_list.generate_code() + '\n}\n\n'

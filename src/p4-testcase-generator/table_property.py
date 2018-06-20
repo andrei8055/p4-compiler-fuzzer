@@ -8,10 +8,14 @@ from common import common
 
 
 class table_property(object):
-	type = 'table_property'
+	type = None
+	types = ["key", "actions", "entries", "constIdentifier", "identifier"]
+	probabilities = [50, 50, 0, 0, 0]
 	opt_annotations = None
 	value = None
 	const_initializer = False
+
+	force_type = None
 
 	# tableProperty
 	# : KEY '=' '{' keyElementList '}'
@@ -21,25 +25,28 @@ class table_property(object):
 	# | optAnnotations IDENTIFIER'=' initializer';'
 	# ;
 
-	def __init__(self, opt_annotations=None, value=None, const_initializer=False):
+	def __init__(self, opt_annotations=None, value=None, const_initializer=False, force_type=None):
 		self.opt_annotations = opt_annotations
 		self.value = value
 		self.const_initializer = const_initializer
+		self.force_type = force_type
 
 	def randomize(self):
-		rnd = randomizer.randint(0, 4)
-		if rnd == 0:
+		self.type = randomizer.getRandom(self.probabilities)
+		if self.force_type is not None:
+			self.type = self.force_type
+		if self.type == 0:
 			self.value = key_element_list()
-		elif rnd == 1:
+		elif self.type == 1:
 			self.value = action_list()
-		elif rnd == 2:
+		elif self.type == 2:
 			self.value = entries_list()
-		elif rnd == 3:
+		elif self.type == 3:
 			self.opt_annotations = opt_annotations()
 			self.opt_annotations.randomize()
 			self.const_initializer = True
 			self.value = initializer()
-		elif rnd == 4:
+		elif self.type == 4:
 			self.opt_annotations = opt_annotations()
 			self.opt_annotations.randomize()
 			self.value = initializer()
@@ -48,13 +55,13 @@ class table_property(object):
 	def generate_code(self):
 		common.usedCodeGenerator(self)
 		code = ''
-		if type(self.value).__name__ == 'key_element_list':
+		if self.type == 0:
 			code += 'key = { ' + self.value.generate_code() + '} '
-		elif type(self.value).__name__ == 'action_list':
+		elif self.type == 1:
 			code += 'actions = { ' + self.value.generate_code() + '} '
-		elif type(self.value).__name__ == 'entries_list':
+		elif self.type == 2:
 			code += 'const entries = { ' + self.value.generate_code() + '} '
-		elif type(self.value).__name__ == 'initializer':
+		elif self.type == 3 or self.type == 4:
 			code += self.opt_annotations.generate_code() + ' '
 			if self.const_initializer:
 				code += 'const '

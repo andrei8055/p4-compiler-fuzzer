@@ -5,7 +5,9 @@ from common import common
 
 
 class assignment_or_method_call_statement(object):
-	type = 'assignment_or_method_call_statement'
+	type = None
+	types = ["methodCall", "methodCallArguments", "assignment"]
+	probabilities = [0, 0, 100]
 	value = None
 
 	# assignmentOrMethodCallStatement
@@ -23,11 +25,13 @@ class assignment_or_method_call_statement(object):
 
 	def randomize(self):
 		common.usedRandomize()
-		rnd = randomizer.randint(0, 1)
-		if rnd == 0:
-			self.value = assignment_statement()
-		elif rnd == 1:
+		self.type = randomizer.getRandom(self.probabilities)
+		if self.type == 0:
 			self.value = method_call_statement()
+		elif self.type == 1:
+			self.value = method_call_statement()
+		elif self.type == 2:
+			self.value = assignment_statement()
 		self.value.randomize()
 
 	def generate_code(self):

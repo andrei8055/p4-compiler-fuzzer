@@ -32,6 +32,6 @@ class key_element_list(object):
 		common.usedCodeGenerator(self)
 		code = ''
 		for _key_element in self.element_list:
-			code += _key_element.generate_code() + ' '
+			code += _key_element.generate_code() + '\n'
 		return code
 

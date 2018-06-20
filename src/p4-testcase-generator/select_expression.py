@@ -22,8 +22,6 @@ class select_expression(object):
 
 	def randomize(self):
 		common.usedRandomize()
-		# self.expression_list = expression_list()
-		# self.expression_list.randomize()
 		available_parameters = scope.get_available_parameters(["struct", "header"])
 		if len(available_parameters):
 			self.parameter = available_parameters.keys()[randomizer.randint(0, len(available_parameters) - 1)]
@@ -40,5 +38,4 @@ class select_expression(object):
 
 	def generate_code(self):
 		common.usedCodeGenerator(self)
-		# return 'select(' + self.expression_list.generate_code() + ') { ' + self.select_case_list.generate_code() + ' } '
 		return 'select(' + self.parameter + '.' + self.member.name.generate_code() + '){\n' + self.select_case_list.generate_code() + '\n}'

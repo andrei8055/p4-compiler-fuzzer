@@ -6,12 +6,13 @@ from exit_statement import exit_statement
 from return_statement import return_statement
 from switch_statement import switch_statement
 from randomizer import randomizer
-from block_statement import block_statement
 from common import common
 
 
 class statement(object):
-	type = 'statement'
+	type = None
+	types = ["assignmentOrMethodCallStatement", "directApplication", "conditionalStatement", "emptyStatement", "blockStatement", "exitStatement", "returnStatement", "switchStatement"]
+	probabilities = [100, 0, 0, 0, 0, 0, 0, 0]
 	value = None
 
 	# statement
@@ -29,22 +30,23 @@ class statement(object):
 		self.value = value
 
 	def randomize(self):
-		rnd = randomizer.randint(0, 7)
-		if rnd == 0:
+		from block_statement import block_statement
+		self.type = randomizer.getRandom(self.probabilities)
+		if self.type == 0:
 			self.value = assignment_or_method_call_statement()
-		elif rnd == 1:
+		elif self.type == 1:
 			self.value = direct_application()
-		elif rnd == 2:
+		elif self.type == 2:
 			self.value = conditional_statement()
-		elif rnd == 3:
+		elif self.type == 3:
 			self.value = empty_statement()
-		elif rnd == 4:
+		elif self.type == 4:
 			self.value = block_statement()
-		elif rnd == 5:
+		elif self.type == 5:
 			self.value = exit_statement()
-		elif rnd == 6:
+		elif self.type == 6:
 			self.value = return_statement()
-		elif rnd == 7:
+		elif self.type == 7:
 			self.value = switch_statement()
 		self.value.randomize()
 

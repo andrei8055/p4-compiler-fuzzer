@@ -8,7 +8,9 @@ class scope(object):
 			"types": {},
 			"variables": {},
 			"states": {},
-			"parameters": {}
+			"parameters": {},
+			"actions": {},
+			"tables": {}
 		}
 		return new_scope
 
@@ -47,6 +49,16 @@ class scope(object):
 		local_scope["parameters"].update({name: {"type": type, "object": object}})
 
 	@staticmethod
+	def insert_action(name, object):
+		local_scope = scope.get_local()
+		local_scope["actions"].update({name: {"object": object}})
+
+	@staticmethod
+	def insert_table(name, object):
+		local_scope = scope.get_local()
+		local_scope["tables"].update({name: {"object": object}})
+
+	@staticmethod
 	def get_available_types(only_type=None):
 		available_types = {}
 		for local_scope in scope.scope_stack:
@@ -56,10 +68,12 @@ class scope(object):
 		return available_types
 
 	@staticmethod
-	def get_available_variables():
+	def get_available_variables(only_types=None):
 		available_variables = {}
 		for local_scope in scope.scope_stack:
-			available_variables.update(local_scope["variables"])
+			for local_type in local_scope["variables"].items():
+				if (only_types is not None and local_type[1]["type"] in only_types) or only_types is None:
+					available_variables.update({local_type[0]: local_type[1]})
 		return available_variables
 
 	@staticmethod
@@ -77,3 +91,17 @@ class scope(object):
 				if (only_types is not None and local_type[1]["type"] in only_types) or only_types is None:
 					available_parameters.update({local_type[0]: local_type[1]})
 		return available_parameters
+
+	@staticmethod
+	def get_available_actions():
+		available_actions = {}
+		for local_scope in scope.scope_stack:
+			available_actions.update(local_scope["actions"])
+		return available_actions
+
+	@staticmethod
+	def get_available_tables():
+		available_tables = {}
+		for local_scope in scope.scope_stack:
+			available_tables.update(local_scope["tables"])
+		return available_tables

@@ -30,10 +30,10 @@ class action_declaration(object):
 		self.name = name()
 		self.name.randomize()
 		self.parameter_list = parameter_list()
-		self.parameter_list.randomize()
+		#self.parameter_list.randomize()
 		self.block_statement = block_statement()
 		self.block_statement.randomize()
 
 	def generate_code(self):
 		common.usedCodeGenerator(self)
-		return self.opt_annotations.generate_code() + ' action ' + self.name.generate_code() + ' ' + '(' + self.parameter_list.generate_code() + ')' + ' ' + self.block_statement.generate_code()
+		return self.opt_annotations.generate_code() + '\naction ' + self.name.generate_code() + '(' + self.parameter_list.generate_code() + ')' + '\n' + self.block_statement.generate_code() + '\n\n'

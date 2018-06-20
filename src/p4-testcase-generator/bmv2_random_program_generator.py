@@ -3,8 +3,10 @@ from header_type_declaration import header_type_declaration
 from extern_declaration import extern_declaration
 from extern_variable_creation import extern_variable_creation
 from parser_declaration import parser_declaration
+from control_declaration import control_declaration
 from struct_field_list import struct_field_list
 from parser_local_elements import parser_local_elements
+from control_declaration_creation import control_declaration_creation
 from parser_states import parser_states
 from parameter import parameter
 from prefixed_type import prefixed_type
@@ -29,6 +31,9 @@ class bmv2_random_program_generator(object):
 	min_extern_variables = 1
 	max_extern_variables = 50
 
+	min_random_controls = 1
+	max_random_controls = 25
+
 	struct_name = ""
 
 	def __init__(self):
@@ -45,10 +50,9 @@ class bmv2_random_program_generator(object):
 		code += self.generate_random_externs()
 		code += self.generate_extern_variables()
 		code += self.generate_bmv2_parser()
-		#TODO:continue implement parsers
 		code += self.generate_random_parsers()
 		code += self.generate_bmv2_controls()
-		self.generate_random_controls()
+		code += self.generate_random_controls()
 		code += self.generate_bmv2_init()
 		scope.stop_local()
 		return code
@@ -66,7 +70,9 @@ class bmv2_random_program_generator(object):
 		headers_t.struct_field_list = _struct_field_list
 		metadata_t = struct_type_declaration(name="metadata_t")
 		_struct_field_list2 = struct_field_list(fromObj=metadata_t)
+		scope.start_local()
 		_struct_field_list2.randomize()
+		scope.stop_local()
 		metadata_t.struct_field_list = _struct_field_list2
 		structs = (headers_t, metadata_t)
 		code = ""
@@ -134,7 +140,6 @@ class bmv2_random_program_generator(object):
 		_parser_local_elements.randomize()
 		code = "parser ParserImpl(packet_in packet,\nout headers_t hdr,\ninout " + self.struct_name + " meta,\ninout standard_metadata_t standard_metadata) {\n" + _parser_local_elements.generate_code() + "\n" + _parser_states.generate_code() + "\n}\n\n"
 		scope.stop_local()
-		# "state start {\ntransition select() {\n\ndefault: accept;\n}\n}"
 		return code
 
 	def generate_random_parsers(self):
@@ -150,7 +155,18 @@ class bmv2_random_program_generator(object):
 		return code
 
 	def generate_bmv2_controls(self):
-		code = "control IngressImpl(inout headers_t hdr,\ninout " + self.struct_name + " meta,\ninout standard_metadata_t standard_metadata) {\napply {\n}\n}\n\n"
+		available_structs = scope.get_available_types(only_type="struct")
+		scope.start_local()
+		_parameter = parameter(type_ref=prefixed_type(value={self.struct_name: available_structs[self.struct_name]}))
+		scope.insert_parameter("meta", "struct", _parameter)
+		scope.start_local()
+		_control_local_declarations = control_declaration_creation()
+		_control_local_declarations.randomize()
+		available_tables = scope.get_available_tables()
+		table = available_tables.keys()[randomizer.randint(0, len(available_tables) - 1)]
+		scope.stop_local()
+		code = "control IngressImpl(inout headers_t hdr,\ninout " + self.struct_name + " meta,\ninout standard_metadata_t standard_metadata) {\n" + _control_local_declarations.generate_code() + "\napply {\n" + table + ".apply();\n}\n}\n\n"
+		scope.stop_local()
 		code += "control EgressImpl(inout headers_t hdr,\ninout " + self.struct_name + " meta,\ninout standard_metadata_t standard_metadata) {\napply {\n\n}\n}\n\n"
 		code += "control VerifyChecksumImpl(inout headers_t hdr, inout " + self.struct_name + " meta) {\napply {\n\n}\n}\n\n"
 		code += "control ComputeChecksumImpl(inout headers_t hdr, inout " + self.struct_name + " meta) {\napply {\n}\n}\n\n"
@@ -158,7 +174,16 @@ class bmv2_random_program_generator(object):
 		return code
 
 	def generate_random_controls(self):
-		pass
+		rnd = randomizer.randint(self.min_random_controls, self.max_random_controls)
+		control_declarations = []
+		for x in range(0, rnd):
+			_control_declaration = control_declaration()
+			_control_declaration.randomize()
+			control_declarations.append(_control_declaration)
+		code = ""
+		for _control_declaration in control_declarations:
+			code += _control_declaration.generate_code() + '\n\n'
+		return code
 
 	def generate_bmv2_init(self):
 		code = "V1Switch(ParserImpl(),\nVerifyChecksumImpl(),\nIngressImpl(),\nEgressImpl(),\nComputeChecksumImpl(),\nDeparserImpl()) main;"

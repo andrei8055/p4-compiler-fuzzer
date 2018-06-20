@@ -1,13 +1,12 @@
 from action_ref import action_ref
 from randomizer import randomizer
 from common import common
+from scope import scope
 
 
 class action_list(object):
 	type = 'action_list'
 	_action_list = []
-	min_list_size = 1
-	max_list_size = 5
 
 	# tablePropertyList
 	# : tableProperty
@@ -19,9 +18,9 @@ class action_list(object):
 
 	def randomize(self):
 		common.usedRandomize()
-		rnd = randomizer.randint(self.min_list_size, self.max_list_size)
+		rnd = randomizer.randint(0, len(scope.get_available_actions())-1)
 		for x in range(0, rnd):
-			_action = action_ref()
+			_action = action_ref(force_action=x)
 			_action.randomize()
 			self._action_list.append(_action)
 
