@@ -6,11 +6,11 @@ from common import common
 class struct_field_list(object):
 	field_list = []
 	min_list_size = 1
-	max_list_size = 30
+	max_list_size = 5
 
 	type = None
 	types = ["empty", "structFieldList"]
-	probabilities = [50,50]
+	probabilities = [0,50]
 
 	fromObj = None
 

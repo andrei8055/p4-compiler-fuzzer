@@ -7,7 +7,7 @@ from common import common
 class keyset_expression(object):
 	type = None
 	types = ["tupleKeysetExpression", "simpleKeysetExpression"]
-	probabilities = [0, 50]
+	probabilities = [0, 100]
 	value = None
 
 	# keysetExpression

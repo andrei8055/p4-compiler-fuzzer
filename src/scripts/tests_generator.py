@@ -28,7 +28,8 @@ while curNo < maxNo:
     print "Generating test " + filename
 
     dt1 = datetime.now()
-    subprocess.call([sys.executable, os.path.abspath(curDir + "/../p4-testcase-generator/main.py"), "-f " + filepath, "-s false"])
+    subprocess.call([sys.executable, os.path.abspath(curDir + "/../p4-testcase-generator/main.py"), "-t netfpga", "-f " + filepath, "-s false"])
+    print "test"
     dt2 = datetime.now()
     diff = dt2 - dt1
 

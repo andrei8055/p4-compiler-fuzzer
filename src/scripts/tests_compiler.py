@@ -16,9 +16,9 @@ while currentTest:
     currentFile = os.path.abspath(os.path.join(inputPath, currentTest + ".p4"))
     tmpFile = os.path.abspath(os.path.join(inputPath, currentTest + ".tmp"))
     os.rename(currentFile, tmpFile)
-    outFile = os.path.abspath(os.path.join(outputPath, currentTest + ".json"))
+    outFile = os.path.abspath(os.path.join(outputPath, currentTest + ".v"))
 
-    output = subprocess.call([sys.executable, os.path.abspath(curDir + "/../p4-testcase-tester/main.py"), "-n " + currentTest, "-i " + tmpFile, "-o" + outFile, "-e " + errorsPath])
+    output = subprocess.call([sys.executable, os.path.abspath(curDir + "/../p4-testcase-tester/main.py"), "-t netfpga", "-n " + currentTest, "-i " + tmpFile, "-o" + outFile, "-e " + errorsPath])
 
     os.remove(tmpFile)
 

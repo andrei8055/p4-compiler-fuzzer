@@ -5,6 +5,7 @@ from datetime import datetime
 
 from bmv2_random_program_generator import bmv2_random_program_generator
 from ebpf_random_program_generator import ebpf_random_program_generator
+from netfpga_random_program_generator import netfpga_random_program_generator
 from common import common
 from randomizer import randomizer
 
@@ -34,7 +35,7 @@ def main():
 		dest='target',
 		type=str,
 		default='bmv2',
-		help='The target for the code generation: bmv2/ebpf')
+		help='The target for the code generation: bmv2/ebpf/netfpga')
 	parser.add_argument(
 		'--seed',
 		dest='seed',
@@ -56,10 +57,15 @@ def main():
 	randomizer.setSeed(seed)
 	print "Seed: " + str(seed)
 
-	generator = bmv2_random_program_generator() if target == "bmv2" else ebpf_random_program_generator()
+	if target == "bmv2":
+		generator = bmv2_random_program_generator()
+	elif target == "ebpf":
+		generator = ebpf_random_program_generator()
+	else:
+		generator = netfpga_random_program_generator()
 	dt1 = datetime.now()
 	signal.signal(signal.SIGALRM, signaled)
-	signal.alarm(15)
+	signal.alarm(3)
 	code = generator.generate()
 	dt2 = datetime.now()
 

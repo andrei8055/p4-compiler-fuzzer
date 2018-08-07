@@ -51,7 +51,7 @@ def main():
 		dest='target',
 		type=str,
 		default='bmv2',
-		help='The target for the code generation: bmv2/ebpf')
+		help='The target for the code generation: bmv2/ebpf/netfpga')
 	args = parser.parse_args()
 
 	currentTest = args.number.strip()
@@ -85,9 +85,13 @@ def main():
 		if target == "bmv2":
 			result = subprocess.check_output(["/usr/local/bin/p4c-bm2-ss --Wdisable " + input + " -o " + output + " > /dev/null"],
 										 stderr=subprocess.STDOUT, shell=True)
-		else:
+		elif target == "ebpf":
 			result = subprocess.check_output(["/usr/local/bin/p4c-ebpf --Wdisable " + input + " -o " + output + " > /dev/null"],
 										 stderr=subprocess.STDOUT, shell=True)
+		else:
+			result = subprocess.check_output(
+				["/home/p4-compiler-fuzzer/p4-compiler-fuzzer/src/netfpga/2018.1.1/bin/p4c-sdnet --Wdisable " + input + " -o " + output + " > /dev/null"],
+				stderr=subprocess.STDOUT, shell=True)
 		print "Test " + currentTest + " passed"
 	except subprocess.CalledProcessError as e:
 		errorFile = os.path.abspath(os.path.join(errorsPath, currentTest + ".p4"))

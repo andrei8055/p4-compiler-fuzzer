@@ -10,7 +10,7 @@ from common import common
 class base_type(object):
 	type = None
 	types = ["BOOL", "ERROR", "BIT", "BITOFINTEGER", "INTOFINTEGER", "VARBITOFINTEGER"]
-	probabilities = [20,20,20,20,10,10]
+	probabilities = [20,0,20,20,20,10]
 	value = None
 
 	# baseType

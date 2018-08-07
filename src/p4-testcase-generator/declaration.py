@@ -11,7 +11,10 @@ from match_kind_declaration import match_kind_declaration
 from common import common
 
 class declaration(object):
-	type = 'declaration'
+	type = None
+	types = ["constantDeclaration", "externDeclaration", "actionDeclaration", "parserDeclaration", "typeDeclaration", "controlDeclaration", "instantiation", "errorDeclaration", "matchKindDeclaration"]
+	probabilities = [10, 10, 10, 10, 20, 10, 10, 0, 10]
+
 	value = None
 
 	# declaration
